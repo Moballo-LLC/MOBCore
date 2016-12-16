@@ -59,6 +59,11 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         super.set(object, forKey: keyName)
         super.synchronize()
     }
+    public override func removeObject(forKey keyName: String) {
+        super.removeObject(forKey: keyName)
+        super.synchronize()
+    }
+    //observer support
     public func addChangeObserver(_ observer: Any, selector: Selector) {
         NotificationCenter.default.addObserver(observer, selector: selector, name: self.didChangeExternallyNotification, object: self)
     }

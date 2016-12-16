@@ -21,43 +21,13 @@
 		960C9BC61E03C01E00DB9484 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */; };
 		960C9BC71E03C01E00DB9484 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions.swift */; };
 		960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BE41E03C67600DB9484 /* UIKit.framework */; };
-		960C9BE61E03C67D00DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BD91E03C65900DB9484 /* Alamofire.framework */; };
-		960C9BE71E03C68300DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDD1E03C65900DB9484 /* AlamofireImage.framework */; };
-		960C9BE81E03C68900DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDB1E03C65900DB9484 /* Alamofire.framework */; };
-		960C9BE91E03C69000DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDF1E03C65900DB9484 /* AlamofireImage.framework */; };
 		960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BEA1E03C69900DB9484 /* UIKit.framework */; };
 		9679E0531DF09B6400F8FFBC /* asdf.swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 9679E0521DF09B6400F8FFBC /* asdf.swift-version */; };
+		96DB77801E047C71009B139D /* MOBDefaultsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */; };
+		96DB77811E047C71009B139D /* MOBDefaultsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		960C9BD81E03C65900DB9484 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E4490376932D94A25239A6CE852A126;
-			remoteInfo = "Alamofire-iOS";
-		};
-		960C9BDA1E03C65900DB9484 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3916E85F8D711BF7ECFA8BF2D40F9A54;
-			remoteInfo = "Alamofire-watchOS";
-		};
-		960C9BDC1E03C65900DB9484 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62852202F8B427D4D58BFC6991DB814D;
-			remoteInfo = "AlamofireImage-iOS";
-		};
-		960C9BDE1E03C65900DB9484 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 08ED20C53744F3F108EC260EA02BB016;
-			remoteInfo = "AlamofireImage-watchOS";
-		};
 		960C9BE01E03C65900DB9484 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */;
@@ -94,6 +64,7 @@
 		960C9BE41E03C67600DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		960C9BEA1E03C69900DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9679E0521DF09B6400F8FFBC /* asdf.swift-version */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "asdf.swift-version"; sourceTree = SOURCE_ROOT; };
+		96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaultsUser.swift; path = Sources/MOBDefaultsUser.swift; sourceTree = SOURCE_ROOT; };
 		ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,8 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				960C9BE71E03C68300DB9484 /* ReferenceProxy in Frameworks */,
-				960C9BE61E03C67D00DB9484 /* ReferenceProxy in Frameworks */,
 				960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */,
 				25DA539AFF8692A8E08944C8 /* Pods_MOBCore_iOS.framework in Frameworks */,
 			);
@@ -117,8 +86,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */,
-				960C9BE91E03C69000DB9484 /* ReferenceProxy in Frameworks */,
-				960C9BE81E03C68900DB9484 /* ReferenceProxy in Frameworks */,
 				7456CDDDDBF221CA72953DB1 /* Pods_MOBCore_Watch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +131,7 @@
 				960C9B991E036C6100DB9484 /* MOBDefaults.swift */,
 				960C9B9F1E03B08900DB9484 /* MOBDefaultsCloud.swift */,
 				960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */,
+				96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */,
 				1E689A811C86AB330027BEA1 /* MOBExtensions.swift */,
 				960C9B781E03660200DB9484 /* MOBFile.swift */,
 				1E689A821C86AB330027BEA1 /* MOBCore.h */,
@@ -204,10 +172,6 @@
 		960C9BD01E03C65800DB9484 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				960C9BD91E03C65900DB9484 /* Alamofire.framework */,
-				960C9BDB1E03C65900DB9484 /* Alamofire.framework */,
-				960C9BDD1E03C65900DB9484 /* AlamofireImage.framework */,
-				960C9BDF1E03C65900DB9484 /* AlamofireImage.framework */,
 				960C9BE11E03C65900DB9484 /* Pods_MOBCore_Watch.framework */,
 				960C9BE31E03C65900DB9484 /* Pods_MOBCore_iOS.framework */,
 			);
@@ -333,34 +297,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		960C9BD91E03C65900DB9484 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 960C9BD81E03C65900DB9484 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		960C9BDB1E03C65900DB9484 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 960C9BDA1E03C65900DB9484 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		960C9BDD1E03C65900DB9484 /* AlamofireImage.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AlamofireImage.framework;
-			remoteRef = 960C9BDC1E03C65900DB9484 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		960C9BDF1E03C65900DB9484 /* AlamofireImage.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AlamofireImage.framework;
-			remoteRef = 960C9BDE1E03C65900DB9484 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		960C9BE11E03C65900DB9484 /* Pods_MOBCore_Watch.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -464,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960C9B791E03660200DB9484 /* MOBFile.swift in Sources */,
+				96DB77801E047C71009B139D /* MOBDefaultsUser.swift in Sources */,
 				960C9B9C1E036D7D00DB9484 /* MOBDefaultsKeychain.swift in Sources */,
 				960C9BA01E03B08900DB9484 /* MOBDefaultsCloud.swift in Sources */,
 				960C9B9A1E036C6100DB9484 /* MOBDefaults.swift in Sources */,
@@ -475,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DB77811E047C71009B139D /* MOBDefaultsUser.swift in Sources */,
 				960C9BC41E03C01E00DB9484 /* MOBDefaults.swift in Sources */,
 				960C9BC51E03C01E00DB9484 /* MOBDefaultsCloud.swift in Sources */,
 				960C9BC61E03C01E00DB9484 /* MOBDefaultsKeychain.swift in Sources */,
