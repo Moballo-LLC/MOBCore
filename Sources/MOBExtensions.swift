@@ -1,6 +1,6 @@
 //
 //  MOBExtensions.swift
-//  MOBAdvertising
+//  MOBCore
 //
 //  Created by Jason Morcos on 11/23/16.
 //  Copyright © 2016 CBTech. All rights reserved.
@@ -12,6 +12,8 @@
     //SET MOBALLO VARIABLES HERE
     internal class MOBInternalConstants : NSObject {
         static internal let copyrightEntity = "Moballo, LLC"
+        static internal let supportWebsite = "http://moballo.com"
+        static internal let supportEmail = "support@moballo.com"
     }
     //EXTENSIONS BEGIN HERE
     extension Sequence {
@@ -280,7 +282,7 @@
             } else {
                 copyright = UIApplication.appCopyright()
             }
-            let infoText = "Version: \(UIApplication.appVersion())\nBuild: \(UIApplication.appBuild())\n \nContact Us: support@moballo.com\nWebsite: http://moballo.com\n\n\(copyright)"
+            let infoText = "Version: \(UIApplication.appVersion())\nBuild: \(UIApplication.appBuild())\n \nContact Us: \(MOBInternalConstants.supportEmail)\nWebsite: \(MOBInternalConstants.supportWebsite)\n\n\(copyright)"
             return infoText
         }
         public static func appAboutController(appName: String, customCopyright: String?) ->UIAlertController {

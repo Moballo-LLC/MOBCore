@@ -52,12 +52,12 @@
 		1E689A7C1C86AAF20027BEA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = SOURCE_ROOT; };
 		1E689A811C86AB330027BEA1 /* MOBExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBExtensions.swift; path = Sources/MOBExtensions.swift; sourceTree = SOURCE_ROOT; };
 		1E689A821C86AB330027BEA1 /* MOBCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOBCore.h; path = Sources/MOBCore.h; sourceTree = SOURCE_ROOT; };
-		1EAFA0D81B6039D5001F3D84 /* MOBAdvertising.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MOBAdvertising.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EAFA0D81B6039D5001F3D84 /* MOBCore-iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "MOBCore-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		960C9B781E03660200DB9484 /* MOBFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBFile.swift; path = Sources/MOBFile.swift; sourceTree = SOURCE_ROOT; };
 		960C9B991E036C6100DB9484 /* MOBDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaults.swift; path = Sources/MOBDefaults.swift; sourceTree = SOURCE_ROOT; };
 		960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaultsKeychain.swift; path = Sources/MOBDefaultsKeychain.swift; sourceTree = SOURCE_ROOT; };
 		960C9B9F1E03B08900DB9484 /* MOBDefaultsCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaultsCloud.swift; path = Sources/MOBDefaultsCloud.swift; sourceTree = SOURCE_ROOT; };
-		960C9BBC1E03BFAB00DB9484 /* MOBCore Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "MOBCore Watch.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		960C9BBC1E03BFAB00DB9484 /* MOBCore-WatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "MOBCore-WatchOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		960C9BBE1E03BFAB00DB9484 /* MOBCore Watch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MOBCore Watch.h"; sourceTree = "<group>"; };
 		960C9BBF1E03BFAB00DB9484 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 		1EAFA0D91B6039D5001F3D84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1EAFA0D81B6039D5001F3D84 /* MOBAdvertising.framework */,
-				960C9BBC1E03BFAB00DB9484 /* MOBCore Watch.framework */,
+				1EAFA0D81B6039D5001F3D84 /* MOBCore-iOS.framework */,
+				960C9BBC1E03BFAB00DB9484 /* MOBCore-WatchOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,9 +211,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1EAFA0D71B6039D5001F3D84 /* MOBCore_iOS */ = {
+		1EAFA0D71B6039D5001F3D84 /* MOBCore-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1EAFA0EE1B6039D5001F3D84 /* Build configuration list for PBXNativeTarget "MOBCore_iOS" */;
+			buildConfigurationList = 1EAFA0EE1B6039D5001F3D84 /* Build configuration list for PBXNativeTarget "MOBCore-iOS" */;
 			buildPhases = (
 				BE8C91D9D54B325E2AABCA3E /* [CP] Check Pods Manifest.lock */,
 				1EAFA0D31B6039D5001F3D84 /* Sources */,
@@ -226,14 +226,14 @@
 			);
 			dependencies = (
 			);
-			name = MOBCore_iOS;
+			name = "MOBCore-iOS";
 			productName = Kanna;
-			productReference = 1EAFA0D81B6039D5001F3D84 /* MOBAdvertising.framework */;
+			productReference = 1EAFA0D81B6039D5001F3D84 /* MOBCore-iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		960C9BBB1E03BFAB00DB9484 /* MOBCore Watch */ = {
+		960C9BBB1E03BFAB00DB9484 /* MOBCore-WatchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 960C9BC31E03BFAB00DB9484 /* Build configuration list for PBXNativeTarget "MOBCore Watch" */;
+			buildConfigurationList = 960C9BC31E03BFAB00DB9484 /* Build configuration list for PBXNativeTarget "MOBCore-WatchOS" */;
 			buildPhases = (
 				5CF6C0BE6F91C3334752CAB9 /* [CP] Check Pods Manifest.lock */,
 				960C9BB71E03BFAB00DB9484 /* Sources */,
@@ -246,9 +246,9 @@
 			);
 			dependencies = (
 			);
-			name = "MOBCore Watch";
+			name = "MOBCore-WatchOS";
 			productName = "MOBCore Watch";
-			productReference = 960C9BBC1E03BFAB00DB9484 /* MOBCore Watch.framework */;
+			productReference = 960C9BBC1E03BFAB00DB9484 /* MOBCore-WatchOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -290,8 +290,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				1EAFA0D71B6039D5001F3D84 /* MOBCore_iOS */,
-				960C9BBB1E03BFAB00DB9484 /* MOBCore Watch */,
+				1EAFA0D71B6039D5001F3D84 /* MOBCore-iOS */,
+				960C9BBB1E03BFAB00DB9484 /* MOBCore-WatchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -593,7 +593,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBCore;
-				PRODUCT_NAME = MOBAdvertising;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -660,7 +660,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBCore;
-				PRODUCT_NAME = MOBAdvertising;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -735,7 +735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1EAFA0EE1B6039D5001F3D84 /* Build configuration list for PBXNativeTarget "MOBCore_iOS" */ = {
+		1EAFA0EE1B6039D5001F3D84 /* Build configuration list for PBXNativeTarget "MOBCore-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1EAFA0EF1B6039D5001F3D84 /* Debug */,
@@ -744,7 +744,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		960C9BC31E03BFAB00DB9484 /* Build configuration list for PBXNativeTarget "MOBCore Watch" */ = {
+		960C9BC31E03BFAB00DB9484 /* Build configuration list for PBXNativeTarget "MOBCore-WatchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				960C9BC11E03BFAB00DB9484 /* Debug */,

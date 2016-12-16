@@ -1,4 +1,4 @@
-/**@file MOBAdvertising.h
+/**@file MOBCore.h
  
 Kanna
  
@@ -25,10 +25,10 @@ SOFTWARE.
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-//! Project version number for MOBAdvertising.
+//! Project version number for MOBCore.
 FOUNDATION_EXPORT double MOBCoreVersionNumber;
 
-//! Project version string for MOBAdvertising.
+//! Project version string for MOBCore.
 FOUNDATION_EXPORT const unsigned char MOBCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Kanna/PublicHeader.h>

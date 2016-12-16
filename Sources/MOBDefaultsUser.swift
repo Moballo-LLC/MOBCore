@@ -1,6 +1,6 @@
 //
 //  MOBDefaults.swift
-//  MOBAdvertising
+//  MOBCore
 //
 //  Created by Jason Morcos on 11/23/16.
 //  Copyright © 2016 CBTech. All rights reserved.
