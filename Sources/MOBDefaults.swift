@@ -9,38 +9,38 @@
 import UIKit
 
 public class MOBDefaults: NSObject {
-    internal let: localInstance:UserDefaults
-    internal let: groupInstance:UserDefaults
-    internal let: cloudInstance:NSUbiquitousKeyValueStore?
-    internal let: keychainInstance:MOBDefaultsKeychain?
-    internal let group:String?
-    internal let keychain:string?
+    internal let localInstance:UserDefaults
+    internal let groupInstance:UserDefaults?
+    internal let cloudInstance:NSUbiquitousKeyValueStore?
+    internal let keychainInstance:MOBDefaultsKeychain?
+    internal let groupKey:String?
+    internal let keychainKey:String?
     public init(group: String?, keychain: String?) {
-        self.group = group
-        self.keychain = keychain
+        self.groupKey = group
+        self.keychainKey = keychain
         localInstance = UserDefaults.standard
         if let groupName = group {
             groupInstance = UserDefaults(suiteName: groupName)
+        } else {
+            groupInstance = nil
         }
         cloudInstance = NSUbiquitousKeyValueStore()
         if let keychainName = keychain {
-            groupInstance = MOBDefaultsKeychain(accessGroup: keychain)
+            keychainInstance = MOBDefaultsKeychain(accessGroup: keychainName)
+        } else {
+            keychainInstance = nil
         }
     }
     public func local() -> UserDefaults {
-        return localInstance!
+        return localInstance
     }
-    public func group() -> UserDefaults {
-        return groupInstance!
-        //return UserDefaults(suiteName: "group.gtportal")
+    public func group() -> UserDefaults? {
+        return groupInstance
     }
-    public func cloud() -> NSUbiquitousKeyValueStore {
-        return cloudInstance!
+    public func cloud() -> NSUbiquitousKeyValueStore? {
+        return cloudInstance
     }
-    public func keychain() -> MOBDefaultsKeychain {
-        return keychainInstance!
-        //let accessGroup:NSString? = "NKQ4HJ66PX.CBTech.GT"
-        //FIX THAT
+    public func keychain() -> MOBDefaultsKeychain? {
+        return keychainInstance
     }
 }
-
