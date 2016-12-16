@@ -43,22 +43,22 @@ public class MOBDefaultsKeychain : NSObject {
         return false
     }
     // MARK: Getting Values
-    public func string(forKey keyName: String) -> String {
+    public func string(forKey keyName: String, defaultValue:String? = "") -> String? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var stringValue: String?
         if let data = keychainData {
             stringValue = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
             if let trimmedString = stringValue {
                 if trimmedString.trimmingCharacters(in: CharacterSet.whitespaces) as String! == "" {
-                    return ""
+                    return defaultValue
                 }
             }
             else {
-                return ""
+                return defaultValue
             }
         }
         else {
-            return ""
+            return defaultValue
         }
         
         return stringValue!
@@ -75,14 +75,14 @@ public class MOBDefaultsKeychain : NSObject {
         
         return boolValue!
     }
-    public func integer(forKey keyName: String) -> Int? {
+    public func integer(forKey keyName: String, defaultValue:Int? = 0) -> Int? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var intValue: Int?
         if let data = keychainData {
             intValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Int?
         }
         else {
-            return nil
+            return defaultValue
         }
         
         return intValue
@@ -130,8 +130,8 @@ public class MOBDefaultsKeychain : NSObject {
     
     // MARK: Setting Values
     @discardableResult
-    public func set(value: String, forKey keyName: String) -> Bool {
-        if let data = value.data(using: String.Encoding.utf8) {
+    public func set(string: String, forKey keyName: String) -> Bool {
+        if let data = string.data(using: String.Encoding.utf8) {
             return self.setData(value: data, forKey: keyName)
         } else {
             return false
