@@ -7,6 +7,8 @@
 //
 #if os(iOS)
     import UIKit
+    import CoreLocation
+    import MapKit
     
     extension Sequence {
         
@@ -320,7 +322,7 @@
         }
         
     }
-    extension CLLocationCoordinate2D {
+    extension MKCoordinateRegion {
         func containsCoordinate(coordinate: CLLocationCoordinate2D) -> Bool {
             return coordinate.isInRegion(region: self);
         }
