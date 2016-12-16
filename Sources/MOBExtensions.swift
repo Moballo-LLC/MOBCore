@@ -298,7 +298,7 @@
         }
     }
     extension CLLocationCoordinate2D {
-        func isInRegion(region: MKCoordinateRegion) -> Bool {
+        public func isInRegion(region: MKCoordinateRegion) -> Bool {
             let center   = region.center
             var northWestCorner = center
             var southEastCorner = center
@@ -323,7 +323,7 @@
         
     }
     extension MKCoordinateRegion {
-        func containsCoordinate(coordinate: CLLocationCoordinate2D) -> Bool {
+        public func containsCoordinate(coordinate: CLLocationCoordinate2D) -> Bool {
             return coordinate.isInRegion(region: self);
         }
         
