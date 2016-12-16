@@ -13,6 +13,11 @@
 		960C9B9A1E036C6100DB9484 /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B991E036C6100DB9484 /* MOBDefaults.swift */; };
 		960C9B9C1E036D7D00DB9484 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */; };
 		960C9BA01E03B08900DB9484 /* MOBDefaultsCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9F1E03B08900DB9484 /* MOBDefaultsCloud.swift */; };
+		960C9BC01E03BFAB00DB9484 /* MOBCore Watch.h in Headers */ = {isa = PBXBuildFile; fileRef = 960C9BBE1E03BFAB00DB9484 /* MOBCore Watch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		960C9BC41E03C01E00DB9484 /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B991E036C6100DB9484 /* MOBDefaults.swift */; };
+		960C9BC51E03C01E00DB9484 /* MOBDefaultsCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9F1E03B08900DB9484 /* MOBDefaultsCloud.swift */; };
+		960C9BC61E03C01E00DB9484 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */; };
+		960C9BC71E03C01E00DB9484 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions.swift */; };
 		9679E0531DF09B6400F8FFBC /* asdf.swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 9679E0521DF09B6400F8FFBC /* asdf.swift-version */; };
 /* End PBXBuildFile section */
 
@@ -27,11 +32,21 @@
 		960C9B991E036C6100DB9484 /* MOBDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaults.swift; path = Sources/MOBDefaults.swift; sourceTree = SOURCE_ROOT; };
 		960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaultsKeychain.swift; path = Sources/MOBDefaultsKeychain.swift; sourceTree = SOURCE_ROOT; };
 		960C9B9F1E03B08900DB9484 /* MOBDefaultsCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaultsCloud.swift; path = Sources/MOBDefaultsCloud.swift; sourceTree = SOURCE_ROOT; };
+		960C9BBC1E03BFAB00DB9484 /* MOBCore Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "MOBCore Watch.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		960C9BBE1E03BFAB00DB9484 /* MOBCore Watch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MOBCore Watch.h"; sourceTree = "<group>"; };
+		960C9BBF1E03BFAB00DB9484 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9679E0521DF09B6400F8FFBC /* asdf.swift-version */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "asdf.swift-version"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1EAFA0D41B6039D5001F3D84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		960C9BB81E03BFAB00DB9484 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -55,6 +70,7 @@
 			children = (
 				1EAFA0DA1B6039D5001F3D84 /* Source */,
 				1E4F86B61BD90AE1008EF835 /* Kanna */,
+				960C9BBD1E03BFAB00DB9484 /* MOBCore Watch */,
 				1EAFA0D91B6039D5001F3D84 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				1EAFA0D81B6039D5001F3D84 /* MOBAdvertising.framework */,
+				960C9BBC1E03BFAB00DB9484 /* MOBCore Watch.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +108,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		960C9BBD1E03BFAB00DB9484 /* MOBCore Watch */ = {
+			isa = PBXGroup;
+			children = (
+				960C9BBE1E03BFAB00DB9484 /* MOBCore Watch.h */,
+				960C9BBF1E03BFAB00DB9484 /* Info.plist */,
+			);
+			path = "MOBCore Watch";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -99,6 +125,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E689A8B1C86AB330027BEA1 /* MOBCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		960C9BB91E03BFAB00DB9484 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				960C9BC01E03BFAB00DB9484 /* MOBCore Watch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +157,24 @@
 			productReference = 1EAFA0D81B6039D5001F3D84 /* MOBAdvertising.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		960C9BBB1E03BFAB00DB9484 /* MOBCore Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 960C9BC31E03BFAB00DB9484 /* Build configuration list for PBXNativeTarget "MOBCore Watch" */;
+			buildPhases = (
+				960C9BB71E03BFAB00DB9484 /* Sources */,
+				960C9BB81E03BFAB00DB9484 /* Frameworks */,
+				960C9BB91E03BFAB00DB9484 /* Headers */,
+				960C9BBA1E03BFAB00DB9484 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MOBCore Watch";
+			productName = "MOBCore Watch";
+			productReference = 960C9BBC1E03BFAB00DB9484 /* MOBCore Watch.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -136,6 +188,11 @@
 					1EAFA0D71B6039D5001F3D84 = {
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0800;
+					};
+					960C9BBB1E03BFAB00DB9484 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = NKQ4HJ66PX;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -152,6 +209,7 @@
 			projectRoot = "";
 			targets = (
 				1EAFA0D71B6039D5001F3D84 /* MOBCore_iOS */,
+				960C9BBB1E03BFAB00DB9484 /* MOBCore Watch */,
 			);
 		};
 /* End PBXProject section */
@@ -162,6 +220,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9679E0531DF09B6400F8FFBC /* asdf.swift-version in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		960C9BBA1E03BFAB00DB9484 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +242,17 @@
 				960C9BA01E03B08900DB9484 /* MOBDefaultsCloud.swift in Sources */,
 				960C9B9A1E036C6100DB9484 /* MOBDefaults.swift in Sources */,
 				1E689A871C86AB330027BEA1 /* MOBExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		960C9BB71E03BFAB00DB9484 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				960C9BC41E03C01E00DB9484 /* MOBDefaults.swift in Sources */,
+				960C9BC51E03C01E00DB9484 /* MOBDefaultsCloud.swift in Sources */,
+				960C9BC61E03C01E00DB9484 /* MOBDefaultsKeychain.swift in Sources */,
+				960C9BC71E03C01E00DB9484 /* MOBExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +427,7 @@
 					"-fembed-bitcode",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBAdvertising;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBCore;
 				PRODUCT_NAME = MOBAdvertising;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
@@ -417,12 +493,65 @@
 					"-fembed-bitcode",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBAdvertising;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBCore;
 				PRODUCT_NAME = MOBAdvertising;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0.1;
+			};
+			name = Release;
+		};
+		960C9BC11E03BFAB00DB9484 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NKQ4HJ66PX;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "MOBCore Watch/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		960C9BC21E03BFAB00DB9484 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NKQ4HJ66PX;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "MOBCore Watch/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.moballo.MOBCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -446,6 +575,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		960C9BC31E03BFAB00DB9484 /* Build configuration list for PBXNativeTarget "MOBCore Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				960C9BC11E03BFAB00DB9484 /* Debug */,
+				960C9BC21E03BFAB00DB9484 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

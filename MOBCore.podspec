@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/_tid_'
 
   s.ios.deployment_target = '8.0'
+  s.watchos.deployment_target = '2.0'
 
   s.framework = 'UIKit'
   s.framework = 'CoreLocation'
