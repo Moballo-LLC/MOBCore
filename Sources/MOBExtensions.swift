@@ -7,8 +7,6 @@
 //
 #if os(iOS)
     import UIKit
-    import Alamofire
-    import AlamofireImage
     
     extension Sequence {
         

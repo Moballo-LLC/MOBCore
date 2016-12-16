@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		1E689A871C86AB330027BEA1 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions.swift */; };
 		1E689A8B1C86AB330027BEA1 /* MOBCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E689A821C86AB330027BEA1 /* MOBCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		592A090E0408BBA1710ADC76 /* Pods_MOBCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4C737C5C595B14482DC3FC /* Pods_MOBCore_iOS.framework */; };
-		5E7CF2182638D08CAB5F86DA /* Pods_MOBCore_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C954D2BB007E8961BDBAA9D5 /* Pods_MOBCore_Watch.framework */; };
+		25DA539AFF8692A8E08944C8 /* Pods_MOBCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */; };
+		7456CDDDDBF221CA72953DB1 /* Pods_MOBCore_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */; };
 		960C9B791E03660200DB9484 /* MOBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B781E03660200DB9484 /* MOBFile.swift */; };
 		960C9B9A1E036C6100DB9484 /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B991E036C6100DB9484 /* MOBDefaults.swift */; };
 		960C9B9C1E036D7D00DB9484 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */; };
@@ -21,10 +21,10 @@
 		960C9BC61E03C01E00DB9484 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */; };
 		960C9BC71E03C01E00DB9484 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions.swift */; };
 		960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BE41E03C67600DB9484 /* UIKit.framework */; };
-		960C9BE61E03C67D00DB9484 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BD91E03C65900DB9484 /* Alamofire.framework */; };
-		960C9BE71E03C68300DB9484 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDD1E03C65900DB9484 /* AlamofireImage.framework */; };
-		960C9BE81E03C68900DB9484 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDB1E03C65900DB9484 /* Alamofire.framework */; };
-		960C9BE91E03C69000DB9484 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDF1E03C65900DB9484 /* AlamofireImage.framework */; };
+		960C9BE61E03C67D00DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BD91E03C65900DB9484 /* Alamofire.framework */; };
+		960C9BE71E03C68300DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDD1E03C65900DB9484 /* AlamofireImage.framework */; };
+		960C9BE81E03C68900DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDB1E03C65900DB9484 /* Alamofire.framework */; };
+		960C9BE91E03C69000DB9484 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BDF1E03C65900DB9484 /* AlamofireImage.framework */; };
 		960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BEA1E03C69900DB9484 /* UIKit.framework */; };
 		9679E0531DF09B6400F8FFBC /* asdf.swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 9679E0521DF09B6400F8FFBC /* asdf.swift-version */; };
 /* End PBXBuildFile section */
@@ -75,16 +75,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1BD86C76A0F76DDC76E2FE50 /* Pods-MOBCore Watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore Watch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore Watch/Pods-MOBCore Watch.debug.xcconfig"; sourceTree = "<group>"; };
+		091AAAE238FC4640326C5A66 /* Pods-MOBCore_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		0FC4ED9B43B17D5C278215FA /* Pods-MOBCore Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore Watch/Pods-MOBCore Watch.release.xcconfig"; sourceTree = "<group>"; };
 		1E4F86B71BD90AE1008EF835 /* Kanna.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Kanna.h; sourceTree = "<group>"; };
 		1E4F86B91BD90AE1008EF835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E689A7C1C86AAF20027BEA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = SOURCE_ROOT; };
 		1E689A811C86AB330027BEA1 /* MOBExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBExtensions.swift; path = Sources/MOBExtensions.swift; sourceTree = SOURCE_ROOT; };
 		1E689A821C86AB330027BEA1 /* MOBCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOBCore.h; path = Sources/MOBCore.h; sourceTree = SOURCE_ROOT; };
 		1EAFA0D81B6039D5001F3D84 /* MOBAdvertising.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MOBAdvertising.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422B769B4633E3C6FAAC1A96 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
-		44F6FA5EE5334CB68E621131 /* Pods-MOBCore_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		4F4C737C5C595B14482DC3FC /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960C9B781E03660200DB9484 /* MOBFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBFile.swift; path = Sources/MOBFile.swift; sourceTree = SOURCE_ROOT; };
 		960C9B991E036C6100DB9484 /* MOBDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaults.swift; path = Sources/MOBDefaults.swift; sourceTree = SOURCE_ROOT; };
 		960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaultsKeychain.swift; path = Sources/MOBDefaultsKeychain.swift; sourceTree = SOURCE_ROOT; };
@@ -96,8 +94,10 @@
 		960C9BE41E03C67600DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		960C9BEA1E03C69900DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9679E0521DF09B6400F8FFBC /* asdf.swift-version */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "asdf.swift-version"; sourceTree = SOURCE_ROOT; };
-		C954D2BB007E8961BDBAA9D5 /* Pods_MOBCore_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF18D89BD4B86D747BF6CCB4 /* Pods-MOBCore Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore Watch/Pods-MOBCore Watch.release.xcconfig"; sourceTree = "<group>"; };
+		ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC6909D5833F3E3862762AF9 /* Pods-MOBCore Watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore Watch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore Watch/Pods-MOBCore Watch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +105,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				960C9BE71E03C68300DB9484 /* AlamofireImage.framework in Frameworks */,
-				960C9BE61E03C67D00DB9484 /* Alamofire.framework in Frameworks */,
+				960C9BE71E03C68300DB9484 /* ReferenceProxy in Frameworks */,
+				960C9BE61E03C67D00DB9484 /* ReferenceProxy in Frameworks */,
 				960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */,
-				592A090E0408BBA1710ADC76 /* Pods_MOBCore_iOS.framework in Frameworks */,
+				25DA539AFF8692A8E08944C8 /* Pods_MOBCore_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,9 +117,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */,
-				960C9BE91E03C69000DB9484 /* AlamofireImage.framework in Frameworks */,
-				960C9BE81E03C68900DB9484 /* Alamofire.framework in Frameworks */,
-				5E7CF2182638D08CAB5F86DA /* Pods_MOBCore_Watch.framework in Frameworks */,
+				960C9BE91E03C69000DB9484 /* ReferenceProxy in Frameworks */,
+				960C9BE81E03C68900DB9484 /* ReferenceProxy in Frameworks */,
+				7456CDDDDBF221CA72953DB1 /* Pods_MOBCore_Watch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,8 +143,8 @@
 				1E4F86B61BD90AE1008EF835 /* Kanna */,
 				960C9BBD1E03BFAB00DB9484 /* MOBCore Watch */,
 				1EAFA0D91B6039D5001F3D84 /* Products */,
-				25ECC40156C80679A4787B58 /* Pods */,
 				97D67C33FC933CC0C4422253 /* Frameworks */,
+				6BF7A103C2D76131A49BD181 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,13 +181,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		25ECC40156C80679A4787B58 /* Pods */ = {
+		6BF7A103C2D76131A49BD181 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1BD86C76A0F76DDC76E2FE50 /* Pods-MOBCore Watch.debug.xcconfig */,
-				FF18D89BD4B86D747BF6CCB4 /* Pods-MOBCore Watch.release.xcconfig */,
-				44F6FA5EE5334CB68E621131 /* Pods-MOBCore_iOS.debug.xcconfig */,
-				422B769B4633E3C6FAAC1A96 /* Pods-MOBCore_iOS.release.xcconfig */,
+				CC6909D5833F3E3862762AF9 /* Pods-MOBCore Watch.debug.xcconfig */,
+				0FC4ED9B43B17D5C278215FA /* Pods-MOBCore Watch.release.xcconfig */,
+				091AAAE238FC4640326C5A66 /* Pods-MOBCore_iOS.debug.xcconfig */,
+				ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -219,8 +219,8 @@
 			children = (
 				960C9BEA1E03C69900DB9484 /* UIKit.framework */,
 				960C9BE41E03C67600DB9484 /* UIKit.framework */,
-				C954D2BB007E8961BDBAA9D5 /* Pods_MOBCore_Watch.framework */,
-				4F4C737C5C595B14482DC3FC /* Pods_MOBCore_iOS.framework */,
+				C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */,
+				C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -251,12 +251,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EAFA0EE1B6039D5001F3D84 /* Build configuration list for PBXNativeTarget "MOBCore_iOS" */;
 			buildPhases = (
-				46B3BE28C7322A41393D849B /* [CP] Check Pods Manifest.lock */,
+				BE8C91D9D54B325E2AABCA3E /* [CP] Check Pods Manifest.lock */,
 				1EAFA0D31B6039D5001F3D84 /* Sources */,
 				1EAFA0D41B6039D5001F3D84 /* Frameworks */,
 				1EAFA0D51B6039D5001F3D84 /* Headers */,
 				1EAFA0D61B6039D5001F3D84 /* Resources */,
-				8D39637D1DA69DB845E030A7 /* [CP] Copy Pods Resources */,
+				1F04BC32C8D1A09A48C1A464 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,12 +271,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 960C9BC31E03BFAB00DB9484 /* Build configuration list for PBXNativeTarget "MOBCore Watch" */;
 			buildPhases = (
-				340FE27331D655A96E6B8BAF /* [CP] Check Pods Manifest.lock */,
+				5CF6C0BE6F91C3334752CAB9 /* [CP] Check Pods Manifest.lock */,
 				960C9BB71E03BFAB00DB9484 /* Sources */,
 				960C9BB81E03BFAB00DB9484 /* Frameworks */,
 				960C9BB91E03BFAB00DB9484 /* Headers */,
 				960C9BBA1E03BFAB00DB9484 /* Resources */,
-				C2EC6608D28A3360C66C18B2 /* [CP] Copy Pods Resources */,
+				E8C06FAB2EC06814171E27A4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -396,37 +396,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		340FE27331D655A96E6B8BAF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		46B3BE28C7322A41393D849B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8D39637D1DA69DB845E030A7 /* [CP] Copy Pods Resources */ = {
+		1F04BC32C8D1A09A48C1A464 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -441,7 +411,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C2EC6608D28A3360C66C18B2 /* [CP] Copy Pods Resources */ = {
+		5CF6C0BE6F91C3334752CAB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BE8C91D9D54B325E2AABCA3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E8C06FAB2EC06814171E27A4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -599,7 +599,7 @@
 		};
 		1EAFA0EF1B6039D5001F3D84 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 44F6FA5EE5334CB68E621131 /* Pods-MOBCore_iOS.debug.xcconfig */;
+			baseConfigurationReference = 091AAAE238FC4640326C5A66 /* Pods-MOBCore_iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -665,7 +665,7 @@
 		};
 		1EAFA0F01B6039D5001F3D84 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 422B769B4633E3C6FAAC1A96 /* Pods-MOBCore_iOS.release.xcconfig */;
+			baseConfigurationReference = ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -732,7 +732,7 @@
 		};
 		960C9BC11E03BFAB00DB9484 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BD86C76A0F76DDC76E2FE50 /* Pods-MOBCore Watch.debug.xcconfig */;
+			baseConfigurationReference = CC6909D5833F3E3862762AF9 /* Pods-MOBCore Watch.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -760,7 +760,7 @@
 		};
 		960C9BC21E03BFAB00DB9484 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF18D89BD4B86D747BF6CCB4 /* Pods-MOBCore Watch.release.xcconfig */;
+			baseConfigurationReference = 0FC4ED9B43B17D5C278215FA /* Pods-MOBCore Watch.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
