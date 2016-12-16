@@ -87,6 +87,18 @@ public class MOBDefaultsKeychain : NSObject {
         
         return intValue
     }
+    public func double(forKey keyName: String) -> Double? {
+        let keychainData: Data? = self.getData(forKey: keyName)
+        var doubleValue: Double?
+        if let data = keychainData {
+            doubleValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Double?
+        }
+        else {
+            return nil
+        }
+        
+        return doubleValue
+    }
     public func array(forKey keyName: String) -> Array<Any>? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var arrayValue: Array<Any>?
@@ -161,6 +173,21 @@ public class MOBDefaultsKeychain : NSObject {
             return defaultValue
         }
         if let val = intValue as Int? {
+            return val
+        } else {
+            return defaultValue
+        }
+    }
+    public func double(forKey keyName: String, defaultValue:Double) -> Double? {
+        let keychainData: Data? = self.getData(forKey: keyName)
+        var doubleValue: Double?
+        if let data = keychainData {
+            doubleValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Double?
+        }
+        else {
+            return defaultValue
+        }
+        if let val = doubleValue as Double? {
             return val
         } else {
             return defaultValue
