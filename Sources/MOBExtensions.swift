@@ -240,7 +240,7 @@ extension String {
 }
 extension UIApplication {
     public func getScreenshot() -> UIImage {
-        let layer = UIApplication.shared.keyWindow?.layer
+        let layer = self.keyWindow?.layer
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(layer!.frame.size, false, scale)
         layer?.render(in: UIGraphicsGetCurrentContext()!)
