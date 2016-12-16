@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E689A871C86AB330027BEA1 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions.swift */; };
+		1E689A871C86AB330027BEA1 /* MOBExtensions-All.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions-All.swift */; };
 		1E689A8B1C86AB330027BEA1 /* MOBCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E689A821C86AB330027BEA1 /* MOBCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		960C9B791E03660200DB9484 /* MOBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B781E03660200DB9484 /* MOBFile.swift */; };
 		960C9B9A1E036C6100DB9484 /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B991E036C6100DB9484 /* MOBDefaults.swift */; };
@@ -17,7 +17,8 @@
 		960C9BC41E03C01E00DB9484 /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B991E036C6100DB9484 /* MOBDefaults.swift */; };
 		960C9BC51E03C01E00DB9484 /* MOBDefaultsCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9F1E03B08900DB9484 /* MOBDefaultsCloud.swift */; };
 		960C9BC61E03C01E00DB9484 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */; };
-		960C9BC71E03C01E00DB9484 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions.swift */; };
+		960C9BC71E03C01E00DB9484 /* MOBExtensions-All.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E689A811C86AB330027BEA1 /* MOBExtensions-All.swift */; };
+		960C9BCA1E03C13700DB9484 /* MOBExtensions-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C9BC91E03C13700DB9484 /* MOBExtensions-iOS.swift */; };
 		9679E0531DF09B6400F8FFBC /* asdf.swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 9679E0521DF09B6400F8FFBC /* asdf.swift-version */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +26,7 @@
 		1E4F86B71BD90AE1008EF835 /* Kanna.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Kanna.h; sourceTree = "<group>"; };
 		1E4F86B91BD90AE1008EF835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E689A7C1C86AAF20027BEA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = SOURCE_ROOT; };
-		1E689A811C86AB330027BEA1 /* MOBExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBExtensions.swift; path = Sources/MOBExtensions.swift; sourceTree = SOURCE_ROOT; };
+		1E689A811C86AB330027BEA1 /* MOBExtensions-All.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MOBExtensions-All.swift"; path = "Sources/MOBExtensions-All.swift"; sourceTree = SOURCE_ROOT; };
 		1E689A821C86AB330027BEA1 /* MOBCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOBCore.h; path = Sources/MOBCore.h; sourceTree = SOURCE_ROOT; };
 		1EAFA0D81B6039D5001F3D84 /* MOBAdvertising.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MOBAdvertising.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960C9B781E03660200DB9484 /* MOBFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBFile.swift; path = Sources/MOBFile.swift; sourceTree = SOURCE_ROOT; };
@@ -35,6 +36,7 @@
 		960C9BBC1E03BFAB00DB9484 /* MOBCore Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "MOBCore Watch.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		960C9BBE1E03BFAB00DB9484 /* MOBCore Watch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MOBCore Watch.h"; sourceTree = "<group>"; };
 		960C9BBF1E03BFAB00DB9484 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		960C9BC91E03C13700DB9484 /* MOBExtensions-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MOBExtensions-iOS.swift"; path = "Sources/MOBExtensions-iOS.swift"; sourceTree = SOURCE_ROOT; };
 		9679E0521DF09B6400F8FFBC /* asdf.swift-version */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "asdf.swift-version"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -91,7 +93,8 @@
 				960C9B991E036C6100DB9484 /* MOBDefaults.swift */,
 				960C9B9F1E03B08900DB9484 /* MOBDefaultsCloud.swift */,
 				960C9B9B1E036D7D00DB9484 /* MOBDefaultsKeychain.swift */,
-				1E689A811C86AB330027BEA1 /* MOBExtensions.swift */,
+				1E689A811C86AB330027BEA1 /* MOBExtensions-All.swift */,
+				960C9BC91E03C13700DB9484 /* MOBExtensions-iOS.swift */,
 				960C9B781E03660200DB9484 /* MOBFile.swift */,
 				1E689A821C86AB330027BEA1 /* MOBCore.h */,
 				1EAFA0DB1B6039D5001F3D84 /* Supporting Files */,
@@ -241,7 +244,8 @@
 				960C9B9C1E036D7D00DB9484 /* MOBDefaultsKeychain.swift in Sources */,
 				960C9BA01E03B08900DB9484 /* MOBDefaultsCloud.swift in Sources */,
 				960C9B9A1E036C6100DB9484 /* MOBDefaults.swift in Sources */,
-				1E689A871C86AB330027BEA1 /* MOBExtensions.swift in Sources */,
+				960C9BCA1E03C13700DB9484 /* MOBExtensions-iOS.swift in Sources */,
+				1E689A871C86AB330027BEA1 /* MOBExtensions-All.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +256,7 @@
 				960C9BC41E03C01E00DB9484 /* MOBDefaults.swift in Sources */,
 				960C9BC51E03C01E00DB9484 /* MOBDefaultsCloud.swift in Sources */,
 				960C9BC61E03C01E00DB9484 /* MOBDefaultsKeychain.swift in Sources */,
-				960C9BC71E03C01E00DB9484 /* MOBExtensions.swift in Sources */,
+				960C9BC71E03C01E00DB9484 /* MOBExtensions-All.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,7 @@
 //
 
 import UIKit
-import CoreLocation
-import MessageUI
-import WebKit
-import StoreKit
-import CoreSpotlight
-import MobileCoreServices
 
-public class MOBExtensions: NSObject {
-    
-}
 extension Sequence {
     
     public func toArray() -> [Iterator.Element] {
