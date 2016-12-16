@@ -14,12 +14,12 @@ Pod::Spec.new do |s|
   s.framework = 'UIKit'
   s.framework = 'CoreLocation'
   s.framework = 'MessageUI'
-  s.framework = 'WebKit'
-  s.framework = 'WebKit'
   s.framework = 'StoreKit'
   s.framework = 'CoreSpotlight'
   s.framework = 'MobileCoreServices'
 
 
   s.source_files  = ['Sources/**/*.swift', 'Sources/**/*.h']
+  s.dependency 'Alamofire', '3.1.1'
+  s.dependency 'AlamofireImage', '~> 2.2.0'
 end
