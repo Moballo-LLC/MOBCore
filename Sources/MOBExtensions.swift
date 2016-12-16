@@ -9,7 +9,11 @@
     import UIKit
     import CoreLocation
     import MapKit
-    
+    //SET MOBALLO VARIABLES HERE
+    internal class MOBInternalConstants : NSObject {
+        static internal let copyrightEntity = "Moballo, LLC"
+    }
+    //EXTENSIONS BEGIN HERE
     extension Sequence {
         
         public func toArray() -> [Iterator.Element] {
@@ -249,15 +253,49 @@
             }
             return Data()
         }
-        public static func appInfo() -> String {
+        public static func appVersion() -> String {
+            return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        }
+        public static func appBuild() -> String {
+            return Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        }
+        public static func appCopyright(customCopyright: String? = nil) -> String {
+            let copyrightEntity: String
+            if let overwriteEntityCopyright = customCopyright {
+                copyrightEntity = overwriteEntityCopyright
+            } else {
+                copyrightEntity = MOBInternalConstants.copyrightEntity
+            }
             let date = Date()
             let calendar = Calendar.current
             let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
             let year =  components.year
-            let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            let actualAppBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-            let infoText = "Version: \(actualAppVersion)\nBuild: \(actualAppBuild)\n \nContact Us: support@moballo.com\nWebsite: http://moballo.com\n\n© \(year! as Int) Moballo, LLC"
+            return "© \(year! as Int) \(copyrightEntity)"
+            
+        }
+        public static func appInfo(customCopyright: String? = nil) -> String {
+            let copyright: String
+            if let overwriteEntityCopyright = customCopyright {
+                copyright = UIApplication.appCopyright(customCopyright: overwriteEntityCopyright)
+            } else {
+                copyright = UIApplication.appCopyright()
+            }
+            let infoText = "Version: \(UIApplication.appVersion())\nBuild: \(UIApplication.appBuild())\n \nContact Us: support@moballo.com\nWebsite: http://moballo.com\n\n\(copyright)"
             return infoText
+        }
+        public static func appAboutController(appName: String, customCopyright: String?) ->UIAlertController {
+            let infoText:String
+            if let overwriteEntityCopyright = customCopyright {
+                infoText = UIApplication.appInfo(customCopyright: overwriteEntityCopyright)
+            } else {
+                infoText = UIApplication.appInfo()
+            }
+            let alertController = UIAlertController(title: appName, message: infoText, preferredStyle: UIAlertControllerStyle.alert)
+            let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel) {
+                UIAlertAction in
+            }
+            alertController.addAction(Dismiss)
+            return alertController;
         }
         public static var isRunningSimulator: Bool {
             get {
