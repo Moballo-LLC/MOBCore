@@ -111,13 +111,13 @@ public class MOBDefaultsKeychain : NSObject {
         
         return arrayValue
     }
-    public func object(forKey keyName: String) -> NSCoding? {
+    public func object(forKey keyName: String) -> Any? {
         let dataValue: Data? = self.getData(forKey: keyName)
         
-        var objectValue: NSCoding?
+        var objectValue: Any?
         
         if let data = dataValue {
-            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSCoding?
+            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Any?
         } else {
             return nil
         }
@@ -208,17 +208,17 @@ public class MOBDefaultsKeychain : NSObject {
             return defaultValue
         }
     }
-    public func object(forKey keyName: String, defaultValue:NSCoding) -> NSCoding {
+    public func object(forKey keyName: String, defaultValue:Any) -> Any {
         let dataValue: Data? = self.getData(forKey: keyName)
         
-        var objectValue: NSCoding?
+        var objectValue: Any?
         
         if let data = dataValue {
-            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSCoding?
+            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data)
         } else {
             return defaultValue
         }
-        if let val = objectValue as NSCoding? {
+        if let val = objectValue as Any? {
             return val
         } else {
             return defaultValue
@@ -268,7 +268,7 @@ public class MOBDefaultsKeychain : NSObject {
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
-    public func set(object: NSCoding, forKey keyName: String) -> Bool {
+    public func set(object: Any, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: object)
         return self.setData(value: data, forKey: keyName)
     }

@@ -76,8 +76,8 @@ extension UserDefaults {
         }
         return defaultValue
     }
-    public func object(forKey keyName: String, defaultValue:NSCoding) -> NSCoding {
-        if let val = self.object(forKey: keyName) as! NSCoding? {
+    public func object(forKey keyName: String, defaultValue:Any) -> Any {
+        if let val = self.object(forKey: keyName) {
             return val
         }
         return defaultValue

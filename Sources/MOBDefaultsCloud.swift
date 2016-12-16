@@ -10,29 +10,54 @@ import Foundation
 
 public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
     public let didChangeExternallyNotification = NSUbiquitousKeyValueStore.didChangeExternallyNotification
-    public func setAndSync(string: String, forKey keyName: String) {
-        self.set(string, forKey: keyName)
-        self.synchronize()
+    public func set(string: String, forKey keyName: String) {
+        super.set(string, forKey: keyName)
+        super.synchronize()
     }
-    public func setAndSync(bool: Bool, forKey keyName: String) {
-        self.set(bool, forKey: keyName)
-        self.synchronize()
+    public func set(bool: Bool, forKey keyName: String) {
+        super.set(bool, forKey: keyName)
+        super.synchronize()
     }
-    public func setAndSync(integer: Int, forKey keyName: String) {
-        self.set(integer, forKey: keyName)
-        self.synchronize()
+    public func set(integer: Int, forKey keyName: String) {
+        super.set(integer, forKey: keyName)
+        super.synchronize()
     }
-    public func setAndSync(double: Double, forKey keyName: String) {
-        self.set(double, forKey: keyName)
-        self.synchronize()
+    public func set(double: Double, forKey keyName: String) {
+        super.set(double, forKey: keyName)
+        super.synchronize()
     }
-    public func setAndSync(array: Array<Any>, forKey keyName: String) {
-        self.set(array, forKey: keyName)
-        self.synchronize()
+    public func set(array: Array<Any>, forKey keyName: String) {
+        super.set(array, forKey: keyName)
+        super.synchronize()
     }
-    public func setAndSync(object: NSCoding, forKey keyName: String) {
-        self.set(object, forKey: keyName)
-        self.synchronize()
+    public func set(object: Any, forKey keyName: String) {
+        super.set(object, forKey: keyName)
+        super.synchronize()
+    }
+    //override superclass methods
+    public override func set(_ string: String?, forKey keyName: String) {
+        super.set(string, forKey: keyName)
+        super.synchronize()
+    }
+    public override func set(_ bool: Bool, forKey keyName: String) {
+        super.set(bool, forKey: keyName)
+        super.synchronize()
+    }
+    public func set(_ integer: Int, forKey keyName: String) {
+        super.set(integer, forKey: keyName)
+        super.synchronize()
+    }
+    public override func set(_ double: Double, forKey keyName: String) {
+        super.set(double, forKey: keyName)
+        super.synchronize()
+    }
+    public override func set(_ array: Array<Any>?, forKey keyName: String) {
+        super.set(array, forKey: keyName)
+        super.synchronize()
+    }
+    public override func set(_ object: Any?, forKey keyName: String) {
+        super.set(object, forKey: keyName)
+        super.synchronize()
     }
     public func addChangeObserver(_ observer: Any, selector: Selector) {
         NotificationCenter.default.addObserver(observer, selector: selector, name: self.didChangeExternallyNotification, object: self)
@@ -51,7 +76,7 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         return defaultValue
     }
     public func integer(forKey keyName: String, defaultValue:Int) -> Int {
-        if let val = self.object(forKey: keyName) as! Int? {
+        if let val = self.integer(forKey: keyName) {
             return val
         }
         return defaultValue
@@ -68,10 +93,30 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         }
         return defaultValue
     }
-    public func object(forKey keyName: String, defaultValue:NSCoding) -> NSCoding {
-        if let val = self.object(forKey: keyName) as! NSCoding? {
+    public func object(forKey keyName: String, defaultValue:Any) -> Any? {
+        if let val = self.object(forKey: keyName) {
             return val
         }
         return defaultValue
+    }
+    //
+    //normal values support
+    public override func string(forKey keyName: String) -> String? {
+        return super.string(forKey: keyName)
+    }
+    public override func bool(forKey keyName: String) -> Bool {
+        return super.bool(forKey: keyName)
+    }
+    public func integer(forKey keyName: String) -> Int? {
+        return super.object(forKey: keyName) as! Int?
+    }
+    public override func double(forKey keyName: String) -> Double {
+        return super.double(forKey: keyName)
+    }
+    public override func array(forKey keyName: String) -> Array<Any>? {
+        return super.array(forKey: keyName)
+    }
+    public override func object(forKey keyName: String) -> Any? {
+        return super.object(forKey: keyName)
     }
 }
