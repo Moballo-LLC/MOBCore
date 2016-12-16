@@ -20,6 +20,4 @@ Pod::Spec.new do |s|
 
 
   s.source_files  = ['Sources/**/*.swift', 'Sources/**/*.h']
-  s.dependency 'Alamofire'
-  s.dependency 'AlamofireImage'
 end
