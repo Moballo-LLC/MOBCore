@@ -247,6 +247,16 @@
             }
             return Data()
         }
+        public static func appInfo() -> String {
+            let date = Date()
+            let calendar = Calendar.current
+            let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
+            let year =  components.year
+            let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            let actualAppBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+            let infoText = "Version: \(actualAppVersion)\nBuild: \(actualAppBuild)\n \nContact Us: support@moballo.com\nWebsite: http://moballo.com\n\n© \(year! as Int) Moballo, LLC"
+            return infoText
+        }
         public static var isRunningSimulator: Bool {
             get {
                 return TARGET_OS_SIMULATOR != 0
