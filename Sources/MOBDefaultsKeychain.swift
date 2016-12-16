@@ -33,15 +33,6 @@ public class MOBDefaultsKeychain : NSObject {
             return false
         }
     }
-    @discardableResult
-    public func deleteIfEmptyString(forKey keyName: String) -> Bool {
-        if self.hasValue(forKey: keyName) {
-            if (self.string(forKey: keyName) == ""){
-                return self.removeObject(forKey:  keyName)
-            }
-        }
-        return false
-    }
     // MARK: Getting Values
     public func string(forKey keyName: String) -> String? {
         let keychainData: Data? = self.getData(forKey: keyName)
@@ -117,7 +108,7 @@ public class MOBDefaultsKeychain : NSObject {
         var objectValue: Any?
         
         if let data = dataValue {
-            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Any?
+            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data)
         } else {
             return nil
         }
