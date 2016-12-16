@@ -63,17 +63,17 @@ public class MOBDefaultsKeychain : NSObject {
         
         return stringValue!
     }
-    public func bool(forKey keyName: String) -> Bool {
+    public func bool(forKey keyName: String, defaultValue:Bool? = false) -> Bool? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var boolValue: Bool?
         if let data = keychainData {
             boolValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Bool?
         }
         else {
-            return false
+            return defaultValue
         }
         
-        return boolValue!
+        return boolValue
     }
     public func integer(forKey keyName: String, defaultValue:Int? = 0) -> Int? {
         let keychainData: Data? = self.getData(forKey: keyName)
@@ -87,25 +87,27 @@ public class MOBDefaultsKeychain : NSObject {
         
         return intValue
     }
-    public func array(forKey keyName: String) -> Array<Any>? {
+    public func array(forKey keyName: String, defaultValue:Array<Any>? = Array<Any>()) -> Array<Any>? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var arrayValue: Array<Any>?
         if let data = keychainData {
             arrayValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<Any>?
         }
         else {
-            return nil
+            return defaultValue
         }
         
-        return arrayValue!
+        return arrayValue
     }
-    public func object(forKey keyName: String) -> NSCoding? {
+    public func object(forKey keyName: String, defaultValue:NSCoding? = nil) -> NSCoding? {
         let dataValue: Data? = self.getData(forKey: keyName)
         
         var objectValue: NSCoding?
         
         if let data = dataValue {
             objectValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSCoding?
+        } else {
+            return defaultValue
         }
         
         return objectValue;
