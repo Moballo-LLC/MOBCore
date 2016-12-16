@@ -295,6 +295,37 @@
             return image
         }
     }
+    extension CLLocationCoordinate2D {
+        func isInRegion(region: MKCoordinateRegion) -> Bool {
+            let center   = region.center
+            var northWestCorner = center
+            var southEastCorner = center
+            
+            northWestCorner.latitude  = center.latitude  - (region.span.latitudeDelta  / 2.0);
+            northWestCorner.longitude = center.longitude - (region.span.longitudeDelta / 2.0);
+            southEastCorner.latitude  = center.latitude  + (region.span.latitudeDelta  / 2.0);
+            southEastCorner.longitude = center.longitude + (region.span.longitudeDelta / 2.0);
+            
+            if (
+                self.latitude  >= northWestCorner.latitude &&
+                    self.latitude  <= southEastCorner.latitude &&
+                    
+                    self.longitude >= northWestCorner.longitude &&
+                    self.longitude <= southEastCorner.longitude
+                )
+            {
+                return true
+            }
+            return false
+        }
+        
+    }
+    extension CLLocationCoordinate2D {
+        func containsCoordinate(coordinate: CLLocationCoordinate2D) -> Bool {
+            return coordinate.isInRegion(region: self);
+        }
+        
+    }
     extension UIViewController {
         public var isModal: Bool {
             return self.presentingViewController?.presentedViewController == self
