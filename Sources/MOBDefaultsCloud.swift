@@ -34,6 +34,10 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         super.set(object, forKey: keyName)
         super.synchronize()
     }
+    public func set(dictionary: [String : Any], forKey keyName: String) {
+        super.set(dictionary, forKey: keyName)
+        super.synchronize()
+    }
     //override superclass methods
     public override func set(_ string: String?, forKey keyName: String) {
         super.set(string, forKey: keyName)
@@ -104,6 +108,12 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         }
         return defaultValue
     }
+    public func dictionary(forKey keyName: String, defaultValue:[String : Any]) -> [String : Any] {
+        if let val = self.dictionary(forKey: keyName) {
+            return val
+        }
+        return defaultValue
+    }
     //
     //normal values support
     public override func string(forKey keyName: String) -> String? {
@@ -123,5 +133,8 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
     }
     public override func object(forKey keyName: String) -> Any? {
         return super.object(forKey: keyName)
+    }
+    public override func dictionary(forKey keyName: String) -> [String : Any]? {
+        return super.dictionary(forKey: keyName)
     }
 }

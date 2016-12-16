@@ -58,6 +58,12 @@ public class MOBDefaultsUser: UserDefaults {
         }
         return defaultValue
     }
+    public func dictionary(forKey keyName: String, defaultValue:[String : Any]) -> [String : Any] {
+        if let val = self.dictionary(forKey: keyName) {
+            return val
+        }
+        return defaultValue
+    }
     //setup methods with sync
     public func set(string: String, forKey keyName: String) {
         super.set(string, forKey: keyName)
@@ -89,6 +95,10 @@ public class MOBDefaultsUser: UserDefaults {
     }
     public func set(object: Any, forKey keyName: String) {
         super.set(object, forKey: keyName)
+        super.synchronize()
+    }
+    public func set(dictionary: [String : Any], forKey keyName: String) {
+        super.set(dictionary, forKey: keyName)
         super.synchronize()
     }
     //override superclass methods
