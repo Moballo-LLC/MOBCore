@@ -7,6 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
+import MOBCore
+import WatchConnectivity
+import MessageUI
+import WebKit
+import StoreKit
+import CoreSpotlight
+import MobileCoreServices
+import Firebase
 
 public class MOBExtensions: NSObject {
     
@@ -252,6 +261,19 @@ extension UIApplication {
         }
         return Data()
     }
+    static class var isRunningSimulator: Bool {
+        get {
+            return TARGET_OS_SIMULATOR != 0
+        }
+    }
+    static class var isTestFlight: Bool {
+        get {
+            if let url = Bundle.main.appStoreReceiptURL {
+                return (url.lastPathComponent == "sandboxReceipt")
+            }
+            return false
+        }
+    }
 }
 extension UIView {
     
@@ -263,5 +285,55 @@ extension UIView {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+}
+
+extension UIImage {
+    static func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+extension UIViewController {
+    var isModal: Bool {
+        return self.presentingViewController?.presentedViewController == self
+            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
+            || self.tabBarController?.presentingViewController is UITabBarController
+    }
+}
+extension Data {
+    func firstBytes(_ length: Int) -> [UInt8] {
+        var bytes: [UInt8] = [UInt8](repeating: 0, count: length)
+        (self as NSData).getBytes(&bytes, length: length)
+        return bytes
+    }
+    var isIcs: Bool {
+        let signature:[UInt8] = [66, 69, 71, 73]
+        return firstBytes(4) == signature
+    }
+}
+extension Date {
+    func stringLiteralOfDate() -> String {
+        let dateFormatter = DateFormatter()
+        let theDateFormat = DateFormatter.Style.short
+        let theTimeFormat = DateFormatter.Style.long
+        
+        dateFormatter.dateStyle = theDateFormat
+        dateFormatter.timeStyle = theTimeFormat
+        
+        return dateFormatter.string(from: self)
+    }
+    func daysUntil(_ otherDate: Date) -> Int
+    {
+        let calendar = Calendar.current
+        
+        let components = (calendar as NSCalendar).components([.day], from: self, to: otherDate, options: [])
+        
+        return components.day!
     }
 }
