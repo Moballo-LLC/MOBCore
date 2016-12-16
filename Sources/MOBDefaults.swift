@@ -11,7 +11,7 @@ import UIKit
 public class MOBDefaults: NSObject {
     internal let localInstance:UserDefaults
     internal let groupInstance:UserDefaults?
-    internal let cloudInstance:NSUbiquitousKeyValueStore?
+    internal let cloudInstance:MOBDefaultsCloud?
     internal let keychainInstance:MOBDefaultsKeychain?
     internal let groupKey:String?
     internal let keychainKey:String?
@@ -24,7 +24,7 @@ public class MOBDefaults: NSObject {
         } else {
             groupInstance = nil
         }
-        cloudInstance = NSUbiquitousKeyValueStore()
+        cloudInstance = MOBDefaultsCloud()
         if let keychainName = keychain {
             keychainInstance = MOBDefaultsKeychain(accessGroup: keychainName)
         } else {
@@ -37,7 +37,7 @@ public class MOBDefaults: NSObject {
     public func group() -> UserDefaults? {
         return groupInstance
     }
-    public func cloud() -> NSUbiquitousKeyValueStore? {
+    public func cloud() -> MOBDefaultsCloud? {
         return cloudInstance
     }
     public func keychain() -> MOBDefaultsKeychain? {
