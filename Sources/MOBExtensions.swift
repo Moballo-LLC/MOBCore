@@ -1,5 +1,5 @@
 //
-//  AdBannerController.swift
+//  MOBExtensions.swift
 //  MOBAdvertising
 //
 //  Created by Jason Morcos on 11/23/16.
@@ -8,34 +8,31 @@
 
 import UIKit
 import CoreLocation
-import MOBCore
-import WatchConnectivity
 import MessageUI
 import WebKit
 import StoreKit
 import CoreSpotlight
 import MobileCoreServices
-import Firebase
 
 public class MOBExtensions: NSObject {
     
 }
 extension Sequence {
     
-    func toArray() -> [Iterator.Element] {
+    public func toArray() -> [Iterator.Element] {
         
         return Array(self)
     }
 }
 extension Date {
-    func shortString() -> String {
+    public func shortString() -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter.string(from: self) as String
     }
     ///converts to a "10 seconds ago" / "1 day ago" syntax
-    func agoString() -> String {
+    public func agoString() -> String {
         let deltaTime = -self.timeIntervalSinceNow
         
         //in the past
@@ -96,7 +93,7 @@ extension Date {
 
 extension Array {
     ///Returns a copy of the array in random order
-    func shuffled() -> [Element] {
+    public func shuffled() -> [Element] {
         var list = self
         for i in 0..<(list.count - 1) {
             let j = Int(arc4random_uniform(UInt32(list.count - i))) + i
@@ -108,7 +105,7 @@ extension Array {
 
 extension Int {
     ///Converts an integer to a standardized three-character string. 1 -> 001. 99 -> 099. 123 -> 123.
-    func threeCharacterString() -> String {
+    public func threeCharacterString() -> String {
         let start = "\(self)"
         let length = start.characters.count
         if length == 1 { return "00\(start)" }
@@ -119,14 +116,14 @@ extension Int {
 
 extension NSObject {
     ///Short-hand function to register a notification observer
-    func observeNotification(_ name: String, selector: Selector) {
+    public func observeNotification(_ name: String, selector: Selector) {
         NotificationCenter.default.addObserver(self, selector: selector, name: NSNotification.Name(rawValue: name), object: nil)
     }
 }
 
 extension UIView {
     
-    static func animateWithDuration(_ duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping damping: CGFloat, animations: @escaping () -> ()) {
+    public static func animateWithDuration(_ duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping damping: CGFloat, animations: @escaping () -> ()) {
         UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: [], animations: animations, completion: nil)
     }
     
@@ -134,29 +131,29 @@ extension UIView {
 
 extension String {
     
-    var length: Int {
+    public var length: Int {
         return (self as NSString).length
     }
     
-    func asDouble() -> Double? {
+    public func asDouble() -> Double? {
         return NumberFormatter().number(from: self)?.doubleValue
     }
     
-    func percentStringAsDouble() -> Double? {
+    public func percentStringAsDouble() -> Double? {
         if let displayedNumber = (self as NSString).substring(to: self.length - 1).asDouble() {
             return displayedNumber / 100.0
         }
         return nil
     }
     
-    func isWhitespace() -> Bool {
+    public func isWhitespace() -> Bool {
         return self == " " || self == "\n" || self == "\r" || self == "\r\n" || self == "\t"
             || self == "\u{A0}" || self == "\u{2007}" || self == "\u{202F}" || self == "\u{2060}" || self == "\u{FEFF}"
         //there are lots of whitespace characters apparently
         //http://www.fileformat.info/info/unicode/char/00a0/index.htm
     }
     
-    func dateWithTSquareFormat() -> Date? {
+    public func dateWithTSquareFormat() -> Date? {
         //convert date string to NSDate
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US")
@@ -177,12 +174,12 @@ extension String {
 
 extension NSString {
     
-    func stringAtIndex(_ index: Int) -> String {
+    public func stringAtIndex(_ index: Int) -> String {
         let char = self.character(at: index)
         return "\(Character(UnicodeScalar(char)!))"
     }
     
-    func countOccurancesOfString(_ string: String) -> Int {
+    public func countOccurancesOfString(_ string: String) -> Int {
         let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
         return strCount / string.length
     }
@@ -190,15 +187,14 @@ extension NSString {
 }
 
 extension Bundle {
-    
-    static var applicationVersionNumber: String {
+    public static var applicationVersionNumber: String {
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             return version
         }
         return "Version Number Not Available"
     }
     
-    static var applicationBuildNumber: String {
+    public static var applicationBuildNumber: String {
         if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             return build
         }
@@ -207,14 +203,14 @@ extension Bundle {
     
 }
 extension String {
-    func truncate(length: Int, trailing: String? = "") -> String {
+    public func truncate(length: Int, trailing: String? = "") -> String {
         if self.characters.count > length {
             return self.substring(to: self.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
         } else {
             return self
         }
     }
-    func cleansed() -> String {
+    public func cleansed() -> String {
         var text = self as NSString
         //cleanse text of weird formatting
         //tabs and newlines
@@ -226,7 +222,7 @@ extension String {
         
         return (text as String).withNoTrailingWhitespace()
     }
-    func withNoTrailingWhitespace() -> String {
+    public func withNoTrailingWhitespace() -> String {
         var text = self as NSString
         //leading spaces
         while text.length > 1 && text.stringAtIndex(0).isWhitespace() {
@@ -243,15 +239,14 @@ extension String {
     
 }
 extension UIApplication {
-    
-    func getScreenshot() -> UIImage {
+    public func getScreenshot() -> UIImage {
         let layer = UIApplication.shared.keyWindow?.layer
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(layer!.frame.size, false, scale)
         layer?.render(in: UIGraphicsGetCurrentContext()!)
         return UIGraphicsGetImageFromCurrentImageContext()!
     }
-    func getScreenshotImageData() -> Data {
+    public func getScreenshotImageData() -> Data {
         let image = getScreenshot()
         if let toReturn = UIImagePNGRepresentation(image) {
             return toReturn
@@ -261,12 +256,12 @@ extension UIApplication {
         }
         return Data()
     }
-    static class var isRunningSimulator: Bool {
+    public static var isRunningSimulator: Bool {
         get {
             return TARGET_OS_SIMULATOR != 0
         }
     }
-    static class var isTestFlight: Bool {
+    public static var isTestFlight: Bool {
         get {
             if let url = Bundle.main.appStoreReceiptURL {
                 return (url.lastPathComponent == "sandboxReceipt")
@@ -277,7 +272,7 @@ extension UIApplication {
 }
 extension UIView {
     
-    func getViewScreenshot() -> UIImage {
+    public func getViewScreenshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
         
         drawHierarchy(in: self.bounds, afterScreenUpdates: true)
@@ -289,7 +284,7 @@ extension UIView {
 }
 
 extension UIImage {
-    static func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+    public static func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
@@ -300,25 +295,25 @@ extension UIImage {
     }
 }
 extension UIViewController {
-    var isModal: Bool {
+    public var isModal: Bool {
         return self.presentingViewController?.presentedViewController == self
             || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
             || self.tabBarController?.presentingViewController is UITabBarController
     }
 }
 extension Data {
-    func firstBytes(_ length: Int) -> [UInt8] {
+    public func firstBytes(_ length: Int) -> [UInt8] {
         var bytes: [UInt8] = [UInt8](repeating: 0, count: length)
         (self as NSData).getBytes(&bytes, length: length)
         return bytes
     }
-    var isIcs: Bool {
+    public var isIcs: Bool {
         let signature:[UInt8] = [66, 69, 71, 73]
         return firstBytes(4) == signature
     }
 }
 extension Date {
-    func stringLiteralOfDate() -> String {
+    public func stringLiteralOfDate() -> String {
         let dateFormatter = DateFormatter()
         let theDateFormat = DateFormatter.Style.short
         let theTimeFormat = DateFormatter.Style.long
@@ -328,7 +323,7 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
-    func daysUntil(_ otherDate: Date) -> Int
+    public func daysUntil(_ otherDate: Date) -> Int
     {
         let calendar = Calendar.current
         

@@ -7,15 +7,15 @@
 //
 
 import Foundation
-class MOBFile : NSObject, URLSessionDownloadDelegate {
+public class MOBFile : NSObject, URLSessionDownloadDelegate {
     internal static let mobileDefaultsStorageKey = "com.moballo.MOBFile.dateOfLastServerCall"
-    static let downloadedFileKey = "MOBFileDownloadedFile-"
+    public static let downloadedFileKey = "MOBFileDownloadedFile-"
     internal let name: String
     internal let type: String
     internal let url: String
     internal let temporary: Bool
     internal let verificationString: String?
-    init(name: String, type: String, url: String, temporary: Bool = false, verificationString:String? = nil) {
+    public init(name: String, type: String, url: String, temporary: Bool = false, verificationString:String? = nil) {
         self.name = name
         self.type = type
         self.url = url
@@ -23,7 +23,7 @@ class MOBFile : NSObject, URLSessionDownloadDelegate {
         self.verificationString = verificationString
         super.init()
     }
-    func download(expiresAfterDays: Int = 0, forceRedownload: Bool = false) {
+    public func download(expiresAfterDays: Int = 0, forceRedownload: Bool = false) {
         if (!self.temporary) {
             let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
             if let lastLoadedDate = UserDefaults.standard.object(forKey: self.downloadDateKey()) as! Date? , (forceRedownload == false && lastLoadedDate.daysUntil(Date()) < expiresAfterDays) {
@@ -40,7 +40,7 @@ class MOBFile : NSObject, URLSessionDownloadDelegate {
             task.resume()
         }
     }
-    var path : URL? {
+    public var path : URL? {
         if let path = getDownloadedFilePath() {
             return path
         } else if let path = Bundle.main.path(forResource: (self.nameOnLocal()), ofType: (self.type)) {
@@ -97,7 +97,7 @@ class MOBFile : NSObject, URLSessionDownloadDelegate {
     }
     
     //is called once the download is complete
-    internal func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
     {
         
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
@@ -149,10 +149,10 @@ class MOBFile : NSObject, URLSessionDownloadDelegate {
         downloadTask.cancel()
     }
     //this is to track progress
-    internal func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
     {
     }
-    internal func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
     {
         if(error != nil)
         {
@@ -160,7 +160,7 @@ class MOBFile : NSObject, URLSessionDownloadDelegate {
             task.cancel()
         }
     }
-    static func clearDocumentsDirectory() {
+    public static func clearDocumentsDirectory() {
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
@@ -179,7 +179,7 @@ class MOBFile : NSObject, URLSessionDownloadDelegate {
             } catch _ {}
         }
     }
-    static func cleanDocumentsDirectory() {
+    public static func cleanDocumentsDirectory() {
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
