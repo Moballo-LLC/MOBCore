@@ -406,4 +406,90 @@
             return components.day!
         }
     }
+    extension UIAlertController {
+        //does not support text fields
+        public func duplicate(preferredStyle: UIAlertControllerStyle? = nil) ->UIAlertController {
+            let newStyle:UIAlertControllerStyle
+            if let overrideStyle = preferredStyle {
+                newStyle = overrideStyle
+            } else {
+                newStyle = self.preferredStyle
+            }
+            let newActions = self.actions
+            let newTitle = self.title
+            let newMessage = self.message
+            let newController = UIAlertController(title: newTitle, message: newMessage, preferredStyle: newStyle)
+            if #available(iOS 9.0, *) {
+                newController.preferredAction = self.preferredAction
+            }
+            for anAction in newActions {
+                newController.addAction(anAction)
+            }
+            return newController
+        }
+    }
+    extension MKMapView {
+        internal func mapTypeKey(mapKey: String)-> String {
+            return "com.moballo.map."+mapKey+".map-type"
+        }
+        public func chooseMapType(mapKey: String, popupOrigin: Any, presenter: UIViewController) {
+            let alertController = self.chooseMapTypeDialog(mapKey: mapKey)
+            if let popoverController = alertController.popoverPresentationController {
+                if let popupOriginButton = popupOrigin as? UIBarButtonItem {
+                    popoverController.barButtonItem = popupOriginButton
+                } else if let popupOriginRect = popupOrigin as? CGRect {
+                    popoverController.sourceRect = popupOriginRect
+                } else {
+                    print("THIS POPUP WOULD CRASH ON IPAD, SO REVERTING TYPE")
+                    let alternateController = alertController.duplicate(preferredStyle: .alert)
+                    presenter.present(alternateController, animated: true, completion: nil)
+                    return
+                }
+            }
+            presenter.present(alertController, animated: true, completion: nil)
+        }
+        public func chooseMapTypeDialog(mapKey: String) -> UIAlertController {
+            let chooseDialog = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            let chooseStandardOption = UIAlertAction(title: "Standard", style: .default, handler: { (_) in
+                let newMapType = MKMapType.standard
+                UserDefaults.standard.set(newMapType.rawValue, forKey: self.mapTypeKey(mapKey: mapKey))
+                UserDefaults.standard.synchronize()
+                self.mapType = newMapType
+            })
+            chooseDialog.addAction(chooseStandardOption)
+            
+            let chooseHybridOption = UIAlertAction(title: "Hybrid", style: .default, handler: { (_) in
+                let newMapType = MKMapType.hybrid
+                UserDefaults.standard.set(newMapType.rawValue, forKey: self.mapTypeKey(mapKey: mapKey))
+                UserDefaults.standard.synchronize()
+                self.mapType = newMapType
+            })
+            chooseDialog.addAction(chooseHybridOption)
+            
+            let chooseSatelliteOption = UIAlertAction(title: "Satellite", style: .default, handler: { (_) in
+                let newMapType = MKMapType.satellite
+                UserDefaults.standard.set(newMapType.rawValue, forKey: self.mapTypeKey(mapKey: mapKey))
+                UserDefaults.standard.synchronize()
+                self.mapType = newMapType
+            })
+            chooseDialog.addAction(chooseSatelliteOption)
+            
+            let cancelOption = UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+                
+            })
+            chooseDialog.addAction(cancelOption)
+            
+            return chooseDialog
+        }
+        public func setMapType(mapKey: String) {
+            if let storedType = UserDefaults.standard.object(forKey: self.mapTypeKey(mapKey: mapKey)) as! UInt? {
+                if let mapTypeInstance = MKMapType(rawValue: storedType) {
+                    self.mapType = mapTypeInstance
+                    return
+                }
+            }
+            self.mapType = .standard
+        }
+    }
 #endif
