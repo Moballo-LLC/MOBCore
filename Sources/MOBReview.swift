@@ -54,7 +54,6 @@ import UIKit
                 //NSLog("OK Pressed")
                 UserDefaults.standard.set(true, forKey: reviewedCurrentVersKey)
                 UserDefaults.standard.synchronize()
-                
                 let address = "itms-apps://itunes.apple.com/app/id\(appID)"
                 let url = URL(string: address)
                 if #available(iOS 10.0, *) {
