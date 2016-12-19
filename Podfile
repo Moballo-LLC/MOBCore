@@ -12,9 +12,3 @@ target 'MOBCore_WatchOS' do
     platform :watchos, '2.0'
     podspec :path => 'MOBCore.podspec'
 end
-
-target 'MOBCore_Extension' do
-    use_frameworks!
-    platform :ios, '8.0'
-    podspec :path => 'MOBCore.podspec'
-end
