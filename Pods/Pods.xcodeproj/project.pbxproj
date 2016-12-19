@@ -7,38 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17C17AE02EE4B24BBA41327B7806638E /* Pods-MOBCore_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2F5835D235A447098AC8CDC2AC9C75 /* Pods-MOBCore_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1AC7A90A097D57D5E7BAADD87B5BF91D /* Pods-MOBCore Watch-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CAA6952F6B4D09142CB568D2F524619 /* Pods-MOBCore Watch-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17C17AE02EE4B24BBA41327B7806638E /* Pods-MOBCore_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79CE25155D3B813EE8B625D85AFAA562 /* Pods-MOBCore_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C806B77610D9572FCAB875053328C06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9AE61DEB7F70B8D5B09290911F0E1C8 /* Foundation.framework */; };
-		7BFA98B78EC143F1CCB21FACCB1F5F16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7752798AED75D2190758A21548AB728 /* Foundation.framework */; };
-		A5494AB6C2168FA59C5EFC45845CCE00 /* Pods-MOBCore Watch-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD87C98E167A4621FEB2D7698A2837F /* Pods-MOBCore Watch-dummy.m */; };
-		F3B589FD7EFEE39952128A574A53EEEF /* Pods-MOBCore_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 316ED4AB67CF928DE5D8E62E112016DC /* Pods-MOBCore_iOS-dummy.m */; };
+		721260FEAD0F97D2B160CE1F2EA10FA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7752798AED75D2190758A21548AB728 /* Foundation.framework */; };
+		74C1EB7FF7F8AC53B0AF33A822D69D2E /* Pods-MOBCore_WatchOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 51D5A13ECB0A1EFC4126AC8B64F3DDF4 /* Pods-MOBCore_WatchOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7FF2B030F62B7316F51595AD36EA6902 /* Pods-MOBCore_WatchOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B88672BE95F42C1B2F908ABA63CF89B /* Pods-MOBCore_WatchOS-dummy.m */; };
+		F3B589FD7EFEE39952128A574A53EEEF /* Pods-MOBCore_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BD85F500B0BBDA80DED2EFFF87E6 /* Pods-MOBCore_iOS-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C3F62C30E9F2A91AC8D182FE2169F50 /* Pods-MOBCore Watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore Watch.debug.xcconfig"; sourceTree = "<group>"; };
-		26868AFEC179FF7A5249B022C2A1D832 /* Pods-MOBCore_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore_iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		3044AD88ACA16A244BCF1AE13122A5EC /* Pods-MOBCore Watch-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MOBCore Watch-acknowledgements.plist"; sourceTree = "<group>"; };
-		316ED4AB67CF928DE5D8E62E112016DC /* Pods-MOBCore_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MOBCore_iOS-dummy.m"; sourceTree = "<group>"; };
-		4AF1721390DA255D1A987A924E1BA4B2 /* Pods-MOBCore_iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MOBCore_iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		55D246D6FD645BC858A2B54BE9523388 /* Pods-MOBCore Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore Watch.release.xcconfig"; sourceTree = "<group>"; };
-		6ADB269A581665281DCD5DE1F209CD23 /* Pods-MOBCore_iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MOBCore_iOS-resources.sh"; sourceTree = "<group>"; };
-		6C851A4F7C0760E514A734F36BF93DA0 /* Pods-MOBCore_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MOBCore_iOS.modulemap"; sourceTree = "<group>"; };
-		85AAFFE3860B8A87714BC5E1B745D8B3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87AFDF304EF24D5DCE787B385C392B25 /* Pods-MOBCore_iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MOBCore_iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		8CAA6952F6B4D09142CB568D2F524619 /* Pods-MOBCore Watch-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MOBCore Watch-umbrella.h"; sourceTree = "<group>"; };
-		8F770A1EA565F85BEB21755FC2D7064F /* Pods_MOBCore_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MOBCore_Watch.framework; path = "Pods-MOBCore Watch.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0890C53EFA024D751305F735B9B87672 /* Pods-MOBCore_WatchOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MOBCore_WatchOS-resources.sh"; sourceTree = "<group>"; };
+		0C6EF3A753FEDB6AA5BA26D4B9449EEA /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MOBCore_iOS.framework; path = "Pods-MOBCore_iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22E8EC0A99C9627A488863367D51E134 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B88672BE95F42C1B2F908ABA63CF89B /* Pods-MOBCore_WatchOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MOBCore_WatchOS-dummy.m"; sourceTree = "<group>"; };
+		2EB70B3AD81BDD6657D0A6FA6BEDC573 /* Pods-MOBCore_iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MOBCore_iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		51D5A13ECB0A1EFC4126AC8B64F3DDF4 /* Pods-MOBCore_WatchOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MOBCore_WatchOS-umbrella.h"; sourceTree = "<group>"; };
+		54995CE469BBAC093F896E6201568F01 /* Pods-MOBCore_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MOBCore_iOS.modulemap"; sourceTree = "<group>"; };
+		6F2FF24744A23336DA7C771C2337830C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79542B9D21FC9989FEA79487B7A8A294 /* Pods-MOBCore_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		79CE25155D3B813EE8B625D85AFAA562 /* Pods-MOBCore_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MOBCore_iOS-umbrella.h"; sourceTree = "<group>"; };
+		7C1ECEBB37A86175D5B54A07AFD8AB65 /* Pods-MOBCore_WatchOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MOBCore_WatchOS.modulemap"; sourceTree = "<group>"; };
+		874AB56688FF92E8CBC0EE64E7D7560D /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AB2F5835D235A447098AC8CDC2AC9C75 /* Pods-MOBCore_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MOBCore_iOS-umbrella.h"; sourceTree = "<group>"; };
-		B3C1FBB7729E67EDBECCE2390CA7A4F8 /* Pods-MOBCore Watch.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MOBCore Watch.modulemap"; sourceTree = "<group>"; };
+		98B41FE819253610D1E6761C1D7C201B /* Pods-MOBCore_WatchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore_WatchOS.release.xcconfig"; sourceTree = "<group>"; };
+		9F341D64486953619BEF5875ECFAB113 /* Pods-MOBCore_WatchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore_WatchOS.debug.xcconfig"; sourceTree = "<group>"; };
+		A1F1BD85F500B0BBDA80DED2EFFF87E6 /* Pods-MOBCore_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MOBCore_iOS-dummy.m"; sourceTree = "<group>"; };
 		B7752798AED75D2190758A21548AB728 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D36AFA919D54B8AA6BAAE47D12A6767B /* Pods-MOBCore Watch-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MOBCore Watch-resources.sh"; sourceTree = "<group>"; };
-		D8D04259DCEB0114458957EEDB9AC358 /* Pods-MOBCore Watch-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MOBCore Watch-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DFD87C98E167A4621FEB2D7698A2837F /* Pods-MOBCore Watch-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MOBCore Watch-dummy.m"; sourceTree = "<group>"; };
-		E9E247DE1A1EABE414B1E1C27B542EA0 /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MOBCore_iOS.framework; path = "Pods-MOBCore_iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0995F80461C569D2DD3D1B87E682C06 /* Pods-MOBCore_WatchOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MOBCore_WatchOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C769963B20A8EB78AF0ABCCC1D987D68 /* Pods-MOBCore_iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MOBCore_iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DC0FCB0749B49CDB21EDCD059E417249 /* Pods-MOBCore_iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MOBCore_iOS-resources.sh"; sourceTree = "<group>"; };
+		EA11A9B66425626CA9D6F2EA26D10AD1 /* Pods_MOBCore_WatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MOBCore_WatchOS.framework; path = "Pods-MOBCore_WatchOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6BE81CC307FD45D57E6ECE56051AE58 /* Pods-MOBCore_WatchOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MOBCore_WatchOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		F9AE61DEB7F70B8D5B09290911F0E1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		FE208D61842EC275D5BB1523967C4AE0 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
-		FFF3AE3F7A39785662E6532C321AF1D4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,32 +50,50 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		89016E7DAC74DE22A93AF683B423DF14 /* Frameworks */ = {
+		406057C611953AFA0F0658CAFB6A02B9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BFA98B78EC143F1CCB21FACCB1F5F16 /* Foundation.framework in Frameworks */,
+				721260FEAD0F97D2B160CE1F2EA10FA2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		56BBAFFDDC237C5BC5D02F020D6761EC /* Pods-MOBCore_iOS */ = {
+		29368A1516A31BDED0ED9B3AC0866AD1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				85AAFFE3860B8A87714BC5E1B745D8B3 /* Info.plist */,
-				6C851A4F7C0760E514A734F36BF93DA0 /* Pods-MOBCore_iOS.modulemap */,
-				4AF1721390DA255D1A987A924E1BA4B2 /* Pods-MOBCore_iOS-acknowledgements.markdown */,
-				87AFDF304EF24D5DCE787B385C392B25 /* Pods-MOBCore_iOS-acknowledgements.plist */,
-				316ED4AB67CF928DE5D8E62E112016DC /* Pods-MOBCore_iOS-dummy.m */,
-				6ADB269A581665281DCD5DE1F209CD23 /* Pods-MOBCore_iOS-resources.sh */,
-				AB2F5835D235A447098AC8CDC2AC9C75 /* Pods-MOBCore_iOS-umbrella.h */,
-				26868AFEC179FF7A5249B022C2A1D832 /* Pods-MOBCore_iOS.debug.xcconfig */,
-				FE208D61842EC275D5BB1523967C4AE0 /* Pods-MOBCore_iOS.release.xcconfig */,
+				0C6EF3A753FEDB6AA5BA26D4B9449EEA /* Pods_MOBCore_iOS.framework */,
+				EA11A9B66425626CA9D6F2EA26D10AD1 /* Pods_MOBCore_WatchOS.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30535B64C485FAF81B7EE61574538D8C /* Pods-MOBCore_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				22E8EC0A99C9627A488863367D51E134 /* Info.plist */,
+				54995CE469BBAC093F896E6201568F01 /* Pods-MOBCore_iOS.modulemap */,
+				C769963B20A8EB78AF0ABCCC1D987D68 /* Pods-MOBCore_iOS-acknowledgements.markdown */,
+				2EB70B3AD81BDD6657D0A6FA6BEDC573 /* Pods-MOBCore_iOS-acknowledgements.plist */,
+				A1F1BD85F500B0BBDA80DED2EFFF87E6 /* Pods-MOBCore_iOS-dummy.m */,
+				DC0FCB0749B49CDB21EDCD059E417249 /* Pods-MOBCore_iOS-resources.sh */,
+				79CE25155D3B813EE8B625D85AFAA562 /* Pods-MOBCore_iOS-umbrella.h */,
+				79542B9D21FC9989FEA79487B7A8A294 /* Pods-MOBCore_iOS.debug.xcconfig */,
+				874AB56688FF92E8CBC0EE64E7D7560D /* Pods-MOBCore_iOS.release.xcconfig */,
 			);
 			name = "Pods-MOBCore_iOS";
 			path = "Target Support Files/Pods-MOBCore_iOS";
+			sourceTree = "<group>";
+		};
+		7BD8C669AA1008A03C59F1B425784183 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				30535B64C485FAF81B7EE61574538D8C /* Pods-MOBCore_iOS */,
+				A38646DCB9EA3E37373546810A44C296 /* Pods-MOBCore_WatchOS */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -83,8 +101,8 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				8F91EE078EA3977443D1BDC2601132EF /* Frameworks */,
-				B19930160167ECB7A0A0D250E7170A66 /* Products */,
-				AB52AA3125DF0F8CDA1294A668604C59 /* Targets Support Files */,
+				29368A1516A31BDED0ED9B3AC0866AD1 /* Products */,
+				7BD8C669AA1008A03C59F1B425784183 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,39 +123,21 @@
 			name = watchOS;
 			sourceTree = "<group>";
 		};
-		AB52AA3125DF0F8CDA1294A668604C59 /* Targets Support Files */ = {
+		A38646DCB9EA3E37373546810A44C296 /* Pods-MOBCore_WatchOS */ = {
 			isa = PBXGroup;
 			children = (
-				B7D7CC3FAE904CCE289E09A91EAC6517 /* Pods-MOBCore Watch */,
-				56BBAFFDDC237C5BC5D02F020D6761EC /* Pods-MOBCore_iOS */,
+				6F2FF24744A23336DA7C771C2337830C /* Info.plist */,
+				7C1ECEBB37A86175D5B54A07AFD8AB65 /* Pods-MOBCore_WatchOS.modulemap */,
+				C0995F80461C569D2DD3D1B87E682C06 /* Pods-MOBCore_WatchOS-acknowledgements.markdown */,
+				F6BE81CC307FD45D57E6ECE56051AE58 /* Pods-MOBCore_WatchOS-acknowledgements.plist */,
+				2B88672BE95F42C1B2F908ABA63CF89B /* Pods-MOBCore_WatchOS-dummy.m */,
+				0890C53EFA024D751305F735B9B87672 /* Pods-MOBCore_WatchOS-resources.sh */,
+				51D5A13ECB0A1EFC4126AC8B64F3DDF4 /* Pods-MOBCore_WatchOS-umbrella.h */,
+				9F341D64486953619BEF5875ECFAB113 /* Pods-MOBCore_WatchOS.debug.xcconfig */,
+				98B41FE819253610D1E6761C1D7C201B /* Pods-MOBCore_WatchOS.release.xcconfig */,
 			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		B19930160167ECB7A0A0D250E7170A66 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E9E247DE1A1EABE414B1E1C27B542EA0 /* Pods_MOBCore_iOS.framework */,
-				8F770A1EA565F85BEB21755FC2D7064F /* Pods_MOBCore_Watch.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B7D7CC3FAE904CCE289E09A91EAC6517 /* Pods-MOBCore Watch */ = {
-			isa = PBXGroup;
-			children = (
-				FFF3AE3F7A39785662E6532C321AF1D4 /* Info.plist */,
-				B3C1FBB7729E67EDBECCE2390CA7A4F8 /* Pods-MOBCore Watch.modulemap */,
-				D8D04259DCEB0114458957EEDB9AC358 /* Pods-MOBCore Watch-acknowledgements.markdown */,
-				3044AD88ACA16A244BCF1AE13122A5EC /* Pods-MOBCore Watch-acknowledgements.plist */,
-				DFD87C98E167A4621FEB2D7698A2837F /* Pods-MOBCore Watch-dummy.m */,
-				D36AFA919D54B8AA6BAAE47D12A6767B /* Pods-MOBCore Watch-resources.sh */,
-				8CAA6952F6B4D09142CB568D2F524619 /* Pods-MOBCore Watch-umbrella.h */,
-				1C3F62C30E9F2A91AC8D182FE2169F50 /* Pods-MOBCore Watch.debug.xcconfig */,
-				55D246D6FD645BC858A2B54BE9523388 /* Pods-MOBCore Watch.release.xcconfig */,
-			);
-			name = "Pods-MOBCore Watch";
-			path = "Target Support Files/Pods-MOBCore Watch";
+			name = "Pods-MOBCore_WatchOS";
+			path = "Target Support Files/Pods-MOBCore_WatchOS";
 			sourceTree = "<group>";
 		};
 		BE50AB4B3645EA9432322BA2E72BE2F9 /* iOS */ = {
@@ -151,11 +151,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		80DF4374DE3F9679E114CB91FA671513 /* Headers */ = {
+		0D29AA4394A83E2323CB9C94336DAF71 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AC7A90A097D57D5E7BAADD87B5BF91D /* Pods-MOBCore Watch-umbrella.h in Headers */,
+				74C1EB7FF7F8AC53B0AF33A822D69D2E /* Pods-MOBCore_WatchOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,24 +184,24 @@
 			);
 			name = "Pods-MOBCore_iOS";
 			productName = "Pods-MOBCore_iOS";
-			productReference = E9E247DE1A1EABE414B1E1C27B542EA0 /* Pods_MOBCore_iOS.framework */;
+			productReference = 0C6EF3A753FEDB6AA5BA26D4B9449EEA /* Pods_MOBCore_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		82986EDE0606AA19260038EE70AD192C /* Pods-MOBCore Watch */ = {
+		E6CFECA58E908E821900B62386180AC2 /* Pods-MOBCore_WatchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB64727C31C5F1B6FC0242905F111EC5 /* Build configuration list for PBXNativeTarget "Pods-MOBCore Watch" */;
+			buildConfigurationList = D18104C76490FBA49B5173E9ED3C5044 /* Build configuration list for PBXNativeTarget "Pods-MOBCore_WatchOS" */;
 			buildPhases = (
-				4C7FEDB1374E38F2734D41473A02BC62 /* Sources */,
-				89016E7DAC74DE22A93AF683B423DF14 /* Frameworks */,
-				80DF4374DE3F9679E114CB91FA671513 /* Headers */,
+				9FFF299ECA0543357D7C402E06021BCA /* Sources */,
+				406057C611953AFA0F0658CAFB6A02B9 /* Frameworks */,
+				0D29AA4394A83E2323CB9C94336DAF71 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-MOBCore Watch";
-			productName = "Pods-MOBCore Watch";
-			productReference = 8F770A1EA565F85BEB21755FC2D7064F /* Pods_MOBCore_Watch.framework */;
+			name = "Pods-MOBCore_WatchOS";
+			productName = "Pods-MOBCore_WatchOS";
+			productReference = EA11A9B66425626CA9D6F2EA26D10AD1 /* Pods_MOBCore_WatchOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -221,12 +221,12 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = B19930160167ECB7A0A0D250E7170A66 /* Products */;
+			productRefGroup = 29368A1516A31BDED0ED9B3AC0866AD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				82986EDE0606AA19260038EE70AD192C /* Pods-MOBCore Watch */,
 				3C39F6FC468AA74E061F2FAFB46B43A7 /* Pods-MOBCore_iOS */,
+				E6CFECA58E908E821900B62386180AC2 /* Pods-MOBCore_WatchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -240,11 +240,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C7FEDB1374E38F2734D41473A02BC62 /* Sources */ = {
+		9FFF299ECA0543357D7C402E06021BCA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5494AB6C2168FA59C5EFC45845CCE00 /* Pods-MOBCore Watch-dummy.m in Sources */,
+				7FF2B030F62B7316F51595AD36EA6902 /* Pods-MOBCore_WatchOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +253,7 @@
 /* Begin XCBuildConfiguration section */
 		0BDFC118026A81CDA308D30E159657E5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE208D61842EC275D5BB1523967C4AE0 /* Pods-MOBCore_iOS.release.xcconfig */;
+			baseConfigurationReference = 874AB56688FF92E8CBC0EE64E7D7560D /* Pods-MOBCore_iOS.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -286,9 +286,9 @@
 			};
 			name = Release;
 		};
-		63163A4A987580DF1A240C0DCD613AFB /* Debug */ = {
+		269430794582B406B7C6CCDB554A554D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C3F62C30E9F2A91AC8D182FE2169F50 /* Pods-MOBCore Watch.debug.xcconfig */;
+			baseConfigurationReference = 9F341D64486953619BEF5875ECFAB113 /* Pods-MOBCore_WatchOS.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -302,17 +302,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-MOBCore Watch/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MOBCore_WatchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MOBCore Watch/Pods-MOBCore Watch.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-MOBCore_WatchOS/Pods-MOBCore_WatchOS.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_MOBCore_Watch;
+				PRODUCT_NAME = Pods_MOBCore_WatchOS;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -324,7 +324,7 @@
 		};
 		794A0DF423ABDA30FF7832D095347FEA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26868AFEC179FF7A5249B022C2A1D832 /* Pods-MOBCore_iOS.debug.xcconfig */;
+			baseConfigurationReference = 79542B9D21FC9989FEA79487B7A8A294 /* Pods-MOBCore_iOS.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -356,6 +356,42 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		7CF74DB4C487169134FFEE2F820B2918 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98B41FE819253610D1E6761C1D7C201B /* Pods-MOBCore_WatchOS.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MOBCore_WatchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MOBCore_WatchOS/Pods-MOBCore_WatchOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MOBCore_WatchOS;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
 		};
 		AB390DC169305285E8AD26EC55064EA3 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -394,42 +430,6 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		AD9C2980D8F392BCA07C7D3F4E117CC6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55D246D6FD645BC858A2B54BE9523388 /* Pods-MOBCore Watch.release.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-MOBCore Watch/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MOBCore Watch/Pods-MOBCore Watch.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_MOBCore_Watch;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
@@ -500,11 +500,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB64727C31C5F1B6FC0242905F111EC5 /* Build configuration list for PBXNativeTarget "Pods-MOBCore Watch" */ = {
+		D18104C76490FBA49B5173E9ED3C5044 /* Build configuration list for PBXNativeTarget "Pods-MOBCore_WatchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				63163A4A987580DF1A240C0DCD613AFB /* Debug */,
-				AD9C2980D8F392BCA07C7D3F4E117CC6 /* Release */,
+				269430794582B406B7C6CCDB554A554D /* Debug */,
+				7CF74DB4C487169134FFEE2F820B2918 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
