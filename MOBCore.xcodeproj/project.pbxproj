@@ -25,6 +25,7 @@
 		965957CE1E04CE8800DAE558 /* MOBContactSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965957CD1E04CE8800DAE558 /* MOBContactSupport.swift */; };
 		965957CF1E04CE8800DAE558 /* MOBContactSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965957CD1E04CE8800DAE558 /* MOBContactSupport.swift */; };
 		9679E0531DF09B6400F8FFBC /* asdf.swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 9679E0521DF09B6400F8FFBC /* asdf.swift-version */; };
+		96C284F91E0747D900481834 /* MOBReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C284F81E0747D900481834 /* MOBReview.swift */; };
 		96DB77801E047C71009B139D /* MOBDefaultsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */; };
 		96DB77811E047C71009B139D /* MOBDefaultsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		960C9BEA1E03C69900DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		965957CD1E04CE8800DAE558 /* MOBContactSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBContactSupport.swift; path = Sources/MOBContactSupport.swift; sourceTree = SOURCE_ROOT; };
 		9679E0521DF09B6400F8FFBC /* asdf.swift-version */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "asdf.swift-version"; sourceTree = SOURCE_ROOT; };
+		96C284F81E0747D900481834 /* MOBReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBReview.swift; path = Sources/MOBReview.swift; sourceTree = SOURCE_ROOT; };
 		96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MOBDefaultsUser.swift; path = Sources/MOBDefaultsUser.swift; sourceTree = SOURCE_ROOT; };
 		ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 				96DB777F1E047C71009B139D /* MOBDefaultsUser.swift */,
 				1E689A811C86AB330027BEA1 /* MOBExtensions.swift */,
 				960C9B781E03660200DB9484 /* MOBFile.swift */,
+				96C284F81E0747D900481834 /* MOBReview.swift */,
 				1E689A821C86AB330027BEA1 /* MOBCore.h */,
 				1EAFA0DB1B6039D5001F3D84 /* Supporting Files */,
 			);
@@ -406,6 +409,7 @@
 			files = (
 				960C9B791E03660200DB9484 /* MOBFile.swift in Sources */,
 				96DB77801E047C71009B139D /* MOBDefaultsUser.swift in Sources */,
+				96C284F91E0747D900481834 /* MOBReview.swift in Sources */,
 				960C9B9C1E036D7D00DB9484 /* MOBDefaultsKeychain.swift in Sources */,
 				960C9BA01E03B08900DB9484 /* MOBDefaultsCloud.swift in Sources */,
 				960C9B9A1E036C6100DB9484 /* MOBDefaults.swift in Sources */,
@@ -547,7 +551,7 @@
 			baseConfigurationReference = 091AAAE238FC4640326C5A66 /* Pods-MOBCore_iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -613,7 +617,7 @@
 			baseConfigurationReference = ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -680,6 +684,7 @@
 			baseConfigurationReference = CC6909D5833F3E3862762AF9 /* Pods-MOBCore Watch.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -708,6 +713,7 @@
 			baseConfigurationReference = 0FC4ED9B43B17D5C278215FA /* Pods-MOBCore Watch.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
