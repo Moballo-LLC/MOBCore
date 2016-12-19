@@ -29,8 +29,14 @@
 		96C2856E1E076EFF00481834 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2855A1E076EFF00481834 /* MOBExtensions.swift */; };
 		96C2856F1E076EFF00481834 /* MOBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2855A1E076EFF00481834 /* MOBExtensions.swift */; };
 		96C285701E076EFF00481834 /* MOBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2855C1E076EFF00481834 /* MOBFile.swift */; };
-		96C285721E076EFF00481834 /* MOBReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2855D1E076EFF00481834 /* MOBReview.swift */; };
 		96C285751E076F4000481834 /* MOBContactSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285741E076F4000481834 /* MOBContactSupport.swift */; };
+		96C2857B1E07718600481834 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C2857A1E07718600481834 /* CoreLocation.framework */; };
+		96C2857D1E07718F00481834 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C2857C1E07718F00481834 /* MapKit.framework */; };
+		96C2857F1E07719F00481834 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C2857E1E07719F00481834 /* MessageUI.framework */; };
+		96C285811E0771A700481834 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285801E0771A700481834 /* StoreKit.framework */; };
+		96C285831E0771AC00481834 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285821E0771AC00481834 /* CoreSpotlight.framework */; };
+		96C285851E0771B100481834 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285841E0771B100481834 /* MobileCoreServices.framework */; };
+		96C285871E0771BA00481834 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285861E0771BA00481834 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,8 +80,14 @@
 		96C285591E076EFF00481834 /* MOBDefaultsUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBDefaultsUser.swift; sourceTree = "<group>"; };
 		96C2855A1E076EFF00481834 /* MOBExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBExtensions.swift; sourceTree = "<group>"; };
 		96C2855C1E076EFF00481834 /* MOBFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBFile.swift; sourceTree = "<group>"; };
-		96C2855D1E076EFF00481834 /* MOBReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBReview.swift; sourceTree = "<group>"; };
 		96C285741E076F4000481834 /* MOBContactSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBContactSupport.swift; sourceTree = "<group>"; };
+		96C2857A1E07718600481834 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		96C2857C1E07718F00481834 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		96C2857E1E07719F00481834 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		96C285801E0771A700481834 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		96C285821E0771AC00481834 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		96C285841E0771B100481834 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		96C285861E0771BA00481834 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +100,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C285851E0771B100481834 /* MobileCoreServices.framework in Frameworks */,
+				96C285831E0771AC00481834 /* CoreSpotlight.framework in Frameworks */,
+				96C285811E0771A700481834 /* StoreKit.framework in Frameworks */,
+				96C2857F1E07719F00481834 /* MessageUI.framework in Frameworks */,
+				96C2857D1E07718F00481834 /* MapKit.framework in Frameworks */,
+				96C2857B1E07718600481834 /* CoreLocation.framework in Frameworks */,
 				960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */,
 				25DA539AFF8692A8E08944C8 /* Pods_MOBCore_iOS.framework in Frameworks */,
 			);
@@ -97,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C285871E0771BA00481834 /* CoreLocation.framework in Frameworks */,
 				960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */,
 				7456CDDDDBF221CA72953DB1 /* Pods_MOBCore_Watch.framework in Frameworks */,
 				27F8D45E6086B70B5E061168 /* Pods_MOBCore_WatchOS.framework in Frameworks */,
@@ -182,7 +201,6 @@
 			children = (
 				96C285741E076F4000481834 /* MOBContactSupport.swift */,
 				96C2855C1E076EFF00481834 /* MOBFile.swift */,
-				96C2855D1E076EFF00481834 /* MOBReview.swift */,
 			);
 			path = "Sources-iOS-only";
 			sourceTree = "<group>";
@@ -190,6 +208,13 @@
 		97D67C33FC933CC0C4422253 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96C285861E0771BA00481834 /* CoreLocation.framework */,
+				96C285841E0771B100481834 /* MobileCoreServices.framework */,
+				96C285821E0771AC00481834 /* CoreSpotlight.framework */,
+				96C285801E0771A700481834 /* StoreKit.framework */,
+				96C2857E1E07719F00481834 /* MessageUI.framework */,
+				96C2857C1E07718F00481834 /* MapKit.framework */,
+				96C2857A1E07718600481834 /* CoreLocation.framework */,
 				960C9BEA1E03C69900DB9484 /* UIKit.framework */,
 				960C9BE41E03C67600DB9484 /* UIKit.framework */,
 				C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */,
@@ -417,7 +442,6 @@
 				96C2856C1E076EFF00481834 /* MOBDefaultsUser.swift in Sources */,
 				96C285751E076F4000481834 /* MOBContactSupport.swift in Sources */,
 				96C285661E076EFF00481834 /* MOBDefaults.swift in Sources */,
-				96C285721E076EFF00481834 /* MOBReview.swift in Sources */,
 				96C285701E076EFF00481834 /* MOBFile.swift in Sources */,
 				96C285681E076EFF00481834 /* MOBDefaultsCloud.swift in Sources */,
 				96C2856A1E076EFF00481834 /* MOBDefaultsKeychain.swift in Sources */,
@@ -557,7 +581,7 @@
 			baseConfigurationReference = 091AAAE238FC4640326C5A66 /* Pods-MOBCore_iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -623,7 +647,7 @@
 			baseConfigurationReference = ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;

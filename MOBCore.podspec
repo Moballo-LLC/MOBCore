@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
 
   s.framework = 'UIKit'
   s.framework = 'CoreLocation'
+  s.framework = 'MapKit'
   s.framework = 'MessageUI'
   s.framework = 'StoreKit'
   s.framework = 'CoreSpotlight'
