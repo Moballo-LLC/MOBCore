@@ -19,4 +19,5 @@ Pod::Spec.new do |s|
 
 
   s.source_files  = ['Sources/**/*.swift']
+  s.ios.source_files= 'Sources-iOS-only/**/*.swift'
 end
