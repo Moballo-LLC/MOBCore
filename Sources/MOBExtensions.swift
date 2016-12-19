@@ -237,6 +237,28 @@
         }
         
     }
+    extension UIDevice {
+        public func isIpad() -> Bool {
+            return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
+        }
+        public func isIphone() -> Bool {
+            return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
+        }
+        public func isCarplay() -> Bool {
+            if #available(iOSApplicationExtension 9.0, *) {
+                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.carPlay
+            } else {
+                return false
+            }
+        }
+        public func isTV() -> Bool {
+            if #available(iOSApplicationExtension 9.0, *) {
+                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.tv
+            } else {
+                return false
+            }
+        }
+    }
     extension UIApplication {
         public func getScreenshot() -> UIImage {
             let layer = self.keyWindow?.layer
