@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'MOBCore'
-  s.version          = '1.0.2'
-  s.summary          = 'A short description of MOBCore.'
+  s.version          = '1.0.3'
+  s.summary          = 'A core set of functions and extensions to power a slew of applications'
   s.homepage         = 'https://github.com/Moballo/MOBCore'
   s.license          = 'MIT'
-  s.author           = { 'Jason Morcos' => 'jason.morcos@moballo.com' }
+  s.author           = { 'Jason Morcos (Moballo, LLC)' => 'jason.morcos@moballo.com' }
   s.source           = { :git => 'https://github.com/Moballo/MOBCore.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
