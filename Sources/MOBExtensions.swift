@@ -360,7 +360,7 @@
         }
     }
     extension CLLocationCoordinate2D {
-        public func isInRegion(region: MKCoordinateRegion) -> Bool {
+        public func isIn(region: MKCoordinateRegion) -> Bool {
             let center   = region.center
             var northWestCorner = center
             var southEastCorner = center
@@ -385,10 +385,15 @@
         
     }
     extension MKCoordinateRegion {
-        public func containsCoordinate(coordinate: CLLocationCoordinate2D) -> Bool {
-            return coordinate.isInRegion(region: self);
+        public func contains(coordinate: CLLocationCoordinate2D) -> Bool {
+            return coordinate.isIn(region: self);
         }
-        
+        public func with(padding: CLLocationDegrees) -> MKCoordinateRegion {
+            var newReg = self
+            newReg.span.latitudeDelta = padding*2 + newReg.span.latitudeDelta
+            newReg.span.longitudeDelta = padding*2 + newReg.span.longitudeDelta
+            return newReg
+        }
     }
     extension UIViewController {
         public var isModal: Bool {
