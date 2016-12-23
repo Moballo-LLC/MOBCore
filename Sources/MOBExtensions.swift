@@ -244,14 +244,14 @@
             return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
         }
         public func isCarplay() -> Bool {
-            if #available(iOSApplicationExtension 9.0, *) {
+            if #available(iOS 9.0, *) {
                 return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.carPlay
             } else {
                 return false
             }
         }
         public func isTV() -> Bool {
-            if #available(iOSApplicationExtension 9.0, *) {
+            if #available(iOS 9.0, *) {
                 return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.tv
             } else {
                 return false
