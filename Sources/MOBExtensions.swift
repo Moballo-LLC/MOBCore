@@ -306,7 +306,7 @@
             let infoText = "Version: \(UIApplication.appVersion())\nBuild: \(UIApplication.appBuild())\n \nContact Us: \(MOBInternalConstants.supportEmail)\nWebsite: \(MOBInternalConstants.supportWebsite)\n\n\(copyright)"
             return infoText
         }
-        public static func appAboutController(appName: String, customCopyright: String?) ->UIAlertController {
+        public static func appAboutController(appName: String, customCopyright: String? = nil) ->UIAlertController {
             let infoText:String
             if let overwriteEntityCopyright = customCopyright {
                 infoText = UIApplication.appInfo(customCopyright: overwriteEntityCopyright)
