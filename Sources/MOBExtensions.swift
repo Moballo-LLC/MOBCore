@@ -17,7 +17,6 @@
     }
     //EXTENSIONS BEGIN HERE
     extension Sequence {
-        
         public func toArray() -> [Iterator.Element] {
             
             return Array(self)
@@ -502,7 +501,7 @@
             })
             chooseDialog.addAction(chooseSatelliteOption)
             
-            let cancelOption = UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+            let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                 
             })
             chooseDialog.addAction(cancelOption)
