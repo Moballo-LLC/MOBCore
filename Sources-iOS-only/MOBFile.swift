@@ -24,11 +24,10 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
     }
     public func download(expiresAfterDays: Int = 0, forceRedownload: Bool = false) {
         if (!self.temporary) {
-            let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            if let lastLoadedDate = UserDefaults.standard.object(forKey: self.downloadDateKey()) as! Date? , (forceRedownload == false && lastLoadedDate.daysUntil(Date()) < expiresAfterDays) {
-                return
-            } else if let lastLoadedVersion = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()), (forceRedownload == false && lastLoadedVersion != actualAppVersion) {
-                return
+            if let lastLoadedDate = UserDefaults.standard.object(forKey: self.downloadDateKey()) as! Date? , (forceRedownload == false && Swift.abs(lastLoadedDate.daysUntil(Date())) < expiresAfterDays) {
+                if let lastVersionKey = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()), lastVersionKey == self.versionKey() {
+                    return
+                }
             }
         }
         if let url = self.address() {
@@ -82,6 +81,9 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
         return "\(MOBFile.mobileDefaultsStorageKey).\(self.nameInDocuments() as String)"
     }
     internal func getDownloadedFilePath() -> URL? {
+        if let lastVersionKey = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()), lastVersionKey != self.versionKey() {
+            return nil
+        }
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
@@ -138,14 +140,18 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
                     print("MOBFile - INVALID DOWNLOAD - Error writing downloaded file - "+self.nameOnLocal())
                 }
                 if (!self.temporary) {
-                    let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-                    UserDefaults.standard.set(actualAppVersion, forKey: self.downloadSoftwareVersionKey())
+                    UserDefaults.standard.set(self.versionKey(), forKey: self.downloadSoftwareVersionKey())
                     UserDefaults.standard.set(Date(), forKey: self.downloadDateKey())
                     UserDefaults.standard.synchronize()
                 }
             }
         }
         downloadTask.cancel()
+    }
+    internal func versionKey() -> String {
+        let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let actualAppBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        return actualAppVersion + "-" + actualAppBuild
     }
     //this is to track progress
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
