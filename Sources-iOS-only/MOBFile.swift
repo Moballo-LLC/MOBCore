@@ -81,7 +81,11 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
         return "\(MOBFile.mobileDefaultsStorageKey).\(self.nameInDocuments() as String)"
     }
     internal func getDownloadedFilePath() -> URL? {
-        if let lastVersionKey = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()), lastVersionKey != self.versionKey() {
+        if let lastVersionKey = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()) {
+            if lastVersionKey != self.versionKey() {
+                return nil
+            }
+        } else {
             return nil
         }
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
