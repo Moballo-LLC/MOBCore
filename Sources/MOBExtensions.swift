@@ -168,6 +168,35 @@
             return formatter.date(from: dateString)
         }
         
+        public func formattedAsPhone() -> String {
+            if self.length == 10 {
+                let s = self
+                let s2 = String(format: "(%@) %@-%@",
+                                s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
+                                s.substring(to: s.index(s.startIndex, offsetBy: 6)).substring(from: s.index(s.startIndex, offsetBy: 3)),
+                                s.substring(to: s.index(s.startIndex, offsetBy: 10)).substring(from: s.index(s.startIndex, offsetBy: 6))
+                )
+                return s2
+            } else if self.length == 11 {
+                let s = self
+                let s2 = String(format: "+%@ (%@) %@-%@",
+                                s.substring(to: s.index(s.startIndex, offsetBy: 1)).substring(from: s.index(s.startIndex, offsetBy: 0)),
+                                s.substring(to: s.index(s.startIndex, offsetBy: 4)).substring(from: s.index(s.startIndex, offsetBy: 1)),
+                                s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 4)),
+                                s.substring(to: s.index(s.startIndex, offsetBy: 11)).substring(from: s.index(s.startIndex, offsetBy: 7))
+                    
+                )
+                return s2
+            } else if self.length == 7 {
+                let s = self
+                let s2 = String(format: "%@-%@",
+                                s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
+                                s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 3))
+                )
+                return s2
+            }
+            return self
+        }
     }
     
     extension NSString {
