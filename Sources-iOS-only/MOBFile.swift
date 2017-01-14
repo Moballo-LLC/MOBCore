@@ -7,7 +7,7 @@
 //
 import Foundation
 public class MOBFile : NSObject, URLSessionDownloadDelegate {
-    internal static let mobileDefaultsStorageKey = "com.moballo.MOBFile.dateOfLastServerCall"
+    internal static let mobileDefaultsStorageKey = "com.moballo.MOBFile"
     public static let downloadedFileKey = "MOBFileDownloadedFile-"
     internal let name: String
     internal let type: String
@@ -75,10 +75,10 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
         }
     }
     internal func downloadDateKey() -> String {
-        return "\(MOBFile.mobileDefaultsStorageKey).\(self.nameInDocuments() as String)"
+        return MOBFile.mobileDefaultsStorageKey + "." + self.nameInDocuments() + ".timestamp"
     }
     internal func downloadSoftwareVersionKey() -> String {
-        return "\(MOBFile.mobileDefaultsStorageKey).\(self.nameInDocuments() as String)"
+        return MOBFile.mobileDefaultsStorageKey + "." + self.nameInDocuments() + ".version"
     }
     internal func getDownloadedFilePath() -> URL? {
         if let lastVersionKey = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()) {
@@ -140,7 +140,6 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
                     print("MOBFile - COMPLETED DOWNLOAD - "+self.nameOnLocal())
                 }
                 catch {
-                    
                     print("MOBFile - INVALID DOWNLOAD - Error writing downloaded file - "+self.nameOnLocal())
                 }
                 if (!self.temporary) {
@@ -155,7 +154,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
     internal func versionKey() -> String {
         let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let actualAppBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-        return actualAppVersion + "-" + actualAppBuild
+        return (actualAppVersion + "-" + actualAppBuild)
     }
     //this is to track progress
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
