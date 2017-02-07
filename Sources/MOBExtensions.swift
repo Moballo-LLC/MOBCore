@@ -286,6 +286,56 @@
                 return false
             }
         }
+        public var modelCode: String {
+            var systemInfo = utsname()
+            uname(&systemInfo)
+            let machineMirror = Mirror(reflecting: systemInfo.machine)
+            let identifier = machineMirror.children.reduce("") { identifier, element in
+                guard let value = element.value as? Int8, value != 0 else { return identifier }
+                return identifier + String(UnicodeScalar(UInt8(value)))
+            }
+            return identifier
+        }
+        
+    }
+    public extension NSNumber {
+        public func degreesToCardinalDirection()->String {
+            let headingDeg:Double = Double((self.doubleValue + 720.0)).truncatingRemainder(dividingBy: 360)
+            if(headingDeg > 348.15) {
+                return "N"
+            } else if (headingDeg > 326.25) {
+                return "NNW"
+            } else if (headingDeg > 303.75) {
+                return "NW"
+            } else if (headingDeg > 281.25) {
+                return "WNW"
+            } else if (headingDeg > 258.75) {
+                return "W"
+            } else if (headingDeg > 236.25) {
+                return "WSW"
+            } else if (headingDeg > 213.75) {
+                return "SW"
+            } else if (headingDeg > 191.25) {
+                return "SSW"
+            } else if (headingDeg > 168.75) {
+                return "S"
+            } else if (headingDeg > 146.25) {
+                return "SSE"
+            } else if (headingDeg > 123.75) {
+                return "SE"
+            } else if (headingDeg > 101.25) {
+                return "ESE"
+            } else if (headingDeg > 78.75) {
+                return "E"
+            } else if (headingDeg > 56.25) {
+                return "ENE"
+            } else if (headingDeg > 33.75) {
+                return "NE"
+            } else if (headingDeg > 11.25) {
+                return "NNE"
+            }
+            return "N"
+        }
     }
     extension UIApplication {
         public func getScreenshot() -> UIImage {

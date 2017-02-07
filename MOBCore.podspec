@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MOBCore'
-  s.version          = '1.0.8'
+  s.version          = '1.0.9'
   s.summary          = 'A core set of functions and extensions to power a slew of applications'
   s.homepage         = 'https://github.com/Moballo/MOBCore'
   s.license          = 'MIT'
