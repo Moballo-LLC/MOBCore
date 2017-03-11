@@ -12,6 +12,7 @@
 		7456CDDDDBF221CA72953DB1 /* Pods_MOBCore_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */; };
 		960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BE41E03C67600DB9484 /* UIKit.framework */; };
 		960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BEA1E03C69900DB9484 /* UIKit.framework */; };
+		969F0F6B1E73E862007EAE39 /* MOBAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */; };
 		96C2855E1E076EFF00481834 /* Info-watch.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C285521E076EFF00481834 /* Info-watch.plist */; };
 		96C2855F1E076EFF00481834 /* Info-watch.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C285521E076EFF00481834 /* Info-watch.plist */; };
 		96C285601E076EFF00481834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C285531E076EFF00481834 /* Info.plist */; };
@@ -70,6 +71,7 @@
 		960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		960C9BE41E03C67600DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		960C9BEA1E03C69900DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBAlerts.swift; sourceTree = "<group>"; };
 		96C2853C1E076C2C00481834 /* Info-watch.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watch.plist"; path = "Sources/Info-watch.plist"; sourceTree = SOURCE_ROOT; };
 		96C285521E076EFF00481834 /* Info-watch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-watch.plist"; sourceTree = "<group>"; };
 		96C285531E076EFF00481834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		96C2855B1E076EFF00481834 /* Sources-iOS-only */ = {
 			isa = PBXGroup;
 			children = (
+				969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */,
 				96C285741E076F4000481834 /* MOBContactSupport.swift */,
 				96C2855C1E076EFF00481834 /* MOBFile.swift */,
 			);
@@ -442,6 +445,7 @@
 				96C2856C1E076EFF00481834 /* MOBDefaultsUser.swift in Sources */,
 				96C285751E076F4000481834 /* MOBContactSupport.swift in Sources */,
 				96C285661E076EFF00481834 /* MOBDefaults.swift in Sources */,
+				969F0F6B1E73E862007EAE39 /* MOBAlerts.swift in Sources */,
 				96C285701E076EFF00481834 /* MOBFile.swift in Sources */,
 				96C285681E076EFF00481834 /* MOBDefaultsCloud.swift in Sources */,
 				96C2856A1E076EFF00481834 /* MOBDefaultsKeychain.swift in Sources */,
