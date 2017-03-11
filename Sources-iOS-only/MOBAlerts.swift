@@ -22,14 +22,30 @@ public class MOBAlertHandler: NSObject {
     public func tryQueuedAlerts() {
         self.presentAlertController()
     }
+    public func minimizeAllAlerts() {
+        if let theTimer = MOBAlertTimer , MOBAlertQueue.count == 0 {
+            theTimer.invalidate()
+            MOBAlertTimer = nil
+        }
+        if let keyWindow = internalApplication.keyWindow {
+            if let rootVC = keyWindow.rootViewController {
+                let topVC = getTopmostNavController(relativeTo: rootVC)
+
+                if let currentAlert = topVC.presentedViewController as? MOBAlertController {
+                    MOBAlertQueue.insert(currentAlert, at: 0)
+                    currentAlert.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
     
-    fileprivate func presentAlertController(_ newController: MOBAlertController? = nil) {
+    fileprivate func presentAlertController(_ inputAlert: MOBAlertController? = nil, placeOnTopOfQueue:Bool = false) {
         if let keyWindow = internalApplication.keyWindow {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
                 
-                if let toPresent = newController {
-                    if let alertIdentifier = toPresent.alertIdentifier {
+                if let inputAlertItem = inputAlert {
+                    if let alertIdentifier = inputAlertItem.alertIdentifier {
                         if let presented = topVC.presentedViewController as? MOBAlertController {
                             if presented.alertIdentifier == alertIdentifier {
                                 return
@@ -43,7 +59,11 @@ public class MOBAlertHandler: NSObject {
                             }
                         }
                     }
-                    MOBAlertQueue.append(newController!)
+                    if (placeOnTopOfQueue) {
+                        MOBAlertQueue.insert(inputAlertItem, at: 0)
+                    } else {
+                        MOBAlertQueue.append(inputAlertItem)
+                    }
                 }
                 if MOBAlertTimer == nil {
                     MOBAlertTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.MOBAlertTimerCall), userInfo: nil, repeats: true)
@@ -105,8 +125,8 @@ public class MOBAlertController: UIAlertController {
     public var alertIdentifier: String?
     var alertHandler: MOBAlertHandler?
     
-    public static func alertControllerWithTitle(title:String?,message:String?,actions:[UIAlertAction],dismissingActionTitle:String? = "Dismiss", dismissBlock:(() -> ())?) -> UIAlertController {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    public static func alertControllerWithTitle(title:String?,message:String?,actions:[UIAlertAction],dismissingActionTitle:String? = "Dismiss", dismissBlock:(() -> ())?) -> MOBAlertController {
+        let alertController = MOBAlertController(title: title, message: message, preferredStyle: .alert)
         if dismissingActionTitle != nil {
             let okAction = UIAlertAction(title: dismissingActionTitle, style: .default) { (action) -> Void in
                 dismissBlock?()
@@ -121,11 +141,20 @@ public class MOBAlertController: UIAlertController {
     }
     deinit {
         if let handler = alertHandler {
-            handler.presentAlertController()
+            handler.tryQueuedAlerts()
         }
     }
     public func show(_ application: UIApplication) {
         let handler = MOBAlertHandler(application)
         handler.presentAlertController(self)
+    }
+    public func showNow(_ application: UIApplication) {
+        let handler = MOBAlertHandler(application)
+        handler.minimizeAllAlerts()
+        handler.presentAlertController(self, placeOnTopOfQueue: true)
+    }
+    public func showNext(_ application: UIApplication) {
+        let handler = MOBAlertHandler(application)
+        handler.presentAlertController(self, placeOnTopOfQueue: true)
     }
 }
