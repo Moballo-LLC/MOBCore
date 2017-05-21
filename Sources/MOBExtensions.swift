@@ -266,27 +266,48 @@
         
     }
     extension UIDevice {
-        public func isIpad() -> Bool {
-            return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
-        }
-        public func isIphone() -> Bool {
-            return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
-        }
-        public func isCarplay() -> Bool {
-            if #available(iOS 9.0, *) {
-                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.carPlay
-            } else {
-                return false
+        public static var isIpad: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
+                } else {
+                    return false
+                }
             }
         }
-        public func isTV() -> Bool {
-            if #available(iOS 9.0, *) {
-                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.tv
-            } else {
-                return false
+        public static var isIphone: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
+                } else {
+                    return false
+                }
             }
         }
-        public var modelCode: String {
+        public static var isCarplay: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.carPlay
+                } else {
+                    return false
+                }
+            }
+        }
+        public static var isTV: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.tv
+                } else {
+                    return false
+                }
+            }
+        }
+        public static var isSimulator: Bool {
+            get {
+                return TARGET_OS_SIMULATOR != 0
+            }
+        }
+        public static var modelCode: String {
             var systemInfo = utsname()
             uname(&systemInfo)
             let machineMirror = Mirror(reflecting: systemInfo.machine)
@@ -399,11 +420,6 @@
             alertController.addAction(Dismiss)
             return alertController;
         }
-        public static var isRunningSimulator: Bool {
-            get {
-                return TARGET_OS_SIMULATOR != 0
-            }
-        }
         public static var isTestFlight: Bool {
             get {
                 if let url = Bundle.main.appStoreReceiptURL {
@@ -427,7 +443,7 @@
     }
     
     extension UIImage {
-        public static func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+        public static func solidColor(_ color: UIColor, size: CGSize) -> UIImage {
             let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             UIGraphicsBeginImageContextWithOptions(size, false, 0)
             color.setFill()
@@ -435,6 +451,24 @@
             let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             return image
+        }
+        public func colorize(_ tintColor: UIColor) -> UIImage {
+            UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+            
+            let context = UIGraphicsGetCurrentContext()// as CGContextRef
+            context?.translateBy(x: 0, y: self.size.height)
+            context?.scaleBy(x: 1.0, y: -1.0);
+            context?.setBlendMode(CGBlendMode.normal)
+            
+            let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height) as CGRect
+            context?.clip(to: rect, mask: self.cgImage!)
+            tintColor.setFill()
+            context?.fill(rect)
+            
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
+            UIGraphicsEndImageContext()
+            
+            return newImage
         }
     }
     extension CLLocationCoordinate2D {
