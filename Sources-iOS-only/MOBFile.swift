@@ -119,7 +119,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
                             print("MOBFile - INVALID DOWNLOAD - 404 Error - "+self.nameOnLocal())
                             downloadTask.cancel()
                             return
-                        } else if strungResponse.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                        } else if strungResponse.removingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
                             print("MOBFile - INVALID DOWNLOAD - empty response - "+self.nameOnLocal())
                             downloadTask.cancel()
                             return

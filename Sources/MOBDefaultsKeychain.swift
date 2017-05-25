@@ -40,7 +40,7 @@ public class MOBDefaultsKeychain : NSObject {
         if let data = keychainData {
             stringValue = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
             if let trimmedString = stringValue {
-                if trimmedString.trimmingCharacters(in: CharacterSet.whitespaces) as String! == "" {
+                if trimmedString.removingCharacters(in: CharacterSet.whitespaces) as String! == "" {
                     return nil
                 }
             }
@@ -122,7 +122,7 @@ public class MOBDefaultsKeychain : NSObject {
         if let data = keychainData {
             stringValue = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
             if let trimmedString = stringValue {
-                if trimmedString.trimmingCharacters(in: CharacterSet.whitespaces) as String! == "" {
+                if trimmedString.removingCharacters(in: CharacterSet.whitespaces) as String! == "" {
                     return defaultValue
                 }
             }
