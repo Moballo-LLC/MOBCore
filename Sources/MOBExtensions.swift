@@ -87,6 +87,22 @@
             return "\(dateString)"
             
         }
+        public func stringLiteralOfDate() -> String {
+            let dateFormatter = DateFormatter()
+            let theDateFormat = DateFormatter.Style.short
+            let theTimeFormat = DateFormatter.Style.long
+            
+            dateFormatter.dateStyle = theDateFormat
+            dateFormatter.timeStyle = theTimeFormat
+            
+            return dateFormatter.string(from: self)
+        }
+        public func daysUntil(_ otherDate: Date) -> Int
+        {
+            let calendar = Calendar.current
+            let difference = calendar.dateComponents([.day], from: self, to: otherDate)
+            return difference.day!
+        }
     }
     
     extension Array {
@@ -119,100 +135,6 @@
         }
     }
     
-    extension UIView {
-        
-        public static func animateWithDuration(_ duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping damping: CGFloat, animations: @escaping () -> ()) {
-            UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: [], animations: animations, completion: nil)
-        }
-        
-    }
-    
-    extension String {
-        
-        public var length: Int {
-            return (self as NSString).length
-        }
-        
-        public func asDouble() -> Double? {
-            return NumberFormatter().number(from: self)?.doubleValue
-        }
-        
-        public func percentStringAsDouble() -> Double? {
-            if let displayedNumber = (self as NSString).substring(to: self.length - 1).asDouble() {
-                return displayedNumber / 100.0
-            }
-            return nil
-        }
-        
-        public func isWhitespace() -> Bool {
-            return self == " " || self == "\n" || self == "\r" || self == "\r\n" || self == "\t"
-                || self == "\u{A0}" || self == "\u{2007}" || self == "\u{202F}" || self == "\u{2060}" || self == "\u{FEFF}"
-            //there are lots of whitespace characters apparently
-            //http://www.fileformat.info/info/unicode/char/00a0/index.htm
-        }
-        
-        public func dateWithTSquareFormat() -> Date? {
-            //convert date string to NSDate
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "en_US")
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .short
-            //correct formatting to match required style
-            //(Aug 27, 2015 11:27 am) -> (Aug 27, 2015, 11:27 AM)
-            var dateString = self.replacingOccurrences(of: "pm", with: "PM")
-            dateString = dateString.replacingOccurrences(of: "am", with: "AM")
-            
-            for year in 1990...2040 { //add comma after years
-                dateString = dateString.replacingOccurrences(of: "\(year) ", with: "\(year), ")
-            }
-            return formatter.date(from: dateString)
-        }
-        
-        public func formattedAsPhone() -> String {
-            if self.length == 10 {
-                let s = self
-                let s2 = String(format: "(%@) %@-%@",
-                                s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
-                                s.substring(to: s.index(s.startIndex, offsetBy: 6)).substring(from: s.index(s.startIndex, offsetBy: 3)),
-                                s.substring(to: s.index(s.startIndex, offsetBy: 10)).substring(from: s.index(s.startIndex, offsetBy: 6))
-                )
-                return s2
-            } else if self.length == 11 {
-                let s = self
-                let s2 = String(format: "+%@ (%@) %@-%@",
-                                s.substring(to: s.index(s.startIndex, offsetBy: 1)).substring(from: s.index(s.startIndex, offsetBy: 0)),
-                                s.substring(to: s.index(s.startIndex, offsetBy: 4)).substring(from: s.index(s.startIndex, offsetBy: 1)),
-                                s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 4)),
-                                s.substring(to: s.index(s.startIndex, offsetBy: 11)).substring(from: s.index(s.startIndex, offsetBy: 7))
-                    
-                )
-                return s2
-            } else if self.length == 7 {
-                let s = self
-                let s2 = String(format: "%@-%@",
-                                s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
-                                s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 3))
-                )
-                return s2
-            }
-            return self
-        }
-    }
-    
-    extension NSString {
-        
-        public func stringAtIndex(_ index: Int) -> String {
-            let char = self.character(at: index)
-            return "\(Character(UnicodeScalar(char)!))"
-        }
-        
-        public func countOccurancesOfString(_ string: String) -> Int {
-            let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
-            return strCount / string.length
-        }
-        
-    }
-    
     extension Bundle {
         public static var applicationVersionNumber: String {
             if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -226,96 +148,6 @@
                 return build
             }
             return "Build Number Not Available"
-        }
-        
-    }
-    extension String {
-        public func truncate(length: Int, trailing: String? = "") -> String {
-            if self.characters.count > length {
-                return self.substring(to: self.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
-            } else {
-                return self
-            }
-        }
-        public func cleansed() -> String {
-            var text = self as NSString
-            //cleanse text of weird formatting
-            //tabs and newlines
-            text = (text as NSString).replacingOccurrences(of: "\n", with: "") as NSString
-            text = (text as NSString).replacingOccurrences(of: "\t", with: "") as NSString
-            text = (text as NSString).replacingOccurrences(of: "\r", with: "") as NSString
-            text = (text as NSString).replacingOccurrences(of: "<o:p>", with: "") as NSString
-            text = (text as NSString).replacingOccurrences(of: "</o:p>", with: "") as NSString
-            
-            return (text as String).withNoTrailingWhitespace()
-        }
-        public func withNoTrailingWhitespace() -> String {
-            var text = self as NSString
-            //leading spaces
-            while text.length > 1 && text.stringAtIndex(0).isWhitespace() {
-                text = text.substring(from: 1) as NSString
-            }
-            
-            //trailing spaces
-            while text.length > 1 && text.stringAtIndex(text.length - 1).isWhitespace() {
-                text = text.substring(to: text.length - 1) as NSString
-            }
-            
-            return text as String
-        }
-        
-    }
-    extension UIDevice {
-        public static var isIpad: Bool {
-            get {
-                if #available(iOS 9.0, *) {
-                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
-                } else {
-                    return false
-                }
-            }
-        }
-        public static var isIphone: Bool {
-            get {
-                if #available(iOS 9.0, *) {
-                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
-                } else {
-                    return false
-                }
-            }
-        }
-        public static var isCarplay: Bool {
-            get {
-                if #available(iOS 9.0, *) {
-                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.carPlay
-                } else {
-                    return false
-                }
-            }
-        }
-        public static var isTV: Bool {
-            get {
-                if #available(iOS 9.0, *) {
-                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.tv
-                } else {
-                    return false
-                }
-            }
-        }
-        public static var isSimulator: Bool {
-            get {
-                return TARGET_OS_SIMULATOR != 0
-            }
-        }
-        public static var modelCode: String {
-            var systemInfo = utsname()
-            uname(&systemInfo)
-            let machineMirror = Mirror(reflecting: systemInfo.machine)
-            let identifier = machineMirror.children.reduce("") { identifier, element in
-                guard let value = element.value as? Int8, value != 0 else { return identifier }
-                return identifier + String(UnicodeScalar(UInt8(value)))
-            }
-            return identifier
         }
         
     }
@@ -389,11 +221,8 @@
             } else {
                 copyrightEntity = MOBInternalConstants.copyrightEntity
             }
-            let date = Date()
-            let calendar = Calendar.current
-            let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
-            let year =  components.year
-            return "© \(year! as Int) \(copyrightEntity)"
+            let year = Calendar.current.component(.year, from: Date())
+            return "© "+String(year)+" "+copyrightEntity
             
         }
         public static func appInfo(customCopyright: String? = nil) -> String {
@@ -430,7 +259,6 @@
         }
     }
     extension UIView {
-        
         public func getViewScreenshot() -> UIImage {
             UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
             
@@ -439,6 +267,9 @@
             let image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return image!
+        }
+        public static func animateWithDuration(_ duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping damping: CGFloat, animations: @escaping () -> ()) {
+            UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: [], animations: animations, completion: nil)
         }
     }
     
@@ -523,26 +354,6 @@
         public var isIcs: Bool {
             let signature:[UInt8] = [66, 69, 71, 73]
             return firstBytes(4) == signature
-        }
-    }
-    extension Date {
-        public func stringLiteralOfDate() -> String {
-            let dateFormatter = DateFormatter()
-            let theDateFormat = DateFormatter.Style.short
-            let theTimeFormat = DateFormatter.Style.long
-            
-            dateFormatter.dateStyle = theDateFormat
-            dateFormatter.timeStyle = theTimeFormat
-            
-            return dateFormatter.string(from: self)
-        }
-        public func daysUntil(_ otherDate: Date) -> Int
-        {
-            let calendar = Calendar.current
-            
-            let components = (calendar as NSCalendar).components([.day], from: self, to: otherDate, options: [])
-            
-            return components.day!
         }
     }
     extension UIAlertController {
@@ -631,4 +442,202 @@
             self.mapType = .standard
         }
     }
+    extension NSString {
+        
+        public func stringAtIndex(_ index: Int) -> String {
+            let char = self.character(at: index)
+            return "\(Character(UnicodeScalar(char)!))"
+        }
+        
+        public func countOccurancesOfString(_ string: String) -> Int {
+            let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
+            return strCount / string.length
+        }
+    }
+    extension UIDevice {
+        public static var isIpad: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
+                } else {
+                    return false
+                }
+            }
+        }
+        public static var isIphone: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
+                } else {
+                    return false
+                }
+            }
+        }
+        public static var isCarplay: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.carPlay
+                } else {
+                    return false
+                }
+            }
+        }
+        public static var isTV: Bool {
+            get {
+                if #available(iOS 9.0, *) {
+                    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.tv
+                } else {
+                    return false
+                }
+            }
+        }
+        public static var isSimulator: Bool {
+            get {
+                return TARGET_OS_SIMULATOR != 0
+            }
+        }
+        public static var modelCode: String {
+            var systemInfo = utsname()
+            uname(&systemInfo)
+            let machineMirror = Mirror(reflecting: systemInfo.machine)
+            let identifier = machineMirror.children.reduce("") { identifier, element in
+                guard let value = element.value as? Int8, value != 0 else { return identifier }
+                return identifier + String(UnicodeScalar(UInt8(value)))
+            }
+            return identifier
+        }
+        
+    }
+    ///Fuzzy comparison funcs
+    public func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+        switch (lhs, rhs) {
+        case let (l?, r?):
+            return l < r
+        case (nil, _?):
+            return true
+        default:
+            return false
+        }
+    }
+    
+    public func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+        switch (lhs, rhs) {
+        case let (l?, r?):
+            return l > r
+        default:
+            return rhs < lhs
+        }
+    }
+    
+    public func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+        switch (lhs, rhs) {
+        case let (l?, r?):
+            return l <= r
+        default:
+            return !(rhs < lhs)
+        }
+    }
 #endif
+
+
+//Shared Extensions
+extension String {
+    public func truncate(length: Int, trailing: String? = "") -> String {
+        if self.characters.count > length {
+            return self.substring(to: self.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
+        } else {
+            return self
+        }
+    }
+    public func cleansed() -> String {
+        var text = self as NSString
+        //cleanse text of weird formatting
+        //tabs and newlines
+        text = (text as NSString).replacingOccurrences(of: "\n", with: "") as NSString
+        text = (text as NSString).replacingOccurrences(of: "\t", with: "") as NSString
+        text = (text as NSString).replacingOccurrences(of: "\r", with: "") as NSString
+        text = (text as NSString).replacingOccurrences(of: "<o:p>", with: "") as NSString
+        text = (text as NSString).replacingOccurrences(of: "</o:p>", with: "") as NSString
+        
+        return (text as String).withNoTrailingWhitespace()
+    }
+    public func withNoTrailingWhitespace() -> String {
+        if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
+            return self.replacingCharacters(in: trailingWs, with: "")
+        } else {
+            return self
+        }
+    }
+    public var length: Int {
+        return (self as NSString).length
+    }
+    
+    public func asDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
+    }
+    
+    public func percentStringAsDouble() -> Double? {
+        if let displayedNumber = (self as NSString).substring(to: self.length - 1).asDouble() {
+            return displayedNumber / 100.0
+        }
+        return nil
+    }
+    
+    public func removingCharacters(in characterSet: CharacterSet) -> String {
+        return self.components(separatedBy: characterSet).joined()
+    }
+    
+    public func isWhitespace() -> Bool {
+        return self == " " || self == "\n" || self == "\r" || self == "\r\n" || self == "\t"
+            || self == "\u{A0}" || self == "\u{2007}" || self == "\u{202F}" || self == "\u{2060}" || self == "\u{FEFF}"
+        //there are lots of whitespace characters apparently
+        //http://www.fileformat.info/info/unicode/char/00a0/index.htm
+    }
+    
+    public func dateWithTSquareFormat() -> Date? {
+        //convert date string to NSDate
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        //correct formatting to match required style
+        //(Aug 27, 2015 11:27 am) -> (Aug 27, 2015, 11:27 AM)
+        var dateString = self.replacingOccurrences(of: "pm", with: "PM")
+        dateString = dateString.replacingOccurrences(of: "am", with: "AM")
+        
+        for year in 1990...2040 { //add comma after years
+            dateString = dateString.replacingOccurrences(of: "\(year) ", with: "\(year), ")
+        }
+        return formatter.date(from: dateString)
+    }
+    
+    public func formattedAsPhone() -> String {
+        if self.length == 10 {
+            let s = self
+            let s2 = String(format: "(%@) %@-%@",
+                            s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
+                            s.substring(to: s.index(s.startIndex, offsetBy: 6)).substring(from: s.index(s.startIndex, offsetBy: 3)),
+                            s.substring(to: s.index(s.startIndex, offsetBy: 10)).substring(from: s.index(s.startIndex, offsetBy: 6))
+            )
+            return s2
+        } else if self.length == 11 {
+            let s = self
+            let s2 = String(format: "+%@ (%@) %@-%@",
+                            s.substring(to: s.index(s.startIndex, offsetBy: 1)).substring(from: s.index(s.startIndex, offsetBy: 0)),
+                            s.substring(to: s.index(s.startIndex, offsetBy: 4)).substring(from: s.index(s.startIndex, offsetBy: 1)),
+                            s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 4)),
+                            s.substring(to: s.index(s.startIndex, offsetBy: 11)).substring(from: s.index(s.startIndex, offsetBy: 7))
+                
+            )
+            return s2
+        } else if self.length == 7 {
+            let s = self
+            let s2 = String(format: "%@-%@",
+                            s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
+                            s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 3))
+            )
+            return s2
+        }
+        return self
+    }
+}
