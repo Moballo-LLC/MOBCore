@@ -596,12 +596,7 @@ extension String {
         }
     }
     public func cleansed() -> String {
-        var text = self.replacingOccurrences(of: "\n", with: "")
-        text = text.replacingOccurrences(of: "\t", with: "")
-        text = text.replacingOccurrences(of: "\r", with: "")
-        text = text.replacingOccurrences(of: "<o:p>", with: "")
-        text = text.replacingOccurrences(of: "</o:p>", with: "")
-        return text.withNoTrailingWhitespace()
+        return self.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "<o:p>", with: "").replacingOccurrences(of: "</o:p>", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
     }
     public func withNoTrailingWhitespace() -> String {
         if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
@@ -610,8 +605,15 @@ extension String {
             return self
         }
     }
+    public func withNoLeadingWhitespace() -> String {
+        if let leadingWs = self.range(of: "$+\\s", options: .regularExpression) {
+            return self.replacingCharacters(in: leadingWs, with: "")
+        } else {
+            return self
+        }
+    }
     public var length: Int {
-        return self.length
+        return self.characters.count
     }
     
     public func asDouble() -> Double? {
