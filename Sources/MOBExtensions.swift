@@ -598,6 +598,9 @@ extension String {
     public func cleansed() -> String {
         return self.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "<o:p>", with: "").replacingOccurrences(of: "</o:p>", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    public func trimWhitespace() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     public func withNoTrailingWhitespace() -> String {
         if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
             return self.replacingCharacters(in: trailingWs, with: "")
