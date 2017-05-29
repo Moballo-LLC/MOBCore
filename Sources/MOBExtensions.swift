@@ -151,6 +151,12 @@
         }
         
     }
+    extension NSString {
+        public func stringAtIndex(_ index: Int) -> String {
+            let char = self.character(at: index)
+            return "\(Character(UnicodeScalar(char)!))"
+        }
+    }
     public extension NSNumber {
         public func degreesToCardinalDirection()->String {
             let headingDeg:Double = Double((self.doubleValue + 720.0)).truncatingRemainder(dividingBy: 360)
@@ -442,16 +448,25 @@
             self.mapType = .standard
         }
     }
-    extension NSString {
-        
-        public func stringAtIndex(_ index: Int) -> String {
-            let char = self.character(at: index)
-            return "\(Character(UnicodeScalar(char)!))"
+    extension String {
+        public func minHeight(width: CGFloat, font: UIFont, numberOfLines: Int = 0, lineBreakMode: NSLineBreakMode = NSLineBreakMode.byWordWrapping) -> CGFloat {
+            let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+            label.numberOfLines = numberOfLines
+            label.lineBreakMode = lineBreakMode
+            label.font = font
+            label.text = self
+            
+            label.sizeToFit()
+            return label.frame.height
         }
-        
-        public func countOccurancesOfString(_ string: String) -> Int {
-            let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
-            return strCount / string.length
+    }
+    extension UILabel {
+        public func minHeight() -> CGFloat {
+            guard let text = self.text else { return 0 }
+            return text.minHeight(width: self.frame.width, font: self.font, numberOfLines: self.numberOfLines, lineBreakMode: self.lineBreakMode)
+        }
+        public func minHeight(forText text: String) -> CGFloat {
+            return text.minHeight(width: self.frame.width, font: self.font, numberOfLines: self.numberOfLines, lineBreakMode: self.lineBreakMode)
         }
     }
     extension UIDevice {
@@ -542,6 +557,37 @@
 
 //Shared Extensions
 extension String {
+    public func onlyAlphanumerics(keepSpaces: Bool = false)->String {
+        var filteringSet = CharacterSet.alphanumerics.inverted
+        if keepSpaces {
+            filteringSet.remove(" ")
+        }
+        return self.removingCharacters(in: filteringSet)
+    }
+    public func countOccurances(ofSubstring string: String) -> Int {
+        let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
+        return strCount / string.length
+    }
+    subscript (i: Int) -> Character {
+        return self[index(startIndex, offsetBy: i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = index(startIndex, offsetBy: r.lowerBound)
+        let end = index(startIndex, offsetBy: r.upperBound - r.lowerBound)
+        return self[Range(start ..< end)]
+    }
+    public func strippedWebsiteForURL() -> String {
+        ///converts "http://www.google.com/search/page/saiojdfghadlsifuhlaisdf" to "google.com"
+        var stripped = self.replacingOccurrences(of: "http://", with: "")
+        stripped = stripped.replacingOccurrences(of: "https://", with: "")
+        stripped = stripped.replacingOccurrences(of: "www.", with: "")
+        return stripped.components(separatedBy: "/")[0]
+    }
     public func truncate(length: Int, trailing: String? = "") -> String {
         if self.characters.count > length {
             return self.substring(to: self.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
@@ -550,16 +596,12 @@ extension String {
         }
     }
     public func cleansed() -> String {
-        var text = self as NSString
-        //cleanse text of weird formatting
-        //tabs and newlines
-        text = (text as NSString).replacingOccurrences(of: "\n", with: "") as NSString
-        text = (text as NSString).replacingOccurrences(of: "\t", with: "") as NSString
-        text = (text as NSString).replacingOccurrences(of: "\r", with: "") as NSString
-        text = (text as NSString).replacingOccurrences(of: "<o:p>", with: "") as NSString
-        text = (text as NSString).replacingOccurrences(of: "</o:p>", with: "") as NSString
-        
-        return (text as String).withNoTrailingWhitespace()
+        var text = self.replacingOccurrences(of: "\n", with: "")
+        text = text.replacingOccurrences(of: "\t", with: "")
+        text = text.replacingOccurrences(of: "\r", with: "")
+        text = text.replacingOccurrences(of: "<o:p>", with: "")
+        text = text.replacingOccurrences(of: "</o:p>", with: "")
+        return text.withNoTrailingWhitespace()
     }
     public func withNoTrailingWhitespace() -> String {
         if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
@@ -569,7 +611,7 @@ extension String {
         }
     }
     public var length: Int {
-        return (self as NSString).length
+        return self.length
     }
     
     public func asDouble() -> Double? {
@@ -577,8 +619,10 @@ extension String {
     }
     
     public func percentStringAsDouble() -> Double? {
-        if let displayedNumber = (self as NSString).substring(to: self.length - 1).asDouble() {
-            return displayedNumber / 100.0
+        if self.length > 0 {
+            if let displayedNumber = self.substring(to: self.index(self.endIndex, offsetBy: -1)).asDouble() {
+                return displayedNumber / 100.0
+            }
         }
         return nil
     }
@@ -587,11 +631,11 @@ extension String {
         return self.components(separatedBy: characterSet).joined()
     }
     
-    public func isWhitespace() -> Bool {
-        return self == " " || self == "\n" || self == "\r" || self == "\r\n" || self == "\t"
-            || self == "\u{A0}" || self == "\u{2007}" || self == "\u{202F}" || self == "\u{2060}" || self == "\u{FEFF}"
-        //there are lots of whitespace characters apparently
-        //http://www.fileformat.info/info/unicode/char/00a0/index.htm
+    public var hasWhitespace: Bool {
+        if self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil {
+            return true
+        }
+        return false
     }
     
     public func dateWithTSquareFormat() -> Date? {
