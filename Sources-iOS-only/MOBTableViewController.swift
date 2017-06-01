@@ -8,17 +8,16 @@
 
 import UIKit
 
-class MOBTableViewController: UITableViewController {
-    var searchTableViewStatusMessageLabel: UILabel?
-    var statusMessageAlreadySet = "No Results Found"
-    override func viewDidLoad() {
+open class MOBTableViewController: UITableViewController {
+    fileprivate var statusLabelView: UILabel?
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.keyboardDismissMode = .interactive
-        searchTableViewStatusMessageLabel = UILabel()
-        if let searchLabel = searchTableViewStatusMessageLabel {
-            searchLabel.text = "No Results Found";
-            searchLabel.textColor = blueColor
-            searchLabel.textAlignment = .center;
+        statusLabelView = UILabel()
+        if let searchLabel = statusLabelView {
+            searchLabel.text = ""
+            searchLabel.textColor = UIColor.black
+            searchLabel.textAlignment = .center
             searchLabel.font = UIFont.boldSystemFont(ofSize: 18)
             searchLabel.numberOfLines = 0;
             searchLabel.backgroundColor = UIColor.clear
@@ -33,16 +32,22 @@ class MOBTableViewController: UITableViewController {
         }
         
     }
-    func setTableViewStatusMessage(_ message: String) {
-        statusMessageAlreadySet = message
-    }
-    func showTableViewStatusMessage() {
-        if let searchLabel = searchTableViewStatusMessageLabel {
-            searchLabel.isHidden = false
+    public func setStatusLabelColor(_ color: UIColor) {
+        if let searchLabel = statusLabelView {
+            searchLabel.textColor = color
         }
     }
-    func hideTableViewStatusMessage() {
-        if let searchLabel = searchTableViewStatusMessageLabel {
+    public func showStatusLabel(message: String, color: UIColor? = nil) {
+        if let searchLabel = statusLabelView {
+            searchLabel.text = message
+            searchLabel.isHidden = false
+            if let desiredColor = color {
+                searchLabel.textColor = desiredColor
+            }
+        }
+    }
+    public func hideStatusLabel() {
+        if let searchLabel = statusLabelView {
             searchLabel.isHidden = true
         }
     }
