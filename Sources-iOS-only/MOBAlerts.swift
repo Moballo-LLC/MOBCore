@@ -1,9 +1,9 @@
 //
 //  MOBAlerts.swift
-//  Pods
+//  MOBCore
 //
-//  Created by Jason Morcos on 3/11/17.
-//
+//  Created by Jason Morcos on 12/4/15.
+//  Copyright © 2017 Moballo, LLC. All rights reserved.
 //
 
 import UIKit

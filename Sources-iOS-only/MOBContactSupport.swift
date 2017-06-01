@@ -1,10 +1,11 @@
 //
 //  Downloader.swift
-//  GT
+//  MOBCore
 //
 //  Created by Jason Morcos on 12/4/15.
-//  Copyright © 2015 CBTech. All rights reserved.
+//  Copyright © 2017 Moballo, LLC. All rights reserved.
 //
+
 import UIKit
 import MessageUI
 

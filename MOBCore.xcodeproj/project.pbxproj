@@ -36,6 +36,7 @@
 		96C285831E0771AC00481834 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285821E0771AC00481834 /* CoreSpotlight.framework */; };
 		96C285851E0771B100481834 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285841E0771B100481834 /* MobileCoreServices.framework */; };
 		96C285871E0771BA00481834 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285861E0771BA00481834 /* CoreLocation.framework */; };
+		96E54FEB1EE0A3470029E745 /* MOBTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E54FEA1EE0A3470029E745 /* MOBTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		96C285821E0771AC00481834 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		96C285841E0771B100481834 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		96C285861E0771BA00481834 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		96E54FEA1EE0A3470029E745 /* MOBTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBTableViewController.swift; sourceTree = "<group>"; };
 		ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +201,7 @@
 		96C2855B1E076EFF00481834 /* Sources-iOS-only */ = {
 			isa = PBXGroup;
 			children = (
+				96E54FEA1EE0A3470029E745 /* MOBTableViewController.swift */,
 				969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */,
 				96C285741E076F4000481834 /* MOBContactSupport.swift */,
 				96C2855C1E076EFF00481834 /* MOBFile.swift */,
@@ -439,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C2856C1E076EFF00481834 /* MOBDefaultsUser.swift in Sources */,
+				96E54FEB1EE0A3470029E745 /* MOBTableViewController.swift in Sources */,
 				96C285751E076F4000481834 /* MOBContactSupport.swift in Sources */,
 				96C285661E076EFF00481834 /* MOBDefaults.swift in Sources */,
 				969F0F6B1E73E862007EAE39 /* MOBAlerts.swift in Sources */,
