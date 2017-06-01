@@ -2,9 +2,10 @@
 //  MOBExtensions.swift
 //  MOBCore
 //
-//  Created by Jason Morcos on 11/23/16.
-//  Copyright © 2016 CBTech. All rights reserved.
+//  Created by Jason Morcos on 12/4/15.
+//  Copyright © 2017 Moballo, LLC. All rights reserved.
 //
+
 #if os(iOS)
     import UIKit
     import CoreLocation
