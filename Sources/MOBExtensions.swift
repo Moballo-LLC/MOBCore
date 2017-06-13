@@ -30,6 +30,18 @@
             formatter.timeStyle = .short
             return formatter.string(from: self) as String
         }
+        public func shortDateString() -> String {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.timeStyle = .none
+            return formatter.string(from: self) as String
+        }
+        public func shortTimeString() -> String {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .none
+            formatter.timeStyle = .short
+            return formatter.string(from: self) as String
+        }
         ///converts to a "10 seconds ago" / "1 day ago" syntax
         public func agoString() -> String {
             let deltaTime = -self.timeIntervalSinceNow
@@ -103,6 +115,15 @@
             let calendar = Calendar.current
             let difference = calendar.dateComponents([.day], from: self, to: otherDate)
             return difference.day!
+        }
+        public func isSameDay(as otherDate: Date) -> Bool {
+            let order = Calendar.current.compare(self, to: otherDate, toGranularity: .day)
+            switch order {
+            case .orderedSame:
+                return true
+            default:
+                return false
+            }
         }
     }
     
@@ -255,6 +276,11 @@
             }
             alertController.addAction(Dismiss)
             return alertController;
+        }
+        public static var isExtension: Bool {
+            get {
+                return Bundle.main.bundlePath.hasSuffix(".appex")
+            }
         }
         public static var isTestFlight: Bool {
             get {
