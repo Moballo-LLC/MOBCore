@@ -54,6 +54,16 @@
             formatter.timeStyle = .medium
             return formatter.string(from: self) as String
         }
+        public func mediumDateNoYearString() -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "M/d"
+            return dateFormatter.string(from: self)
+        }
+        public func longDateNoYearString() -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMMM d"
+            return dateFormatter.string(from: self)
+        }
         ///converts to a "10 seconds ago" / "1 day ago" syntax
         public func agoString() -> String {
             let deltaTime = -self.timeIntervalSinceNow
@@ -124,6 +134,11 @@
         public func withoutTime() -> Date? {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
+            return dateFormatter.date(from: dateFormatter.string(from: self))
+        }
+        public func withoutTimeAndYear() -> Date? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM-dd"
             return dateFormatter.date(from: dateFormatter.string(from: self))
         }
         public func stringLiteralOfDate() -> String {
@@ -741,5 +756,23 @@ extension String {
             return s2
         }
         return self
+    }
+    
+    public func contains(all array: [String]) -> Bool {
+        for aString in array {
+            if !self.contains(aString) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    public func contains(any array: [String]) -> Bool {
+        for aString in array {
+            if self.contains(aString) {
+                return true
+            }
+        }
+        return false
     }
 }
