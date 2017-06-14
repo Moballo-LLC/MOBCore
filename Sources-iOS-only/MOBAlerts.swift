@@ -19,10 +19,25 @@ public class MOBAlertHandler: NSObject {
         internalApplication = application
         super.init()
     }
+    public func dismissAlert(completion: (() -> Void)? = nil) {
+        if let keyWindow = internalApplication.keyWindow {
+            if let rootVC = keyWindow.rootViewController {
+                let topVC = getTopmostNavController(relativeTo: rootVC)
+                
+                if let currentAlert = topVC.presentedViewController as? MOBAlertController {
+                    currentAlert.dismiss(animated: true, completion: completion)
+                    return
+                }
+            }
+        }
+        if ((completion) != nil) {
+            completion!()
+        }
+    }
     public func tryQueuedAlerts() {
         self.presentAlertController()
     }
-    public func minimizeAllAlerts() {
+    public func minimizeAllAlerts(completion: (() -> Void)? = nil) {
         if let theTimer = MOBAlertTimer , MOBAlertQueue.count == 0 {
             theTimer.invalidate()
             MOBAlertTimer = nil
@@ -30,16 +45,19 @@ public class MOBAlertHandler: NSObject {
         if let keyWindow = internalApplication.keyWindow {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
-
                 if let currentAlert = topVC.presentedViewController as? MOBAlertController {
                     MOBAlertQueue.insert(currentAlert, at: 0)
-                    currentAlert.dismiss(animated: true, completion: nil)
+                    currentAlert.dismiss(animated: true, completion: completion)
+                    return
                 }
             }
         }
+        if ((completion) != nil) {
+            completion!()
+        }
     }
     
-    fileprivate func presentAlertController(_ inputAlert: MOBAlertController? = nil, placeOnTopOfQueue:Bool = false) {
+    fileprivate func presentAlertController(_ inputAlert: MOBAlertController? = nil, placeOnTopOfQueue:Bool = false, completion: (() -> Void)? = nil) {
         if let keyWindow = internalApplication.keyWindow {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
@@ -66,9 +84,9 @@ public class MOBAlertHandler: NSObject {
                     }
                 }
                 if MOBAlertTimer == nil {
-                    MOBAlertTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.MOBAlertTimerCall), userInfo: nil, repeats: true)
+                    MOBAlertTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.MOBAlertTimerCall), userInfo: nil, repeats: true)
                 }
-        
+                
                 if let _ = topVC.presentedViewController as? UIAlertController {
                     return
                 }
@@ -76,6 +94,9 @@ public class MOBAlertHandler: NSObject {
                     if let toPresent = MOBAlertQueue.first {
                         toPresent.alertHandler = self
                         topVC.present(toPresent, animated: true, completion: {
+                            if ((completion) != nil) {
+                                completion!()
+                            }
                             if let textFields = toPresent.textFields , (keyWindow.bounds.height < 667.0 && keyWindow.bounds.width < 667.0) {
                                 self.mobAlertDelay(0.1) {
                                     toPresent.resignFirstResponder()
@@ -148,10 +169,10 @@ public class MOBAlertController: UIAlertController {
         let handler = MOBAlertHandler(application)
         handler.presentAlertController(self)
     }
-    public func showNow(_ application: UIApplication) {
+    public func showNow(_ application: UIApplication, completion: (() -> Void)? = nil) {
         let handler = MOBAlertHandler(application)
         handler.minimizeAllAlerts()
-        handler.presentAlertController(self, placeOnTopOfQueue: true)
+        handler.presentAlertController(self, placeOnTopOfQueue: true, completion: completion)
     }
     public func showNext(_ application: UIApplication) {
         let handler = MOBAlertHandler(application)
