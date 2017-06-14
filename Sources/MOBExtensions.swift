@@ -36,10 +36,22 @@
             formatter.timeStyle = .none
             return formatter.string(from: self) as String
         }
+        public func mediumDateString() -> String {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            return formatter.string(from: self) as String
+        }
         public func shortTimeString() -> String {
             let formatter = DateFormatter()
             formatter.dateStyle = .none
             formatter.timeStyle = .short
+            return formatter.string(from: self) as String
+        }
+        public func mediumTimeString() -> String {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .none
+            formatter.timeStyle = .medium
             return formatter.string(from: self) as String
         }
         ///converts to a "10 seconds ago" / "1 day ago" syntax
@@ -99,6 +111,20 @@
             let dateString = DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
             return "\(dateString)"
             
+        }
+        public var isToday: Bool {
+            return Calendar.current.isDateInToday(self)
+        }
+        public var isYesterday: Bool {
+            return Calendar.current.isDateInYesterday(self)
+        }
+        public var isTomorrow: Bool {
+            return Calendar.current.isDateInTomorrow(self)
+        }
+        public func withoutTime() -> Date? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            return dateFormatter.date(from: dateFormatter.string(from: self))
         }
         public func stringLiteralOfDate() -> String {
             let dateFormatter = DateFormatter()
