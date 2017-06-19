@@ -24,8 +24,8 @@ public class MOBAlertHandler: NSObject {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
                 
-                if let currentAlert = topVC.presentedViewController as? MOBAlertController {
-                    currentAlert.dismiss(animated: true, completion: completion)
+                if topVC.presentedViewController is MOBAlertController {
+                    topVC.dismiss(animated: true, completion: completion)
                     return
                 }
             }
@@ -47,7 +47,9 @@ public class MOBAlertHandler: NSObject {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
                 if let currentAlert = topVC.presentedViewController as? MOBAlertController {
                     MOBAlertQueue.insert(currentAlert, at: 0)
-                    currentAlert.dismiss(animated: true, completion: completion)
+                    DispatchQueue.main.async {
+                        topVC.dismiss(animated: true, completion: completion)
+                    }
                     return
                 }
             }
@@ -55,6 +57,7 @@ public class MOBAlertHandler: NSObject {
         if ((completion) != nil) {
             completion!()
         }
+        
     }
     
     fileprivate func presentAlertController(_ inputAlert: MOBAlertController? = nil, placeOnTopOfQueue:Bool = false, completion: (() -> Void)? = nil) {
@@ -150,8 +153,9 @@ public class MOBAlertController: UIAlertController {
         let alertController = MOBAlertController(title: title, message: message, preferredStyle: .alert)
         if dismissingActionTitle != nil {
             let okAction = UIAlertAction(title: dismissingActionTitle, style: .default) { (action) -> Void in
-                dismissBlock?()
-                alertController.dismiss(animated: true, completion:nil)
+                if dismissBlock != nil {
+                    dismissBlock?()
+                }
             }
             alertController.addAction(okAction)
         }
