@@ -131,7 +131,6 @@
 				960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */,
 				96C285511E076EFF00481834 /* Sources */,
 				96C2855B1E076EFF00481834 /* Sources-iOS-only */,
-				96D37D431F81470E009FC1DE /* Sources-watchOS-only */,
 				1EAFA0DB1B6039D5001F3D84 /* Supporting Files */,
 				1EAFA0D91B6039D5001F3D84 /* Products */,
 				97D67C33FC933CC0C4422253 /* Frameworks */,
@@ -206,13 +205,6 @@
 				96C2855C1E076EFF00481834 /* MOBFile.swift */,
 			);
 			path = "Sources-iOS-only";
-			sourceTree = "<group>";
-		};
-		96D37D431F81470E009FC1DE /* Sources-watchOS-only */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Sources-watchOS-only";
 			sourceTree = "<group>";
 		};
 		97D67C33FC933CC0C4422253 /* Frameworks */ = {
