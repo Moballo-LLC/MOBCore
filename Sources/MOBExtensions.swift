@@ -524,12 +524,6 @@
         }
     }
     extension String {
-        public func substring(to index: String.Index) -> String {
-            return String(self[..<index])
-        }
-        public func substring(from index: String.Index) -> String {
-            return String(self[..<index])
-        }
         public func minHeight(width: CGFloat, font: UIFont, numberOfLines: Int = 0, lineBreakMode: NSLineBreakMode = NSLineBreakMode.byWordWrapping) -> CGFloat {
             let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
             label.numberOfLines = numberOfLines
@@ -633,11 +627,18 @@
             return !(rhs < lhs)
         }
     }
+#elseif os(watchOS)
+    import UIKit
 #endif
 
 
 //Shared Extensions
 extension String {
+    public func countOccurances(ofSubstring string: String) -> Int {
+        let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
+        return strCount / string.length
+    }
+    
     public func onlyAlphanumerics(keepSpaces: Bool = false)->String {
         var filteringSet = CharacterSet.alphanumerics.inverted
         if keepSpaces {
@@ -645,9 +646,43 @@ extension String {
         }
         return self.removingCharacters(in: filteringSet)
     }
-    public func countOccurances(ofSubstring string: String) -> Int {
-        let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
-        return strCount / string.length
+    
+    public func substring(to index: String.Index) -> String {
+        return String(self[..<index])
+    }
+    
+    public func substring(from index: String.Index) -> String {
+        return String(self[..<index])
+    }
+    
+    public func asDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
+    }
+    
+    public func dateWithTSquareFormat() -> Date? {
+        //convert date string to NSDate
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        //correct formatting to match required style
+        //(Aug 27, 2015 11:27 am) -> (Aug 27, 2015, 11:27 AM)
+        var dateString = self.replacingOccurrences(of: "pm", with: "PM")
+        dateString = dateString.replacingOccurrences(of: "am", with: "AM")
+        
+        for year in 1990...2040 { //add comma after years
+            dateString = dateString.replacingOccurrences(of: "\(year) ", with: "\(year), ")
+        }
+        return formatter.date(from: dateString)
+    }
+    
+    public func percentStringAsDouble() -> Double? {
+        if self.length > 0 {
+            if let displayedNumber = self.substring(to: self.index(self.endIndex, offsetBy: -1)).asDouble() {
+                return displayedNumber / 100.0
+            }
+        }
+        return nil
     }
     subscript (i: Int) -> Character {
         return self[index(startIndex, offsetBy: i)]
@@ -655,6 +690,10 @@ extension String {
     
     subscript (i: Int) -> String {
         return String(self[i] as Character)
+    }
+    
+    public func removingCharacters(in characterSet: CharacterSet) -> String {
+        return self.components(separatedBy: characterSet).joined()
     }
     
     subscript (r: Range<Int>) -> String {
@@ -700,45 +739,11 @@ extension String {
         return self.characters.count
     }
     
-    public func asDouble() -> Double? {
-        return NumberFormatter().number(from: self)?.doubleValue
-    }
-    
-    public func percentStringAsDouble() -> Double? {
-        if self.length > 0 {
-            if let displayedNumber = self.substring(to: self.index(self.endIndex, offsetBy: -1)).asDouble() {
-                return displayedNumber / 100.0
-            }
-        }
-        return nil
-    }
-    
-    public func removingCharacters(in characterSet: CharacterSet) -> String {
-        return self.components(separatedBy: characterSet).joined()
-    }
-    
     public var hasWhitespace: Bool {
         if self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil {
             return true
         }
         return false
-    }
-    
-    public func dateWithTSquareFormat() -> Date? {
-        //convert date string to NSDate
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        //correct formatting to match required style
-        //(Aug 27, 2015 11:27 am) -> (Aug 27, 2015, 11:27 AM)
-        var dateString = self.replacingOccurrences(of: "pm", with: "PM")
-        dateString = dateString.replacingOccurrences(of: "am", with: "AM")
-        
-        for year in 1990...2040 { //add comma after years
-            dateString = dateString.replacingOccurrences(of: "\(year) ", with: "\(year), ")
-        }
-        return formatter.date(from: dateString)
     }
     
     public func formattedAsPhone() -> String {

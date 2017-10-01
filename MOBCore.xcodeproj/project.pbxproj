@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		25DA539AFF8692A8E08944C8 /* Pods_MOBCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */; };
 		27F8D45E6086B70B5E061168 /* Pods_MOBCore_WatchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8F0FE66E16B47CA822592B /* Pods_MOBCore_WatchOS.framework */; };
-		7456CDDDDBF221CA72953DB1 /* Pods_MOBCore_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F6E91C305B8D585657638A /* Pods_MOBCore_Watch.framework */; };
 		960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BE41E03C67600DB9484 /* UIKit.framework */; };
 		960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BEA1E03C69900DB9484 /* UIKit.framework */; };
 		969F0F6B1E73E862007EAE39 /* MOBAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */; };
@@ -118,7 +117,6 @@
 			files = (
 				96C285871E0771BA00481834 /* CoreLocation.framework in Frameworks */,
 				960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */,
-				7456CDDDDBF221CA72953DB1 /* Pods_MOBCore_Watch.framework in Frameworks */,
 				27F8D45E6086B70B5E061168 /* Pods_MOBCore_WatchOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,6 +315,7 @@
 					960C9BBB1E03BFAB00DB9484 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = NKQ4HJ66PX;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -763,7 +762,8 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -791,7 +791,8 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
