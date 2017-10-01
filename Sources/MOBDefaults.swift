@@ -14,7 +14,6 @@ public class MOBDefaults: NSObject {
     #if os(iOS)
     internal let cloudInstance:MOBDefaultsCloud?
     #endif
-    #elseif os(watchOS)
     
     internal let keychainInstance:MOBDefaultsKeychain?
     internal let groupKey:String?
@@ -29,15 +28,16 @@ public class MOBDefaults: NSObject {
         } else {
             groupInstance = nil
         }
-        //cloud
-        #if os(iOS)
+        //Keychain
         self.keychainKey = keychain
-        cloudInstance = MOBDefaultsCloud()
         if let keychainName = keychain {
             keychainInstance = MOBDefaultsKeychain(accessGroup: keychainName)
         } else {
             keychainInstance = nil
         }
+        //cloud
+        #if os(iOS)
+        cloudInstance = MOBDefaultsCloud()
         #endif
     }
     public func local() -> UserDefaults {
