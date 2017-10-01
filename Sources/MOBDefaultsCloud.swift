@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+#if os(iOS)
 public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
     public let didChangeExternallyNotification = NSUbiquitousKeyValueStore.didChangeExternallyNotification
     public func set(string: String, forKey keyName: String) {
@@ -138,3 +138,4 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         return super.dictionary(forKey: keyName)
     }
 }
+#endif

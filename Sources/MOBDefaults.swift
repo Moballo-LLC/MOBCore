@@ -11,7 +11,11 @@ import UIKit
 public class MOBDefaults: NSObject {
     internal let localInstance:MOBDefaultsUser
     internal let groupInstance:MOBDefaultsUser?
+    #if os(iOS)
     internal let cloudInstance:MOBDefaultsCloud?
+    #endif
+    #elseif os(watchOS)
+    
     internal let keychainInstance:MOBDefaultsKeychain?
     internal let groupKey:String?
     internal let keychainKey:String?
@@ -26,6 +30,7 @@ public class MOBDefaults: NSObject {
             groupInstance = nil
         }
         //cloud
+        #if os(iOS)
         self.keychainKey = keychain
         cloudInstance = MOBDefaultsCloud()
         if let keychainName = keychain {
@@ -33,6 +38,7 @@ public class MOBDefaults: NSObject {
         } else {
             keychainInstance = nil
         }
+        #endif
     }
     public func local() -> UserDefaults {
         return localInstance
@@ -40,9 +46,11 @@ public class MOBDefaults: NSObject {
     public func group() -> UserDefaults? {
         return groupInstance
     }
+    #if os(iOS)
     public func cloud() -> MOBDefaultsCloud? {
         return cloudInstance
     }
+    #endif
     public func keychain() -> MOBDefaultsKeychain? {
         return keychainInstance
     }
