@@ -11,16 +11,21 @@
     import CoreLocation
     import MapKit
     //SET MOBALLO VARIABLES HERE
-    internal class MOBInternalConstants : NSObject {
-        static internal let copyrightEntity = "Moballo, LLC"
-        static internal let supportWebsite = "http://moballo.com"
-        static internal let supportEmail = "support@moballo.com"
+    public class MOBInternalConstants : NSObject {
+        static public let copyrightEntity = "Moballo, LLC"
+        static public let supportWebsite = "http://moballo.com"
+        static public let supportEmail = "support@moballo.com"
     }
     //EXTENSIONS BEGIN HERE
     extension Sequence {
         public func toArray() -> [Iterator.Element] {
-            
             return Array(self)
+        }
+        /// Returns an array with the contents of this sequence, shuffled.
+        func shuffled() -> [Element] {
+            var result = Array(self)
+            result.shuffle()
+            return result
         }
     }
     extension Date {
@@ -169,14 +174,16 @@
     }
     
     extension Array {
-        ///Returns a copy of the array in random order
-        public func shuffled() -> [Element] {
-            var list = self
-            for i in 0..<(list.count - 1) {
-                let j = Int(arc4random_uniform(UInt32(list.count - i))) + i
-                swap(&list[i], &list[j])
+        ///Shuffles the contents of this collection
+        mutating func shuffle() {
+            let c = count
+            guard c > 1 else { return }
+            
+            for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
+                let d: IndexDistance = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
+                let i = index(firstUnshuffled, offsetBy: d)
+                swapAt(firstUnshuffled, i)
             }
-            return list
         }
     }
     
@@ -517,6 +524,12 @@
         }
     }
     extension String {
+        public func substring(to index: String.Index) -> String {
+            return String(self[..<index])
+        }
+        public func substring(from index: String.Index) -> String {
+            return String(self[..<index])
+        }
         public func minHeight(width: CGFloat, font: UIFont, numberOfLines: Int = 0, lineBreakMode: NSLineBreakMode = NSLineBreakMode.byWordWrapping) -> CGFloat {
             let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
             label.numberOfLines = numberOfLines
@@ -647,7 +660,7 @@ extension String {
     subscript (r: Range<Int>) -> String {
         let start = index(startIndex, offsetBy: r.lowerBound)
         let end = index(startIndex, offsetBy: r.upperBound - r.lowerBound)
-        return self[Range(start ..< end)]
+        return String(self[Range(start ..< end)])
     }
     public func strippedWebsiteForURL() -> String {
         ///converts "http://www.google.com/search/page/saiojdfghadlsifuhlaisdf" to "google.com"

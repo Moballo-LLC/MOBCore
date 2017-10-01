@@ -12,7 +12,7 @@ public var MOBAlertTimer: Timer?
 
 public class MOBAlertHandler: NSObject {
     var internalApplication: UIApplication
-    public func MOBAlertTimerCall() {
+    @objc public func MOBAlertTimerCall() {
         self.presentAlertController()
     }
     public init(_ application: UIApplication) {
