@@ -17,10 +17,6 @@
 		96C285611E076EFF00481834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C285531E076EFF00481834 /* Info.plist */; };
 		96C285641E076EFF00481834 /* MOBCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 96C285551E076EFF00481834 /* MOBCore.h */; };
 		96C285651E076EFF00481834 /* MOBCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 96C285551E076EFF00481834 /* MOBCore.h */; };
-		96C285661E076EFF00481834 /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285561E076EFF00481834 /* MOBDefaults.swift */; };
-		96C285671E076EFF00481834 /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285561E076EFF00481834 /* MOBDefaults.swift */; };
-		96C285681E076EFF00481834 /* MOBDefaultsCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285571E076EFF00481834 /* MOBDefaultsCloud.swift */; };
-		96C285691E076EFF00481834 /* MOBDefaultsCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285571E076EFF00481834 /* MOBDefaultsCloud.swift */; };
 		96C2856A1E076EFF00481834 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285581E076EFF00481834 /* MOBDefaultsKeychain.swift */; };
 		96C2856B1E076EFF00481834 /* MOBDefaultsKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285581E076EFF00481834 /* MOBDefaultsKeychain.swift */; };
 		96C2856C1E076EFF00481834 /* MOBDefaultsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285591E076EFF00481834 /* MOBDefaultsUser.swift */; };
@@ -36,6 +32,8 @@
 		96C285831E0771AC00481834 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285821E0771AC00481834 /* CoreSpotlight.framework */; };
 		96C285851E0771B100481834 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285841E0771B100481834 /* MobileCoreServices.framework */; };
 		96C285871E0771BA00481834 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285861E0771BA00481834 /* CoreLocation.framework */; };
+		96D37D471F814726009FC1DE /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D37D451F814726009FC1DE /* MOBDefaults.swift */; };
+		96D37D481F814726009FC1DE /* MOBDefaultsCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D37D461F814726009FC1DE /* MOBDefaultsCloud.swift */; };
 		96E54FEB1EE0A3470029E745 /* MOBTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E54FEA1EE0A3470029E745 /* MOBTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +73,6 @@
 		96C285521E076EFF00481834 /* Info-watch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-watch.plist"; sourceTree = "<group>"; };
 		96C285531E076EFF00481834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96C285551E076EFF00481834 /* MOBCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBCore.h; sourceTree = "<group>"; };
-		96C285561E076EFF00481834 /* MOBDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBDefaults.swift; sourceTree = "<group>"; };
-		96C285571E076EFF00481834 /* MOBDefaultsCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBDefaultsCloud.swift; sourceTree = "<group>"; };
 		96C285581E076EFF00481834 /* MOBDefaultsKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBDefaultsKeychain.swift; sourceTree = "<group>"; };
 		96C285591E076EFF00481834 /* MOBDefaultsUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBDefaultsUser.swift; sourceTree = "<group>"; };
 		96C2855A1E076EFF00481834 /* MOBExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBExtensions.swift; sourceTree = "<group>"; };
@@ -89,6 +85,9 @@
 		96C285821E0771AC00481834 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		96C285841E0771B100481834 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		96C285861E0771BA00481834 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		96D37D441F81470E009FC1DE /* MOBDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBDefaults.swift; sourceTree = "<group>"; };
+		96D37D451F814726009FC1DE /* MOBDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBDefaults.swift; sourceTree = "<group>"; };
+		96D37D461F814726009FC1DE /* MOBDefaultsCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBDefaultsCloud.swift; sourceTree = "<group>"; };
 		96E54FEA1EE0A3470029E745 /* MOBTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBTableViewController.swift; sourceTree = "<group>"; };
 		ADDDC7AAFA454E0199F87B50 /* Pods-MOBCore_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C09402D20CD6789A5545375D /* Pods_MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +132,7 @@
 				960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */,
 				96C285511E076EFF00481834 /* Sources */,
 				96C2855B1E076EFF00481834 /* Sources-iOS-only */,
+				96D37D431F81470E009FC1DE /* Sources-watchOS-only */,
 				1EAFA0DB1B6039D5001F3D84 /* Supporting Files */,
 				1EAFA0D91B6039D5001F3D84 /* Products */,
 				97D67C33FC933CC0C4422253 /* Frameworks */,
@@ -189,8 +189,6 @@
 				96C285521E076EFF00481834 /* Info-watch.plist */,
 				96C285531E076EFF00481834 /* Info.plist */,
 				96C285551E076EFF00481834 /* MOBCore.h */,
-				96C285561E076EFF00481834 /* MOBDefaults.swift */,
-				96C285571E076EFF00481834 /* MOBDefaultsCloud.swift */,
 				96C285581E076EFF00481834 /* MOBDefaultsKeychain.swift */,
 				96C285591E076EFF00481834 /* MOBDefaultsUser.swift */,
 				96C2855A1E076EFF00481834 /* MOBExtensions.swift */,
@@ -201,12 +199,22 @@
 		96C2855B1E076EFF00481834 /* Sources-iOS-only */ = {
 			isa = PBXGroup;
 			children = (
+				96D37D451F814726009FC1DE /* MOBDefaults.swift */,
+				96D37D461F814726009FC1DE /* MOBDefaultsCloud.swift */,
 				96E54FEA1EE0A3470029E745 /* MOBTableViewController.swift */,
 				969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */,
 				96C285741E076F4000481834 /* MOBContactSupport.swift */,
 				96C2855C1E076EFF00481834 /* MOBFile.swift */,
 			);
 			path = "Sources-iOS-only";
+			sourceTree = "<group>";
+		};
+		96D37D431F81470E009FC1DE /* Sources-watchOS-only */ = {
+			isa = PBXGroup;
+			children = (
+				96D37D441F81470E009FC1DE /* MOBDefaults.swift */,
+			);
+			path = "Sources-watchOS-only";
 			sourceTree = "<group>";
 		};
 		97D67C33FC933CC0C4422253 /* Frameworks */ = {
@@ -298,13 +306,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = tid;
 				TargetAttributes = {
 					1EAFA0D71B6039D5001F3D84 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = NKQ4HJ66PX;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 					};
 					960C9BBB1E03BFAB00DB9484 = {
 						CreatedOnToolsVersion = 8.2;
@@ -395,13 +403,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MOBCore_WatchOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BE8C91D9D54B325E2AABCA3E /* [CP] Check Pods Manifest.lock */ = {
@@ -410,13 +421,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MOBCore_iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E8C06FAB2EC06814171E27A4 /* [CP] Copy Pods Resources */ = {
@@ -443,11 +457,11 @@
 			files = (
 				96C2856C1E076EFF00481834 /* MOBDefaultsUser.swift in Sources */,
 				96E54FEB1EE0A3470029E745 /* MOBTableViewController.swift in Sources */,
+				96D37D471F814726009FC1DE /* MOBDefaults.swift in Sources */,
 				96C285751E076F4000481834 /* MOBContactSupport.swift in Sources */,
-				96C285661E076EFF00481834 /* MOBDefaults.swift in Sources */,
+				96D37D481F814726009FC1DE /* MOBDefaultsCloud.swift in Sources */,
 				969F0F6B1E73E862007EAE39 /* MOBAlerts.swift in Sources */,
 				96C285701E076EFF00481834 /* MOBFile.swift in Sources */,
-				96C285681E076EFF00481834 /* MOBDefaultsCloud.swift in Sources */,
 				96C2856A1E076EFF00481834 /* MOBDefaultsKeychain.swift in Sources */,
 				96C2856E1E076EFF00481834 /* MOBExtensions.swift in Sources */,
 			);
@@ -458,8 +472,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C2856D1E076EFF00481834 /* MOBDefaultsUser.swift in Sources */,
-				96C285671E076EFF00481834 /* MOBDefaults.swift in Sources */,
-				96C285691E076EFF00481834 /* MOBDefaultsCloud.swift in Sources */,
 				96C2856B1E076EFF00481834 /* MOBDefaultsKeychain.swift in Sources */,
 				96C2856F1E076EFF00481834 /* MOBExtensions.swift in Sources */,
 			);
@@ -478,14 +490,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -538,14 +556,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -642,7 +666,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -709,7 +734,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

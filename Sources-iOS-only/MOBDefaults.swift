@@ -16,14 +16,17 @@ public class MOBDefaults: NSObject {
     internal let groupKey:String?
     internal let keychainKey:String?
     public init(group: String?, keychain: String?) {
-        self.groupKey = group
-        self.keychainKey = keychain
+        //local
         localInstance = MOBDefaultsUser()
+        //group
+        self.groupKey = group
         if let groupName = group {
             groupInstance = MOBDefaultsUser(suiteName: groupName)
         } else {
             groupInstance = nil
         }
+        //cloud
+        self.keychainKey = keychain
         cloudInstance = MOBDefaultsCloud()
         if let keychainName = keychain {
             keychainInstance = MOBDefaultsKeychain(accessGroup: keychainName)
