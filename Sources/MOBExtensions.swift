@@ -28,6 +28,81 @@
             return result
         }
     }
+    extension UITableView {
+        public func deselectAllCells() {
+            if self.indexPathsForSelectedRows != nil {
+                if self.indexPathsForSelectedRows! != [] {
+                    for cell in self.indexPathsForSelectedRows! {
+                        self.deselectRow(at: cell, animated: false)
+                    }
+                }
+            }
+        }
+    }
+    extension UISearchBar {
+        public var isEmpty: Bool {
+            // Returns true if the text is empty or nil
+            return self.text?.isEmpty ?? true
+        }
+        public func setColorscheme(barBackgroundColor: UIColor, barTintColor: UIColor, tintColor: UIColor, textboxBackgroundColor: UIColor, textColor: UIColor, cursorColor: UIColor, translucent: Bool, opaque: Bool) {
+            if #available(iOS 11.0, *) {
+                self.backgroundColor = barBackgroundColor
+                self.isOpaque = opaque
+                self.isTranslucent = translucent
+                self.tintColor = tintColor
+                self.barTintColor = barTintColor
+                
+                if self.subviews.count > 0 {
+                    let view: UIView = self.subviews[0] as UIView
+                    let subViewsArray = view.subviews
+                    for subView: UIView in subViewsArray {
+                        if subView.isKind(of: UITextField.self){
+                            subView.tintColor = cursorColor
+                            if let texted = subView as? UITextField {
+                                texted.textColor = textColor
+                                texted.font = UIFont.systemFont(ofSize: 16.0)
+                            }
+                            if let backgroundview = subView.subviews.first {
+                                backgroundview.backgroundColor = textboxBackgroundColor
+                                
+                                // Rounded corner
+                                backgroundview.layer.cornerRadius = 10;
+                                backgroundview.clipsToBounds = true;
+                            }
+                        }
+                    }
+                }
+            } else {
+                self.barTintColor = barTintColor
+                self.backgroundColor = barBackgroundColor
+                self.isTranslucent = translucent
+                self.isOpaque = opaque
+                self.tintColor = tintColor
+                if self.subviews.count > 0 {
+                    let view: UIView = self.subviews[0] as UIView
+                    let subViewsArray = view.subviews
+                    
+                    for subView: UIView in subViewsArray {
+                        if subView.isKind(of: UITextField.self){
+                            subView.tintColor = cursorColor
+                            //subView.tintColor = goldColor
+                            if let texted = subView as? UITextField {
+                                texted.textColor = textColor
+                                texted.font = UIFont.systemFont(ofSize: 16.0)
+                            }
+                            if let backgroundview = subView.subviews.first {
+                                backgroundview.backgroundColor = textboxBackgroundColor
+                                
+                                // Rounded corner
+                                backgroundview.layer.cornerRadius = 10;
+                                backgroundview.clipsToBounds = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     extension Date {
         public func formattedFromCompenents(styleAttitude: DateFormatter.Style, year: Bool = false, month: Bool = false, day: Bool = false, hour: Bool = false, minute: Bool = false, second: Bool = false, locale: Locale = Locale.current) -> String {
             let long = styleAttitude == .long || styleAttitude == .full
