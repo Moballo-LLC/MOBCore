@@ -455,7 +455,7 @@
             UIGraphicsEndImageContext()
             return image
         }
-        public func colorize(_ tintColor: UIColor) -> UIImage {
+        @objc public func colorize(_ tintColor: UIColor) -> UIImage {
             UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
             
             let context = UIGraphicsGetCurrentContext()// as CGContextRef
@@ -885,3 +885,4 @@ extension String {
         return false
     }
 }
+
