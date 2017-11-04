@@ -282,7 +282,7 @@
         ///Converts an integer to a standardized three-character string. 1 -> 001. 99 -> 099. 123 -> 123.
         public func threeCharacterString() -> String {
             let start = "\(self)"
-            let length = start.characters.count
+            let length = start.length
             if length == 1 { return "00\(start)" }
             else if length == 2 { return "0\(start)" }
             else { return start }
@@ -800,7 +800,7 @@ extension String {
         return stripped.components(separatedBy: "/")[0]
     }
     public func truncate(length: Int, trailing: String? = "") -> String {
-        if self.characters.count > length {
+        if self.length > length {
             return self.substring(to: self.index(self.startIndex, offsetBy: length)) + (trailing ?? "")
         } else {
             return self
@@ -827,7 +827,7 @@ extension String {
         }
     }
     public var length: Int {
-        return self.characters.count
+        return self.count
     }
     
     public var hasWhitespace: Bool {
@@ -885,4 +885,3 @@ extension String {
         return false
     }
 }
-
