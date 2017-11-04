@@ -11,7 +11,7 @@ import UIKit
 open class MOBTableViewController: UITableViewController {
     fileprivate var statusLabelView: UILabel?
     override open func viewDidLoad() {
-        self.extendedLayoutIncludesOpaqueBars = true;
+        self.extendedLayoutIncludesOpaqueBars = false;
         self.tableView.keyboardDismissMode = .interactive
         statusLabelView = UILabel()
         if let searchLabel = statusLabelView {
@@ -39,12 +39,12 @@ open class MOBTableViewController: UITableViewController {
         }
         super.viewDidLoad()
     }
-    public func setStatusLabelColor(_ color: UIColor) {
+    @objc public func setStatusLabelColor(_ color: UIColor) {
         if let searchLabel = statusLabelView {
             searchLabel.textColor = color
         }
     }
-    public func showStatusLabel(message: String, color: UIColor? = nil) {
+    @objc public func showStatusLabel(message: String, color: UIColor? = nil) {
         if let searchLabel = statusLabelView {
             searchLabel.text = message
             searchLabel.isHidden = false
@@ -53,7 +53,7 @@ open class MOBTableViewController: UITableViewController {
             }
         }
     }
-    public func hideStatusLabel() {
+    @objc public func hideStatusLabel() {
         if let searchLabel = statusLabelView {
             searchLabel.isHidden = true
         }
@@ -68,15 +68,15 @@ open class MOBTableViewController: UITableViewController {
 }
 
 open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
-    public var searchController = UISearchController(searchResultsController: nil)
+    @objc public var searchController = UISearchController(searchResultsController: nil)
     fileprivate var privateSearchEnabled = false;
-    public var searchEnabled: Bool {
+    @objc public var searchEnabled: Bool {
         return privateSearchEnabled;
     }
-    public var searchBar: UISearchBar {
+    @objc public var searchBar: UISearchBar {
         return searchController.searchBar;
     }
-    open func filterSearchResults(searchTerm: String?) {
+    @objc open func filterSearchResults(searchTerm: String?) {
         //OVERRIDE IN SUBCLASS
     }
     override open func viewDidLoad() {
@@ -84,21 +84,17 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         super.viewDidLoad()
     }
     
-    public func enableSearch() {
+    @objc public func enableSearch() {
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = searchController
             self.navigationItem.hidesSearchBarWhenScrolling = true
-            if let supppperv = searchBar.superview {
-                supppperv.setNeedsLayout()
-                supppperv.layoutIfNeeded()
-            }
         } else {
             self.tableView.tableHeaderView = searchBar
             //self.navigationItem.titleView = searchController.searchBar
         }
         privateSearchEnabled = true;
     }
-    public func disableSearch() {
+    @objc public func disableSearch() {
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = nil
         } else {
@@ -114,16 +110,16 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
     }
-    public func searchBarIsEmpty() -> Bool {
+    @objc public func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         return searchBar.isEmpty
     }
     
-    public var isSearching: Bool {
+    @objc public var isSearching: Bool {
         return searchEnabled && searchController.isActive
     }
     
-    public func setSearchColorscheme(barBackgroundColor: UIColor, barTintColor: UIColor, tintColor: UIColor, textboxBackgroundColor: UIColor, textColor: UIColor, cursorColor: UIColor, translucent: Bool, opaque: Bool) {
+    @objc public func setSearchColorscheme(barBackgroundColor: UIColor, barTintColor: UIColor, tintColor: UIColor, textboxBackgroundColor: UIColor, textColor: UIColor, cursorColor: UIColor, translucent: Bool, opaque: Bool) {
         self.searchBar.setColorscheme(barBackgroundColor: barBackgroundColor, barTintColor: barTintColor, tintColor: tintColor, textboxBackgroundColor: textboxBackgroundColor, textColor: textColor, cursorColor: cursorColor, translucent: translucent, opaque: opaque)
     }
     public func updateSearchResults(for searchController: UISearchController) {

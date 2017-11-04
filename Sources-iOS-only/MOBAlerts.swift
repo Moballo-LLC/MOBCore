@@ -11,15 +11,15 @@ public var MOBAlertQueue = [MOBAlertController]()
 public var MOBAlertTimer: Timer?
 
 public class MOBAlertHandler: NSObject {
-    var internalApplication: UIApplication
+    @objc var internalApplication: UIApplication
     @objc public func MOBAlertTimerCall() {
         self.presentAlertController()
     }
-    public init(_ application: UIApplication) {
+    @objc public init(_ application: UIApplication) {
         internalApplication = application
         super.init()
     }
-    public func dismissAlert(completion: (() -> Void)? = nil) {
+    @objc public func dismissAlert(completion: (() -> Void)? = nil) {
         if let keyWindow = internalApplication.keyWindow {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
@@ -34,10 +34,10 @@ public class MOBAlertHandler: NSObject {
             completion!()
         }
     }
-    public func tryQueuedAlerts() {
+    @objc public func tryQueuedAlerts() {
         self.presentAlertController()
     }
-    public func minimizeAllAlerts(completion: (() -> Void)? = nil) {
+    @objc public func minimizeAllAlerts(completion: (() -> Void)? = nil) {
         if let theTimer = MOBAlertTimer , MOBAlertQueue.count == 0 {
             theTimer.invalidate()
             MOBAlertTimer = nil
@@ -137,7 +137,7 @@ public class MOBAlertHandler: NSObject {
         let time = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: time, execute: closure)
     }
-    public static func resetQueue() {
+    @objc public static func resetQueue() {
         if let theTimer = MOBAlertTimer {
             theTimer.invalidate()
         }
@@ -146,10 +146,10 @@ public class MOBAlertHandler: NSObject {
 }
 public class MOBAlertController: UIAlertController {
     //used to make duplicate alerts not a thing
-    public var alertIdentifier: String?
-    var alertHandler: MOBAlertHandler?
+    @objc public var alertIdentifier: String?
+    @objc var alertHandler: MOBAlertHandler?
     
-    public static func alertControllerWithTitle(title:String?,message:String?,actions:[UIAlertAction],dismissingActionTitle:String? = "Dismiss", dismissBlock:(() -> ())?) -> MOBAlertController {
+    @objc public static func alertControllerWithTitle(title:String?,message:String?,actions:[UIAlertAction],dismissingActionTitle:String? = "Dismiss", dismissBlock:(() -> ())?) -> MOBAlertController {
         let alertController = MOBAlertController(title: title, message: message, preferredStyle: .alert)
         if dismissingActionTitle != nil {
             let okAction = UIAlertAction(title: dismissingActionTitle, style: .default) { (action) -> Void in
@@ -169,16 +169,16 @@ public class MOBAlertController: UIAlertController {
             handler.tryQueuedAlerts()
         }
     }
-    public func show(_ application: UIApplication) {
+    @objc public func show(_ application: UIApplication) {
         let handler = MOBAlertHandler(application)
         handler.presentAlertController(self)
     }
-    public func showNow(_ application: UIApplication, completion: (() -> Void)? = nil) {
+    @objc public func showNow(_ application: UIApplication, completion: (() -> Void)? = nil) {
         let handler = MOBAlertHandler(application)
         handler.minimizeAllAlerts()
         handler.presentAlertController(self, placeOnTopOfQueue: true, completion: completion)
     }
-    public func showNext(_ application: UIApplication) {
+    @objc public func showNext(_ application: UIApplication) {
         let handler = MOBAlertHandler(application)
         handler.presentAlertController(self, placeOnTopOfQueue: true)
     }

@@ -8,14 +8,14 @@
 
 import Foundation
 public class MOBFile : NSObject, URLSessionDownloadDelegate {
-    internal static let mobileDefaultsStorageKey = "com.moballo.MOBFile"
-    public static let downloadedFileKey = "MOBFileDownloadedFile-"
-    internal let name: String
-    internal let type: String
-    internal let url: String
-    internal let temporary: Bool
-    internal let verificationString: String?
-    public init(name: String, type: String, url: String, temporary: Bool = false, verificationString:String? = nil) {
+    @objc internal static let mobileDefaultsStorageKey = "com.moballo.MOBFile"
+    @objc public static let downloadedFileKey = "MOBFileDownloadedFile-"
+    @objc internal let name: String
+    @objc internal let type: String
+    @objc internal let url: String
+    @objc internal let temporary: Bool
+    @objc internal let verificationString: String?
+    @objc public init(name: String, type: String, url: String, temporary: Bool = false, verificationString:String? = nil) {
         self.name = name
         self.type = type
         self.url = url
@@ -23,7 +23,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
         self.verificationString = verificationString
         super.init()
     }
-    public func download(expiresAfterDays: Int = 0, forceRedownload: Bool = false) {
+    @objc public func download(expiresAfterDays: Int = 0, forceRedownload: Bool = false) {
         if (!self.temporary) {
             if let lastLoadedDate = UserDefaults.standard.object(forKey: self.downloadDateKey()) as! Date? , (forceRedownload == false && Swift.abs(lastLoadedDate.daysUntil(Date())) < expiresAfterDays) {
                 if let lastVersionKey = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()), lastVersionKey == self.versionKey() {
@@ -39,7 +39,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
             task.resume()
         }
     }
-    public var path : URL? {
+    @objc public var path : URL? {
         if let path = getDownloadedFilePath() {
             return path
         } else if let path = Bundle.main.path(forResource: (self.nameOnLocal()), ofType: (self.type)) {
@@ -47,7 +47,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
         }
         return nil
     }
-    internal func nameInDocuments(withExtension: Bool = false) -> String {
+    @objc internal func nameInDocuments(withExtension: Bool = false) -> String {
         if (withExtension) {
             if (!temporary) {
                 return MOBFile.downloadedFileKey+name+"."+type
@@ -62,26 +62,26 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
             }
         }
     }
-    internal func address() -> URL? {
+    @objc internal func address() -> URL? {
         if let out = URL(string: url) {
             return out
         }
         return nil
     }
-    internal func nameOnLocal(withExtension: Bool = false) -> String {
+    @objc internal func nameOnLocal(withExtension: Bool = false) -> String {
         if (withExtension) {
             return name+"."+type
         } else {
             return name
         }
     }
-    internal func downloadDateKey() -> String {
+    @objc internal func downloadDateKey() -> String {
         return MOBFile.mobileDefaultsStorageKey + "." + self.nameInDocuments() + ".timestamp"
     }
-    internal func downloadSoftwareVersionKey() -> String {
+    @objc internal func downloadSoftwareVersionKey() -> String {
         return MOBFile.mobileDefaultsStorageKey + "." + self.nameInDocuments() + ".version"
     }
-    internal func getDownloadedFilePath() -> URL? {
+    @objc internal func getDownloadedFilePath() -> URL? {
         if let lastVersionKey = UserDefaults.standard.string(forKey: self.downloadSoftwareVersionKey()) {
             if lastVersionKey != self.versionKey() {
                 return nil
@@ -152,7 +152,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
         }
         downloadTask.cancel()
     }
-    internal func versionKey() -> String {
+    @objc internal func versionKey() -> String {
         let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let actualAppBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
         return (actualAppVersion + "-" + actualAppBuild)
@@ -169,7 +169,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
             task.cancel()
         }
     }
-    public static func clearDocumentsDirectory() {
+    @objc public static func clearDocumentsDirectory() {
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
@@ -188,7 +188,7 @@ public class MOBFile : NSObject, URLSessionDownloadDelegate {
             } catch _ {}
         }
     }
-    public static func cleanDocumentsDirectory() {
+    @objc public static func cleanDocumentsDirectory() {
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
