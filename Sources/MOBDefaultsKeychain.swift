@@ -238,29 +238,29 @@ import Foundation
         }
     }
     //Set Default Value Support
-    public func set(_ string: String?, defaultValue: String, forKey keyName: String) {
-        self.set(string ?? defaultValue, forKey: keyName)
+    public func set(string: String?, defaultValue: String, forKey keyName: String) {
+        self.set(string: string ?? defaultValue, forKey: keyName)
     }
-    public func set(_ bool: Bool?, defaultValue: Bool, forKey keyName: String) {
-        self.set(bool ?? defaultValue, forKey: keyName)
+    public func set(bool: Bool?, defaultValue: Bool, forKey keyName: String) {
+        self.set(bool: bool ?? defaultValue, forKey: keyName)
     }
-    public func set(_ integer: Int?, defaultValue: Int, forKey keyName: String) {
-        self.set(integer ?? defaultValue, forKey: keyName)
+    public func set(integer: Int?, defaultValue: Int, forKey keyName: String) {
+        self.set(integer: integer ?? defaultValue, forKey: keyName)
     }
-    public func set(_ double: Double?, defaultValue: Double, forKey keyName: String) {
-        self.set(double ?? defaultValue, forKey: keyName)
+    public func set(double: Double?, defaultValue: Double, forKey keyName: String) {
+        self.set(double: double ?? defaultValue, forKey: keyName)
     }
-    public func set(_ url: URL?, defaultValue: URL, forKey keyName: String) {
-        self.set(url ?? defaultValue, forKey: keyName)
+    public func set(url: URL?, defaultValue: URL, forKey keyName: String) {
+        self.set(url: url ?? defaultValue, forKey: keyName)
     }
-    public func set(_ float: Float?, defaultValue: Float, forKey keyName: String) {
-        self.set(float ?? defaultValue, forKey: keyName)
+    public func set(float: Float?, defaultValue: Float, forKey keyName: String) {
+        self.set(float: float ?? defaultValue, forKey: keyName)
     }
-    public func set(_ array: Array<Any>?, defaultValue: Array<Any>, forKey keyName: String) {
-        self.set(array ?? defaultValue, forKey: keyName)
+    public func set(array: Array<Any>?, defaultValue: Array<Any>, forKey keyName: String) {
+        self.set(array: array ?? defaultValue, forKey: keyName)
     }
-    public func set(_ object: Any?, defaultValue: Any, forKey keyName: String) {
-        self.set(object ?? defaultValue, forKey: keyName)
+    public func set(object: Any?, defaultValue: Any, forKey keyName: String) {
+        self.set(object: object ?? defaultValue, forKey: keyName)
     }
     
     // MARK: Removing Values
