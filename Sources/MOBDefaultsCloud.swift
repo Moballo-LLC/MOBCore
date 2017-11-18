@@ -8,7 +8,7 @@
 
 import Foundation
 #if os(iOS)
-public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
+@objc public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
     public let didChangeExternallyNotification = NSUbiquitousKeyValueStore.didChangeExternallyNotification
     public func set(string: String, forKey keyName: String) {
         super.set(string, forKey: keyName)
@@ -94,10 +94,10 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         self.set(bool ?? defaultValue, forKey: keyName)
     }
     public func set(_ integer: Int?, defaultValue: Int, forKey keyName: String) {
-        self.set(integer, forKey: keyName)
+        self.set(integer ?? defaultValue, forKey: keyName)
     }
     public func set(_ double: Double?, defaultValue: Double, forKey keyName: String) {
-        self.set(double, forKey: keyName)
+        self.set(double ?? defaultValue, forKey: keyName)
     }
     public func set(_ url: URL?, defaultValue: URL, forKey keyName: String) {
         self.set(url ?? defaultValue, forKey: keyName)
@@ -121,11 +121,11 @@ public class MOBDefaultsCloud : NSUbiquitousKeyValueStore {
         super.synchronize()
     }
     public func set(_ integer: Int?, defaultValue: Int?, forKey keyName: String) {
-        super.set(integer, forKey: keyName)
+        super.set(integer ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
     public func set(_ double: Double?, defaultValue: Double?, forKey keyName: String) {
-        super.set(double, forKey: keyName)
+        super.set(double ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
     public func set(_ url: URL?, defaultValue: URL?, forKey keyName: String) {
