@@ -20,7 +20,7 @@ var Defaults = MOBDefaults(group: "app.group", keychain: "app.secureKeychainGrou
 ```
 Defaults.local()//defaults only within your app
 Defaults.shared()//defaults shared between apps in an app group
-defaults.cloyd()//defaults shared via icloud
+defaults.cloud()//defaults shared via icloud
 defualts.keychain()//defaults encrypted and only shared within your app (password storage)
 
 Usage:
