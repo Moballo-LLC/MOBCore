@@ -51,27 +51,12 @@ import Foundation
         super.set(string, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ string: String, forKey keyName: String) {
-        self.set(string, forKey: keyName)
-    }
     public override func set(_ bool: Bool, forKey keyName: String) {
         super.set(bool, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ integer: Int, forKey keyName: String) {
-        super.set(integer, forKey: keyName)
-        super.synchronize()
-    }
     public override func set(_ double: Double, forKey keyName: String) {
         super.set(double, forKey: keyName)
-        super.synchronize()
-    }
-    public func set(_ url: URL, forKey keyName: String) {
-        super.set(url, forKey: keyName)
-        super.synchronize()
-    }
-    public func set(_ float: Float, forKey keyName: String) {
-        super.set(float, forKey: keyName)
         super.synchronize()
     }
     public override func set(_ array: Array<Any>?, forKey keyName: String) {
@@ -80,6 +65,18 @@ import Foundation
     }
     public override func set(_ object: Any?, forKey keyName: String) {
         super.set(object, forKey: keyName)
+        super.synchronize()
+    }
+    public override func set(_ data: Data?, forKey keyName: String){
+        super.set(data, forKey: keyName)
+        super.synchronize()
+    }
+    public override func set(_ dictionary: [String : Any]?, forKey keyName: String){
+        super.set(dictionary, forKey: keyName)
+        super.synchronize()
+    }
+    public override func set(_ int64: Int64, forKey keyName: String){
+        super.set(int64, forKey: keyName)
         super.synchronize()
     }
     public override func removeObject(forKey keyName: String) {
