@@ -9,11 +9,11 @@
 import UIKit
 import MessageUI
 
-open class MOBContactSupport: NSObject {
-    @objc let mailComposerVC: MFMailComposeViewController
-    @objc let parentController: UIViewController
-    @objc let parentDelegate: MFMailComposeViewControllerDelegate
-    @objc public init(parent parentController: UIViewController, parent parentDelegate: MFMailComposeViewControllerDelegate, subject: String, message: String, appName: String? = nil, toEmails:[String] = [MOBInternalConstants.supportEmail], isHTML:Bool = false) {
+@objc open class MOBContactSupport: NSObject {
+    let mailComposerVC: MFMailComposeViewController
+    let parentController: UIViewController
+    let parentDelegate: MFMailComposeViewControllerDelegate
+    public init(parent parentController: UIViewController, parent parentDelegate: MFMailComposeViewControllerDelegate, subject: String, message: String, appName: String? = nil, toEmails:[String] = [MOBInternalConstants.supportEmail], isHTML:Bool = false) {
         self.parentController = parentController
         self.parentDelegate = parentDelegate
         self.mailComposerVC = MFMailComposeViewController()
@@ -23,7 +23,7 @@ open class MOBContactSupport: NSObject {
         mailComposerVC.setToRecipients(toEmails)
         mailComposerVC.setMessageBody("\(message)\(self.messageFooter(appName: appName))", isHTML: isHTML)
     }
-    @objc public func present() {
+    public func present() {
         if MFMailComposeViewController.canSendMail() {
             parentController.present(mailComposerVC, animated: true, completion: nil)
         } else {
@@ -31,14 +31,14 @@ open class MOBContactSupport: NSObject {
             
         }
     }
-    @objc public func view() -> UIViewController? {
+    public func view() -> UIViewController? {
         if MFMailComposeViewController.canSendMail() {
             return mailComposerVC
         }
         self.showSendMailErrorAlert()
         return nil
     }
-    @objc open func messageFooter(appName: String? = nil) -> String {
+    open func messageFooter(appName: String? = nil) -> String {
         let actualAppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let actualAppBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
         let actualDeviceName = UIDevice.current.name as String
@@ -51,7 +51,7 @@ open class MOBContactSupport: NSObject {
         }
         return "\n\n\n\n\n\n\n\n\n\n\nPLEASE DO NOT DELETE THE FOLLOWING FROM EMAIL!!!\(appNamePortion)\nVersion: \(actualAppVersion)\nBuild: \(actualAppBuild)\nOperating System: \(actualOperatingSystem)\nDevice Name: \(actualDeviceName)"
     }
-    @objc open func showSendMailErrorAlert() {
+    open func showSendMailErrorAlert() {
         let alertController = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail. Please check e-mail configuration and try again.", preferredStyle: UIAlertControllerStyle.alert)
         let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel) {
             UIAlertAction in
@@ -60,7 +60,7 @@ open class MOBContactSupport: NSObject {
         parentController.present(alertController, animated: true, completion: nil)
     }
     //MUST IMPLEMENT THIS ON EACH PARENT CONTROLLER, OTHERWISE CAN'T DISMISS
-    @objc func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -22,14 +22,14 @@
             return Array(self)
         }
         /// Returns an array with the contents of this sequence, shuffled.
-        func shuffled() -> [Element] {
+        public func shuffled() -> [Element] {
             var result = Array(self)
             result.shuffle()
             return result
         }
     }
     extension UITableView {
-        public func deselectAllCells() {
+        @objc public func deselectAllCells() {
             if self.indexPathsForSelectedRows != nil {
                 if self.indexPathsForSelectedRows! != [] {
                     for cell in self.indexPathsForSelectedRows! {
@@ -44,7 +44,7 @@
             // Returns true if the text is empty or nil
             return self.text?.isEmpty ?? true
         }
-        public func setColorscheme(barBackgroundColor: UIColor, barTintColor: UIColor, tintColor: UIColor, textboxBackgroundColor: UIColor, textColor: UIColor, cursorColor: UIColor, translucent: Bool, opaque: Bool) {
+        @objc public func setColorscheme(barBackgroundColor: UIColor, barTintColor: UIColor, tintColor: UIColor, textboxBackgroundColor: UIColor, textColor: UIColor, cursorColor: UIColor, translucent: Bool, opaque: Bool) {
             if #available(iOS 11.0, *) {
                 self.backgroundColor = barBackgroundColor
                 self.isOpaque = opaque
@@ -313,13 +313,13 @@
         
     }
     extension NSString {
-        public func stringAtIndex(_ index: Int) -> String {
+        @objc public func stringAtIndex(_ index: Int) -> String {
             let char = self.character(at: index)
             return "\(Character(UnicodeScalar(char)!))"
         }
     }
     public extension NSNumber {
-        public func degreesToCardinalDirection()->String {
+        @objc public func degreesToCardinalDirection()->String {
             let headingDeg:Double = Double((self.doubleValue + 720.0)).truncatingRemainder(dividingBy: 360)
             if(headingDeg > 348.15) {
                 return "N"
@@ -358,14 +358,14 @@
         }
     }
     extension UIApplication {
-        public func getScreenshot() -> UIImage {
+        @objc public func getScreenshot() -> UIImage {
             let layer = self.keyWindow?.layer
             let scale = UIScreen.main.scale
             UIGraphicsBeginImageContextWithOptions(layer!.frame.size, false, scale)
             layer?.render(in: UIGraphicsGetCurrentContext()!)
             return UIGraphicsGetImageFromCurrentImageContext()!
         }
-        public func getScreenshotImageData() -> Data {
+        @objc public func getScreenshotImageData() -> Data {
             let image = getScreenshot()
             if let toReturn = UIImagePNGRepresentation(image) {
                 return toReturn
@@ -431,7 +431,7 @@
         }
     }
     extension UIView {
-        public func getViewScreenshot() -> UIImage {
+        @objc public func getViewScreenshot() -> UIImage {
             UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
             
             drawHierarchy(in: self.bounds, afterScreenUpdates: true)
@@ -554,7 +554,7 @@
         internal func mapTypeKey(mapKey: String)-> String {
             return "com.moballo.map."+mapKey+".map-type"
         }
-        public func chooseMapType(mapKey: String, popupOrigin: Any, presenter: UIViewController) {
+        @objc public func chooseMapType(mapKey: String, popupOrigin: Any, presenter: UIViewController) {
             let alertController = self.chooseMapTypeDialog(mapKey: mapKey)
             if let popoverController = alertController.popoverPresentationController {
                 if let popupOriginButton = popupOrigin as? UIBarButtonItem {
@@ -570,7 +570,7 @@
             }
             presenter.present(alertController, animated: true, completion: nil)
         }
-        public func chooseMapTypeDialog(mapKey: String) -> UIAlertController {
+        @objc public func chooseMapTypeDialog(mapKey: String) -> UIAlertController {
             let chooseDialog = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             let chooseStandardOption = UIAlertAction(title: "Standard", style: .default, handler: { (_) in
@@ -604,7 +604,7 @@
             
             return chooseDialog
         }
-        public func setMapType(mapKey: String) {
+        @objc public func setMapType(mapKey: String) {
             if let storedType = UserDefaults.standard.object(forKey: self.mapTypeKey(mapKey: mapKey)) as! UInt? {
                 if let mapTypeInstance = MKMapType(rawValue: storedType) {
                     self.mapType = mapTypeInstance
@@ -627,11 +627,11 @@
         }
     }
     extension UILabel {
-        public func minHeight() -> CGFloat {
+        @objc public func minHeight() -> CGFloat {
             guard let text = self.text else { return 0 }
             return text.minHeight(width: self.frame.width, font: self.font, numberOfLines: self.numberOfLines, lineBreakMode: self.lineBreakMode)
         }
-        public func minHeight(forText text: String) -> CGFloat {
+        @objc public func minHeight(forText text: String) -> CGFloat {
             return text.minHeight(width: self.frame.width, font: self.font, numberOfLines: self.numberOfLines, lineBreakMode: self.lineBreakMode)
         }
     }

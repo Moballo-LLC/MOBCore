@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class MOBDefaults: NSObject {
-    @objc internal let localInstance:MOBDefaultsUser
-    @objc internal let groupInstance:MOBDefaultsUser?
+@objc public class MOBDefaults: NSObject {
+    internal let localInstance:MOBDefaultsUser
+    internal let groupInstance:MOBDefaultsUser?
     #if os(iOS)
     internal let cloudInstance:MOBDefaultsCloud?
     #endif
     
-    @objc internal let keychainInstance:MOBDefaultsKeychain?
-    @objc internal let groupKey:String?
-    @objc internal let keychainKey:String?
-    @objc public init(group: String?, keychain: String?) {
+    internal let keychainInstance:MOBDefaultsKeychain?
+    internal let groupKey:String?
+    internal let keychainKey:String?
+    public init(group: String?, keychain: String?) {
         //local
         localInstance = MOBDefaultsUser()
         //group
@@ -40,10 +40,10 @@ public class MOBDefaults: NSObject {
             cloudInstance = MOBDefaultsCloud()
         #endif
     }
-    @objc public func local() -> MOBDefaultsUser {
+    public func local() -> MOBDefaultsUser {
         return localInstance
     }
-    @objc public func group() -> MOBDefaultsUser? {
+    public func group() -> MOBDefaultsUser? {
         return groupInstance
     }
     #if os(iOS)
@@ -51,7 +51,7 @@ public class MOBDefaults: NSObject {
         return cloudInstance
     }
     #endif
-    @objc public func keychain() -> MOBDefaultsKeychain? {
+    public func keychain() -> MOBDefaultsKeychain? {
         return keychainInstance
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class MOBDefaultsKeychain : NSObject {
+@objc public class MOBDefaultsKeychain : NSObject {
     fileprivate static let SecMatchLimit: String! = kSecMatchLimit as String
     fileprivate static let SecReturnData: String! = kSecReturnData as String
     fileprivate static let SecValueData: String! = kSecValueData as String
@@ -18,14 +18,14 @@ public class MOBDefaultsKeychain : NSObject {
     fileprivate static let SecAttrGeneric: String! = kSecAttrGeneric as String
     fileprivate static let SecAttrAccount: String! = kSecAttrAccount as String
     fileprivate static let SecAttrAccessGroup: String! = kSecAttrAccessGroup  as String
-    @objc internal var accessGroup:NSString
+    internal var accessGroup:NSString
     fileprivate static var serviceName: String = "SwiftKeychainWrapper"
-    @objc public init(accessGroup: String) {
+    public init(accessGroup: String) {
         self.accessGroup = accessGroup as NSString;
     }
     
     // MARK: Public Methods
-    @objc public func hasValue(forKey key: String) -> Bool {
+    public func hasValue(forKey key: String) -> Bool {
         let keychainData: Data? = self.getData(forKey: key)
         if let _ = keychainData {
             return true
@@ -34,7 +34,7 @@ public class MOBDefaultsKeychain : NSObject {
         }
     }
     // MARK: Getting Values
-    @objc public func string(forKey keyName: String) -> String? {
+    public func string(forKey keyName: String) -> String? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var stringValue: String?
         if let data = keychainData {
@@ -126,7 +126,7 @@ public class MOBDefaultsKeychain : NSObject {
         
         return dictValue
     }
-    @objc public func array(forKey keyName: String) -> Array<Any>? {
+    public func array(forKey keyName: String) -> Array<Any>? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var arrayValue: Array<Any>?
         if let data = keychainData {
@@ -138,7 +138,7 @@ public class MOBDefaultsKeychain : NSObject {
         
         return arrayValue
     }
-    @objc public func object(forKey keyName: String) -> Any? {
+    public func object(forKey keyName: String) -> Any? {
         let dataValue: Data? = self.getData(forKey: keyName)
         
         var objectValue: Any?
@@ -171,7 +171,7 @@ public class MOBDefaultsKeychain : NSObject {
     }
     
     // MARK: Setting Values
-    @objc @discardableResult
+    @discardableResult
     public func set(string: String, forKey keyName: String) -> Bool {
         if let data = string.data(using: String.Encoding.utf8) {
             return self.setData(value: data, forKey: keyName)
@@ -179,42 +179,42 @@ public class MOBDefaultsKeychain : NSObject {
             return false
         }
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(bool: Bool, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: bool)
         return self.setData(value: data, forKey: keyName)
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(integer: Int, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: integer)
         return self.setData(value: data, forKey: keyName)
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(float: Float, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: float)
         return self.setData(value: data, forKey: keyName)
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(double: Double, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: double)
         return self.setData(value: data, forKey: keyName)
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(url: URL, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: url)
         return self.setData(value: data, forKey: keyName)
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(dictionary: [String : Any], forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
         return self.setData(value: data, forKey: keyName)
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(array: Array<Any>, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: array)
         return self.setData(value: data, forKey: keyName)
     }
-    @objc @discardableResult
+    @discardableResult
     public func set(object: Any, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: object)
         return self.setData(value: data, forKey: keyName)
@@ -271,10 +271,10 @@ public class MOBDefaultsKeychain : NSObject {
         self.set(bool ?? defaultValue, forKey: keyName)
     }
     public func set(_ integer: Int?, defaultValue: Int, forKey keyName: String) {
-        self.set(integer, forKey: keyName)
+        self.set(integer ?? defaultValue, forKey: keyName)
     }
     public func set(_ double: Double?, defaultValue: Double, forKey keyName: String) {
-        self.set(double, forKey: keyName)
+        self.set(double ?? defaultValue, forKey: keyName)
     }
     public func set(_ url: URL?, defaultValue: URL, forKey keyName: String) {
         self.set(url ?? defaultValue, forKey: keyName)
@@ -290,7 +290,7 @@ public class MOBDefaultsKeychain : NSObject {
     }
     
     // MARK: Removing Values
-    @objc @discardableResult
+    @discardableResult
     public func removeObject(forKey keyName: String) -> Bool {
         let keychainQueryDictionary: NSMutableDictionary = self.setupKeychainQueryDictionary(forKey: keyName)
         
@@ -321,7 +321,7 @@ public class MOBDefaultsKeychain : NSObject {
         }
     }
     
-    @objc internal func setupKeychainQueryDictionary(forKey keyName: String) -> NSMutableDictionary {
+    internal func setupKeychainQueryDictionary(forKey keyName: String) -> NSMutableDictionary {
         // Setup dictionary to access keychain and specify we are using a generic password (rather than a certificate, internet password, etc)
         let keychainQueryDictionary: NSMutableDictionary = [MOBDefaultsKeychain.SecClass:kSecClassGenericPassword]
         
@@ -338,55 +338,55 @@ public class MOBDefaultsKeychain : NSObject {
     
     
     //Default value
-    @objc public func string(forKey keyName: String, defaultValue:String) -> String {
+    public func string(forKey keyName: String, defaultValue:String) -> String {
         if let val = self.string(forKey: keyName) as String? {
             return val
         }
         return defaultValue
     }
-    @objc public func bool(forKey keyName: String, defaultValue:Bool) -> Bool {
+    public func bool(forKey keyName: String, defaultValue:Bool) -> Bool {
         if let val = self.bool(forKey: keyName) as Bool? {
             return val
         }
         return defaultValue
     }
-    @objc public func integer(forKey keyName: String, defaultValue:Int) -> Int {
+    public func integer(forKey keyName: String, defaultValue:Int) -> Int {
         if let val = self.integer(forKey: keyName) as Int? {
             return val
         }
         return defaultValue
     }
-    @objc public func double(forKey keyName: String, defaultValue:Double) -> Double {
+    public func double(forKey keyName: String, defaultValue:Double) -> Double {
         if let val = self.double(forKey: keyName) as Double? {
             return val
         }
         return defaultValue
     }
-    @objc public func float(forKey keyName: String, defaultValue:Float) -> Float {
+    public func float(forKey keyName: String, defaultValue:Float) -> Float {
         if let val = self.float(forKey: keyName) as Float? {
             return val
         }
         return defaultValue
     }
-    @objc public func url(forKey keyName: String, defaultValue:URL) -> URL {
+    public func url(forKey keyName: String, defaultValue:URL) -> URL {
         if let val = self.url(forKey: keyName) as URL? {
             return val
         }
         return defaultValue
     }
-    @objc public func array(forKey keyName: String, defaultValue:Array<Any>) -> Array<Any> {
+    public func array(forKey keyName: String, defaultValue:Array<Any>) -> Array<Any> {
         if let val = self.array(forKey: keyName) {
             return val
         }
         return defaultValue
     }
-    @objc public func object(forKey keyName: String, defaultValue:Any) -> Any {
+    public func object(forKey keyName: String, defaultValue:Any) -> Any {
         if let val = self.object(forKey: keyName) {
             return val
         }
         return defaultValue
     }
-    @objc public func dictionary(forKey keyName: String, defaultValue:[String : Any]) -> [String : Any] {
+    public func dictionary(forKey keyName: String, defaultValue:[String : Any]) -> [String : Any] {
         if let val = self.dictionary(forKey: keyName) {
             return val
         }
