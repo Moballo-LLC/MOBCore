@@ -159,10 +159,6 @@ import UIKit
         super.synchronize()
     }
     //override superclass methods
-    public func set(_ string: String, forKey keyName: String) {
-        super.set(string, forKey: keyName)
-        super.synchronize()
-    }
     public override func set(_ bool: Bool, forKey keyName: String) {
         super.set(bool, forKey: keyName)
         super.synchronize()
@@ -182,9 +178,6 @@ import UIKit
     public override func set(_ url: URL?, forKey keyName: String) {
         super.set(url, forKey: keyName)
         super.synchronize()
-    }
-    public func set(_ url: URL, forKey keyName: String) {
-        self.set(url, forKey: keyName)
     }
     public override func set(_ object: Any?, forKey keyName: String) {
         super.set(object, forKey: keyName)

@@ -237,32 +237,6 @@ import Foundation
             return false
         }
     }
-    
-    //Methods all other defaults have
-    public func set(_ string: String, forKey keyName: String) {
-        self.set(string: string, forKey: keyName)
-    }
-    public func set(_ bool: Bool, forKey keyName: String) {
-        self.set(bool: bool, forKey: keyName)
-    }
-    public func set(_ integer: Int, forKey keyName: String) {
-        self.set(integer: integer, forKey: keyName)
-    }
-    public func set(_ double: Double, forKey keyName: String) {
-        self.set(double: double, forKey: keyName)
-    }
-    public func set(_ url: URL, forKey keyName: String) {
-        self.set(url: url, forKey: keyName)
-    }
-    public func set(_ float: Float, forKey keyName: String) {
-        self.set(float: float, forKey: keyName)
-    }
-    public func set(_ array: Array<Any>, forKey keyName: String) {
-        self.set(array: array, forKey: keyName)
-    }
-    public func set(_ object: Any, forKey keyName: String) {
-        self.set(object: object, forKey: keyName)
-    }
     //Set Default Value Support
     public func set(_ string: String?, defaultValue: String, forKey keyName: String) {
         self.set(string ?? defaultValue, forKey: keyName)
