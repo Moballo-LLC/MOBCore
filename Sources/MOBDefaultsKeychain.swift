@@ -394,55 +394,55 @@ import Foundation
     }
     
     //Default value nullable
-    public func string(forKey keyName: String, defaultValue defaultValueNullable:String?) -> String? {
+    public func string(forKey keyName: String, defaultValueNullable:String?) -> String? {
         if let val = self.string(forKey: keyName) as String? {
             return val
         }
         return defaultValueNullable
     }
-    public func bool(forKey keyName: String, defaultValue defaultValueNullable:Bool?) -> Bool? {
+    public func bool(forKey keyName: String, defaultValueNullable:Bool?) -> Bool? {
         if let val = self.bool(forKey: keyName) as Bool? {
             return val
         }
         return defaultValueNullable
     }
-    public func integer(forKey keyName: String, defaultValue defaultValueNullable:Int?) -> Int? {
+    public func integer(forKey keyName: String, defaultValueNullable:Int?) -> Int? {
         if let val = self.integer(forKey: keyName) as Int? {
             return val
         }
         return defaultValueNullable
     }
-    public func double(forKey keyName: String, defaultValue defaultValueNullable:Double?) -> Double? {
+    public func double(forKey keyName: String, defaultValueNullable:Double?) -> Double? {
         if let val = self.double(forKey: keyName) as Double? {
             return val
         }
         return defaultValueNullable
     }
-    public func float(forKey keyName: String, defaultValue defaultValueNullable:Float?) -> Float? {
+    public func float(forKey keyName: String, defaultValueNullable:Float?) -> Float? {
         if let val = self.float(forKey: keyName) as Float? {
             return val
         }
         return defaultValueNullable
     }
-    public func url(forKey keyName: String, defaultValue defaultValueNullable:URL?) -> URL? {
+    public func url(forKey keyName: String, defaultValueNullable:URL?) -> URL? {
         if let val = self.url(forKey: keyName) as URL? {
             return val
         }
         return defaultValueNullable
     }
-    public func array(forKey keyName: String, defaultValue defaultValueNullable:Array<Any>?) -> Array<Any>? {
+    public func array(forKey keyName: String, defaultValueNullable:Array<Any>?) -> Array<Any>? {
         if let val = self.array(forKey: keyName) {
             return val
         }
         return defaultValueNullable
     }
-    public func object(forKey keyName: String, defaultValue defaultValueNullable:Any?) -> Any? {
+    public func object(forKey keyName: String, defaultValueNullable:Any?) -> Any? {
         if let val = self.object(forKey: keyName) {
             return val
         }
         return defaultValueNullable
     }
-    public func dictionary(forKey keyName: String, defaultValue defaultValueNullable:[String : Any]?) -> [String : Any]? {
+    public func dictionary(forKey keyName: String, defaultValueNullable:[String : Any]?) -> [String : Any]? {
         if let val = self.dictionary(forKey: keyName) {
             return val
         }
