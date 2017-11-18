@@ -90,6 +90,42 @@ public class MOBDefaultsKeychain : NSObject {
         
         return doubleValue
     }
+    public func float(forKey keyName: String) -> Float? {
+        let keychainData: Data? = self.getData(forKey: keyName)
+        var floatValue: Float?
+        if let data = keychainData {
+            floatValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Float?
+        }
+        else {
+            return nil
+        }
+        
+        return floatValue
+    }
+    public func url(forKey keyName: String) -> URL? {
+        let keychainData: Data? = self.getData(forKey: keyName)
+        var urlValue: URL?
+        if let data = keychainData {
+            urlValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! URL?
+        }
+        else {
+            return nil
+        }
+        
+        return urlValue
+    }
+    public func dictionary(forKey keyName: String) -> [String : Any]? {
+        let keychainData: Data? = self.getData(forKey: keyName)
+        var dictValue: [String : Any]?
+        if let data = keychainData {
+            dictValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! [String : Any]?
+        }
+        else {
+            return nil
+        }
+        
+        return dictValue
+    }
     @objc public func array(forKey keyName: String) -> Array<Any>? {
         let keychainData: Data? = self.getData(forKey: keyName)
         var arrayValue: Array<Any>?
@@ -114,106 +150,6 @@ public class MOBDefaultsKeychain : NSObject {
         }
         
         return objectValue;
-    }
-    //Default value
-    @objc public func string(forKey keyName: String, defaultValue:String) -> String {
-        let keychainData: Data? = self.getData(forKey: keyName)
-        var stringValue: String?
-        if let data = keychainData {
-            stringValue = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
-            if let trimmedString = stringValue {
-                if trimmedString.removingCharacters(in: CharacterSet.whitespaces) as String! == "" {
-                    return defaultValue
-                }
-            }
-            else {
-                return defaultValue
-            }
-        }
-        else {
-            return defaultValue
-        }
-        if let val = stringValue as String? {
-            return val
-        } else {
-            return defaultValue
-        }
-    }
-    @objc public func bool(forKey keyName: String, defaultValue:Bool) -> Bool {
-        let keychainData: Data? = self.getData(forKey: keyName)
-        var boolValue: Bool?
-        if let data = keychainData {
-            boolValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Bool?
-        }
-        else {
-            return defaultValue
-        }
-        if let val = boolValue as Bool? {
-            return val
-        } else {
-            return defaultValue
-        }
-    }
-    @objc public func integer(forKey keyName: String, defaultValue:Int) -> Int {
-        let keychainData: Data? = self.getData(forKey: keyName)
-        var intValue: Int?
-        if let data = keychainData {
-            intValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Int?
-        }
-        else {
-            return defaultValue
-        }
-        if let val = intValue as Int? {
-            return val
-        } else {
-            return defaultValue
-        }
-    }
-    public func double(forKey keyName: String, defaultValue:Double) -> Double? {
-        let keychainData: Data? = self.getData(forKey: keyName)
-        var doubleValue: Double?
-        if let data = keychainData {
-            doubleValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Double?
-        }
-        else {
-            return defaultValue
-        }
-        if let val = doubleValue as Double? {
-            return val
-        } else {
-            return defaultValue
-        }
-    }
-    @objc public func array(forKey keyName: String, defaultValue:Array<Any>) -> Array<Any> {
-        let keychainData: Data? = self.getData(forKey: keyName)
-        var arrayValue: Array<Any>?
-        if let data = keychainData {
-            arrayValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<Any>?
-        }
-        else {
-            return defaultValue
-        }
-        if let val = arrayValue as Array<Any>? {
-            return val
-        } else {
-            return defaultValue
-        }
-    }
-    @objc public func object(forKey keyName: String, defaultValue:Any) -> Any {
-        let dataValue: Data? = self.getData(forKey: keyName)
-        
-        var objectValue: Any?
-        
-        if let data = dataValue {
-            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data)
-        } else {
-            return defaultValue
-        }
-        if let val = objectValue as Any? {
-            return val
-        } else {
-            return defaultValue
-        }
     }
     //GET
     fileprivate func getData(forKey keyName: String) -> Data? {
@@ -254,6 +190,26 @@ public class MOBDefaultsKeychain : NSObject {
         return self.setData(value: data, forKey: keyName)
     }
     @objc @discardableResult
+    public func set(float: Float, forKey keyName: String) -> Bool {
+        let data = NSKeyedArchiver.archivedData(withRootObject: float)
+        return self.setData(value: data, forKey: keyName)
+    }
+    @objc @discardableResult
+    public func set(double: Double, forKey keyName: String) -> Bool {
+        let data = NSKeyedArchiver.archivedData(withRootObject: double)
+        return self.setData(value: data, forKey: keyName)
+    }
+    @objc @discardableResult
+    public func set(url: URL, forKey keyName: String) -> Bool {
+        let data = NSKeyedArchiver.archivedData(withRootObject: url)
+        return self.setData(value: data, forKey: keyName)
+    }
+    @objc @discardableResult
+    public func set(dictionary: [String : Any], forKey keyName: String) -> Bool {
+        let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+        return self.setData(value: data, forKey: keyName)
+    }
+    @objc @discardableResult
     public func set(array: Array<Any>, forKey keyName: String) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: array)
         return self.setData(value: data, forKey: keyName)
@@ -280,6 +236,57 @@ public class MOBDefaultsKeychain : NSObject {
         } else {
             return false
         }
+    }
+    
+    //Methods all other defaults have
+    public func set(_ string: String, forKey keyName: String) {
+        self.set(string: string, forKey: keyName)
+    }
+    public func set(_ bool: Bool, forKey keyName: String) {
+        self.set(bool: bool, forKey: keyName)
+    }
+    public func set(_ integer: Int, forKey keyName: String) {
+        self.set(integer: integer, forKey: keyName)
+    }
+    public func set(_ double: Double, forKey keyName: String) {
+        self.set(double: double, forKey: keyName)
+    }
+    public func set(_ url: URL, forKey keyName: String) {
+        self.set(url: url, forKey: keyName)
+    }
+    public func set(_ float: Float, forKey keyName: String) {
+        self.set(float: float, forKey: keyName)
+    }
+    public func set(_ array: Array<Any>, forKey keyName: String) {
+        self.set(array: array, forKey: keyName)
+    }
+    public func set(_ object: Any, forKey keyName: String) {
+        self.set(object: object, forKey: keyName)
+    }
+    //Set Default Value Support
+    public func set(_ string: String?, defaultValue: String, forKey keyName: String) {
+        self.set(string ?? defaultValue, forKey: keyName)
+    }
+    public func set(_ bool: Bool?, defaultValue: Bool, forKey keyName: String) {
+        self.set(bool ?? defaultValue, forKey: keyName)
+    }
+    public func set(_ integer: Int?, defaultValue: Int, forKey keyName: String) {
+        self.set(integer, forKey: keyName)
+    }
+    public func set(_ double: Double?, defaultValue: Double, forKey keyName: String) {
+        self.set(double, forKey: keyName)
+    }
+    public func set(_ url: URL?, defaultValue: URL, forKey keyName: String) {
+        self.set(url ?? defaultValue, forKey: keyName)
+    }
+    public func set(_ float: Float?, defaultValue: Float, forKey keyName: String) {
+        self.set(float ?? defaultValue, forKey: keyName)
+    }
+    public func set(_ array: Array<Any>?, defaultValue: Array<Any>, forKey keyName: String) {
+        self.set(array ?? defaultValue, forKey: keyName)
+    }
+    public func set(_ object: Any?, defaultValue: Any, forKey keyName: String) {
+        self.set(object ?? defaultValue, forKey: keyName)
     }
     
     // MARK: Removing Values
@@ -327,5 +334,118 @@ public class MOBDefaultsKeychain : NSObject {
         keychainQueryDictionary[MOBDefaultsKeychain.SecAttrGeneric] = encodedIdentifier
         keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccount] = encodedIdentifier
         return keychainQueryDictionary
+    }
+    
+    
+    //Default value
+    @objc public func string(forKey keyName: String, defaultValue:String) -> String {
+        if let val = self.string(forKey: keyName) as String? {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func bool(forKey keyName: String, defaultValue:Bool) -> Bool {
+        if let val = self.bool(forKey: keyName) as Bool? {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func integer(forKey keyName: String, defaultValue:Int) -> Int {
+        if let val = self.integer(forKey: keyName) as Int? {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func double(forKey keyName: String, defaultValue:Double) -> Double {
+        if let val = self.double(forKey: keyName) as Double? {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func float(forKey keyName: String, defaultValue:Float) -> Float {
+        if let val = self.float(forKey: keyName) as Float? {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func url(forKey keyName: String, defaultValue:URL) -> URL {
+        if let val = self.url(forKey: keyName) as URL? {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func array(forKey keyName: String, defaultValue:Array<Any>) -> Array<Any> {
+        if let val = self.array(forKey: keyName) {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func object(forKey keyName: String, defaultValue:Any) -> Any {
+        if let val = self.object(forKey: keyName) {
+            return val
+        }
+        return defaultValue
+    }
+    @objc public func dictionary(forKey keyName: String, defaultValue:[String : Any]) -> [String : Any] {
+        if let val = self.dictionary(forKey: keyName) {
+            return val
+        }
+        return defaultValue
+    }
+    
+    //Default value nullable
+    public func string(forKey keyName: String, defaultValue defaultValueNullable:String?) -> String? {
+        if let val = self.string(forKey: keyName) as String? {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func bool(forKey keyName: String, defaultValue defaultValueNullable:Bool?) -> Bool? {
+        if let val = self.bool(forKey: keyName) as Bool? {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func integer(forKey keyName: String, defaultValue defaultValueNullable:Int?) -> Int? {
+        if let val = self.integer(forKey: keyName) as Int? {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func double(forKey keyName: String, defaultValue defaultValueNullable:Double?) -> Double? {
+        if let val = self.double(forKey: keyName) as Double? {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func float(forKey keyName: String, defaultValue defaultValueNullable:Float?) -> Float? {
+        if let val = self.float(forKey: keyName) as Float? {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func url(forKey keyName: String, defaultValue defaultValueNullable:URL?) -> URL? {
+        if let val = self.url(forKey: keyName) as URL? {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func array(forKey keyName: String, defaultValue defaultValueNullable:Array<Any>?) -> Array<Any>? {
+        if let val = self.array(forKey: keyName) {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func object(forKey keyName: String, defaultValue defaultValueNullable:Any?) -> Any? {
+        if let val = self.object(forKey: keyName) {
+            return val
+        }
+        return defaultValueNullable
+    }
+    public func dictionary(forKey keyName: String, defaultValue defaultValueNullable:[String : Any]?) -> [String : Any]? {
+        if let val = self.dictionary(forKey: keyName) {
+            return val
+        }
+        return defaultValueNullable
     }
 }

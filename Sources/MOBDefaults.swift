@@ -37,13 +37,13 @@ public class MOBDefaults: NSObject {
         }
         //cloud
         #if os(iOS)
-        cloudInstance = MOBDefaultsCloud()
+            cloudInstance = MOBDefaultsCloud()
         #endif
     }
-    @objc public func local() -> UserDefaults {
+    @objc public func local() -> MOBDefaultsUser {
         return localInstance
     }
-    @objc public func group() -> UserDefaults? {
+    @objc public func group() -> MOBDefaultsUser? {
         return groupInstance
     }
     #if os(iOS)
@@ -55,3 +55,4 @@ public class MOBDefaults: NSObject {
         return keychainInstance
     }
 }
+
