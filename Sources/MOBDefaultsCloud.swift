@@ -84,35 +84,35 @@ import Foundation
         super.synchronize()
     }
     //Set Default Value nullable Support
-    public func set(_ string: String?, defaultValue: String?, forKey keyName: String) {
+    public func set(string: String?, defaultValue: String?, forKey keyName: String) {
         super.set(string ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ bool: Bool?, defaultValue: Bool?, forKey keyName: String) {
+    public func set(bool: Bool?, defaultValue: Bool?, forKey keyName: String) {
         super.set(bool ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ integer: Int?, defaultValue: Int?, forKey keyName: String) {
+    public func set(integer: Int?, defaultValue: Int?, forKey keyName: String) {
         super.set(integer ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ double: Double?, defaultValue: Double?, forKey keyName: String) {
+    public func set(double: Double?, defaultValue: Double?, forKey keyName: String) {
         super.set(double ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ url: URL?, defaultValue: URL?, forKey keyName: String) {
+    public func set(url: URL?, defaultValue: URL?, forKey keyName: String) {
         super.set(url ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ float: Float?, defaultValue: Float?, forKey keyName: String) {
+    public func set(float: Float?, defaultValue: Float?, forKey keyName: String) {
         super.set(float ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ array: Array<Any>?, defaultValue: Array<Any>?, forKey keyName: String) {
+    public func set(array: Array<Any>?, defaultValue: Array<Any>?, forKey keyName: String) {
         super.set(array ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
-    public func set(_ object: Any?, defaultValue: Any?, forKey keyName: String) {
+    public func set(object: Any?, defaultValue: Any?, forKey keyName: String) {
         super.set(object ?? defaultValue, forKey: keyName)
         super.synchronize()
     }
