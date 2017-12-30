@@ -738,12 +738,16 @@ extension String {
         return self.removingCharacters(in: filteringSet)
     }
     
+    public func substring(from index1: String.Index, to index2: String.Index) -> String {
+        return String(self[index1..<index2])
+    }
+    
     public func substring(to index: String.Index) -> String {
         return String(self[..<index])
     }
     
     public func substring(from index: String.Index) -> String {
-        return String(self[..<index])
+        return String(self[index...])
     }
     
     public func asDouble() -> Double? {
@@ -841,26 +845,26 @@ extension String {
         if self.length == 10 {
             let s = self
             let s2 = String(format: "(%@) %@-%@",
-                            s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
-                            s.substring(to: s.index(s.startIndex, offsetBy: 6)).substring(from: s.index(s.startIndex, offsetBy: 3)),
-                            s.substring(to: s.index(s.startIndex, offsetBy: 10)).substring(from: s.index(s.startIndex, offsetBy: 6))
+                            s.substring(to: s.index(s.startIndex, offsetBy: 3)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 3), to: s.index(s.startIndex, offsetBy: 6)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 6))
             )
             return s2
         } else if self.length == 11 {
             let s = self
             let s2 = String(format: "+%@ (%@) %@-%@",
-                            s.substring(to: s.index(s.startIndex, offsetBy: 1)).substring(from: s.index(s.startIndex, offsetBy: 0)),
-                            s.substring(to: s.index(s.startIndex, offsetBy: 4)).substring(from: s.index(s.startIndex, offsetBy: 1)),
-                            s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 4)),
-                            s.substring(to: s.index(s.startIndex, offsetBy: 11)).substring(from: s.index(s.startIndex, offsetBy: 7))
+                            s.substring(to: s.index(s.startIndex, offsetBy: 1)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 1), to: s.index(s.startIndex, offsetBy: 4)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 4), to: s.index(s.startIndex, offsetBy: 7)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 7))
                 
             )
             return s2
         } else if self.length == 7 {
             let s = self
             let s2 = String(format: "%@-%@",
-                            s.substring(to: s.index(s.startIndex, offsetBy: 3)).substring(from: s.index(s.startIndex, offsetBy: 0)),
-                            s.substring(to: s.index(s.startIndex, offsetBy: 7)).substring(from: s.index(s.startIndex, offsetBy: 3))
+                            s.substring(to: s.index(s.startIndex, offsetBy: 3)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 3))
             )
             return s2
         }
@@ -885,4 +889,3 @@ extension String {
         return false
     }
 }
-
