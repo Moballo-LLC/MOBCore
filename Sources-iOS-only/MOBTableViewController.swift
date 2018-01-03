@@ -118,10 +118,7 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
     public var isSearching: Bool {
         return searchEnabled && searchController.isActive
     }
-    
-    public func setSearchColorscheme(barBackgroundColor: UIColor, barTintColor: UIColor, tintColor: UIColor, textboxBackgroundColor: UIColor, textColor: UIColor, cursorColor: UIColor, translucent: Bool, opaque: Bool) {
-        self.searchBar.setColorscheme(barBackgroundColor: barBackgroundColor, barTintColor: barTintColor, tintColor: tintColor, textboxBackgroundColor: textboxBackgroundColor, textColor: textColor, cursorColor: cursorColor, translucent: translucent, opaque: opaque)
-    }
+
     public func updateSearchResults(for searchController: UISearchController) {
         filterSearchResults(searchTerm: searchController.searchBar.text)
     }
