@@ -44,62 +44,116 @@
             // Returns true if the text is empty or nil
             return self.text?.isEmpty ?? true
         }
-        @objc public func setColorscheme(barBackgroundColor: UIColor, barTintColor: UIColor, tintColor: UIColor, textboxBackgroundColor: UIColor, textColor: UIColor, cursorColor: UIColor, translucent: Bool, opaque: Bool) {
-            if #available(iOS 11.0, *) {
-                self.backgroundColor = barBackgroundColor
-                self.isOpaque = opaque
-                self.isTranslucent = translucent
-                self.tintColor = tintColor
-                self.barTintColor = barTintColor
-                
-                if self.subviews.count > 0 {
-                    let view: UIView = self.subviews[0] as UIView
-                    let subViewsArray = view.subviews
-                    for subView: UIView in subViewsArray {
-                        if subView.isKind(of: UITextField.self){
-                            subView.tintColor = cursorColor
-                            if let texted = subView as? UITextField {
-                                texted.textColor = textColor
-                                texted.font = UIFont.systemFont(ofSize: 16.0)
-                            }
-                            if let backgroundview = subView.subviews.first {
-                                backgroundview.backgroundColor = textboxBackgroundColor
-                                
-                                // Rounded corner
-                                backgroundview.layer.cornerRadius = 10;
-                                backgroundview.clipsToBounds = true;
-                            }
-                        }
+        public var magnifyingGlassTextColor:UIColor? {
+            get {
+                if let textField = self.textField  {
+                    if let glassIconView = textField.leftView as? UIImageView {
+                        return glassIconView.tintColor
                     }
                 }
-            } else {
-                self.barTintColor = barTintColor
-                self.backgroundColor = barBackgroundColor
-                self.isTranslucent = translucent
-                self.isOpaque = opaque
-                self.tintColor = tintColor
-                if self.subviews.count > 0 {
-                    let view: UIView = self.subviews[0] as UIView
-                    let subViewsArray = view.subviews
-                    
-                    for subView: UIView in subViewsArray {
-                        if subView.isKind(of: UITextField.self){
-                            subView.tintColor = cursorColor
-                            //subView.tintColor = goldColor
-                            if let texted = subView as? UITextField {
-                                texted.textColor = textColor
-                                texted.font = UIFont.systemFont(ofSize: 16.0)
-                            }
-                            if let backgroundview = subView.subviews.first {
-                                backgroundview.backgroundColor = textboxBackgroundColor
-                                
-                                // Rounded corner
-                                backgroundview.layer.cornerRadius = 10;
-                                backgroundview.clipsToBounds = true;
-                            }
-                        }
+                return nil
+            }
+            
+            set (newValue) {
+                if let textField = self.textField  {
+                    if let glassIconView = textField.leftView as? UIImageView {
+                        glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
+                        glassIconView.tintColor = newValue
                     }
                 }
+            }
+        }
+        
+        public var clearButtonTextColor:UIColor? {
+            get {
+                if let textField = self.textField  {
+                    if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
+                        return crossIconView.tintColor
+                    }
+                }
+                return nil
+            }
+            
+            set (newValue) {
+                if let textField = self.textField  {
+                    if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
+                        crossIconView.setImage(crossIconView.currentImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+                        crossIconView.tintColor = newValue
+                    }
+                }
+            }
+        }
+        
+        public var placeholderTextColor:UIColor? {
+            get {
+                if let textField = self.textField  {
+                    if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
+                        return textFieldInsideSearchBarLabel.textColor
+                    }
+                }
+                return nil
+            }
+            
+            set (newValue) {
+                if let textField = self.textField  {
+                    if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
+                        textFieldInsideSearchBarLabel.textColor = newValue
+                    }
+                }
+            }
+        }
+        
+        public var font:UIFont? {
+            get {
+                if let textField = self.textField  {
+                    return textField.font
+                } else {
+                    return nil
+                }
+            }
+            
+            set (newValue) {
+                if let textField = self.textField  {
+                    textField.font = newValue
+                }
+            }
+        }
+        public var textColor:UIColor? {
+            get {
+                if let textField = self.textField  {
+                    return textField.textColor
+                } else {
+                    return nil
+                }
+            }
+            
+            set (newValue) {
+                if let textField = self.textField  {
+                    textField.textColor = newValue
+                }
+            }
+        }
+        public var cursorColor:UIColor? {
+            get {
+                if let textField = self.textField  {
+                    return textField.tintColor
+                } else {
+                    return nil
+                }
+            }
+            
+            set (newValue) {
+                if let textField = self.textField  {
+                    textField.tintColor = newValue
+                }
+            }
+        }
+        public var textField: UITextField? {
+            get {
+                let svs = subviews.flatMap { $0.subviews }
+                print(svs.filter { $0 is UITextField }.count)
+                guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return nil }
+                return tf
             }
         }
     }
@@ -445,6 +499,119 @@
         }
     }
     
+    extension UIColor {
+        public convenience init?(hexString: String) {
+            let r, g, b, a: CGFloat
+            
+            if hexString.hasPrefix("#") {
+                let start = hexString.index(hexString.startIndex, offsetBy: 1)
+                let hexColor = String(hexString[start...])
+                
+                if hexColor.count == 8 {
+                    let scanner = Scanner(string: hexColor)
+                    var hexNumber: UInt64 = 0
+                    
+                    if scanner.scanHexInt64(&hexNumber) {
+                        r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                        g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                        b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                        a = CGFloat(hexNumber & 0x000000ff) / 255
+                        
+                        self.init(red: r, green: g, blue: b, alpha: a)
+                        return
+                    }
+                }
+            }
+            
+            return nil
+        }
+        public convenience init(redInt: Int, greenInt: Int, blueInt: Int, alpha: CGFloat) {
+            let r = CGFloat(redInt) / 255
+            let g = CGFloat(greenInt) / 255
+            let b = CGFloat(blueInt) / 255
+            
+            self.init(red: r, green: g, blue: b, alpha: alpha)
+            return
+        }
+        public convenience init(redInt: Int, greenInt: Int, blueInt: Int) {
+            self.init(redInt: redInt, greenInt: greenInt, blueInt: blueInt, alpha: 1.0)
+            return
+        }
+        public var getRed:CGFloat {
+            get {
+                if let (red, _, _, _) = self.rgbCGFloat() {
+                    return red
+                }
+                return 0.00
+            }
+        }
+        public var getGreen:CGFloat {
+            get {
+                if let (_, green, _, _) = self.rgbCGFloat() {
+                    return green
+                }
+                return 0.00
+            }
+        }
+        public var getBlue:CGFloat {
+            get {
+                if let (_, _, blue, _) = self.rgbCGFloat() {
+                    return blue
+                }
+                return 0.00
+            }
+        }
+        public var getAlpha:CGFloat {
+            get {
+                if let (_, _, _, alpha) = self.rgbCGFloat() {
+                    return alpha
+                }
+                return 0.00
+            }
+        }
+        public func rgbInt() -> (red:Int, green:Int, blue:Int, alpha:Int)? {
+            var fRed : CGFloat = 0
+            var fGreen : CGFloat = 0
+            var fBlue : CGFloat = 0
+            var fAlpha: CGFloat = 0
+            if self.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) {
+                let iRed = Int(fRed * 255.0)
+                let iGreen = Int(fGreen * 255.0)
+                let iBlue = Int(fBlue * 255.0)
+                let iAlpha = Int(fAlpha * 255.0)
+                
+                return (red:iRed, green:iGreen, blue:iBlue, alpha:iAlpha)
+            } else {
+                // Could not extract RGBA components:
+                return nil
+            }
+        }
+        public func rgbCGFloat() -> (red:CGFloat, green:CGFloat, blue:CGFloat, alpha:CGFloat)? {
+            var fRed : CGFloat = 0
+            var fGreen : CGFloat = 0
+            var fBlue : CGFloat = 0
+            var fAlpha: CGFloat = 0
+            if self.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) {
+                return (red:fRed, green:fGreen, blue:fBlue, alpha:fAlpha)
+            } else {
+                // Could not extract RGBA components:
+                return nil
+            }
+        }
+        @objc public func darker(_ rate: CGFloat)->UIColor {
+            if var (red, green, blue, alpha) = self.rgbCGFloat() {
+                red = max(0.00, red - rate)
+                green = max(0.00, green - rate)
+                blue = max(0.00, blue - rate)
+                alpha = alpha * 1.0//silence annoying "should be a let" error
+                return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+            }
+            return self
+        }
+        @objc public func lighter(_ rate: CGFloat)->UIColor {
+            return self.darker(-1*rate)
+        }
+    }
     extension UIImage {
         public static func solidColor(_ color: UIColor, size: CGSize) -> UIImage {
             let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
