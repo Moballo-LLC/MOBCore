@@ -15,12 +15,14 @@ import Foundation
     internal let url: String
     internal let temporary: Bool
     internal let verificationString: String?
-    public init(name: String, type: String, url: String, temporary: Bool = false, verificationString:String? = nil) {
+    internal let removeVerificationStrings: Bool
+    public init(name: String, type: String, url: String, temporary: Bool = false, verificationString:String? = nil, removeVerificationStrings:Bool = false) {
         self.name = name
         self.type = type
         self.url = url
         self.temporary = temporary
         self.verificationString = verificationString
+        self.removeVerificationStrings = removeVerificationStrings
         super.init()
     }
     public func download(expiresAfterDays: Int = 0, forceRedownload: Bool = false) {
@@ -129,12 +131,13 @@ import Foundation
                                 print("MOBFile - INVALID DOWNLOAD - Could not verify download - "+self.nameOnLocal())
                                 downloadTask.cancel()
                                 return
-                            } else {
+                            } else if removeVerificationStrings {
                                 if let cleansed = strungResponse.replacingOccurrences(of: verificationString, with: "").data(using: String.Encoding.utf8) {
                                     dataToWrite = cleansed
                                 }
                             }
                         }
+                        //Fall through
                     }
                     
                     try dataToWrite.write(to: destinationUrl, options: [.atomic])
