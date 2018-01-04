@@ -59,7 +59,6 @@
 		043C62C1B32A08ED112B93E3 /* Pods_MOBCore_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		091AAAE238FC4640326C5A66 /* Pods-MOBCore_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_iOS/Pods-MOBCore_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		0FC4ED9B43B17D5C278215FA /* Pods-MOBCore Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore Watch/Pods-MOBCore Watch.release.xcconfig"; sourceTree = "<group>"; };
-		1E689A7C1C86AAF20027BEA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = SOURCE_ROOT; };
 		1EAFA0D81B6039D5001F3D84 /* MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B8F0FE66E16B47CA822592B /* Pods_MOBCore_WatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOBCore_WatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D07EEA3632BCB84C45AABA /* Pods-MOBCore_WatchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOBCore_WatchOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOBCore_WatchOS/Pods-MOBCore_WatchOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,7 +70,6 @@
 		960C9BEA1E03C69900DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		965AA2C11FC08F0700199E7C /* MOBCore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MOBCore.podspec; sourceTree = "<group>"; };
 		969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBAlerts.swift; sourceTree = "<group>"; };
-		96C2853C1E076C2C00481834 /* Info-watch.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watch.plist"; path = "Sources/Info-watch.plist"; sourceTree = SOURCE_ROOT; };
 		96C285521E076EFF00481834 /* Info-watch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-watch.plist"; sourceTree = "<group>"; };
 		96C285531E076EFF00481834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96C285551E076EFF00481834 /* MOBCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBCore.h; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 				960C9BCF1E03C65800DB9484 /* Pods.xcodeproj */,
 				96C285511E076EFF00481834 /* Sources */,
 				96C2855B1E076EFF00481834 /* Sources-iOS-only */,
-				1EAFA0DB1B6039D5001F3D84 /* Supporting Files */,
 				1EAFA0D91B6039D5001F3D84 /* Products */,
 				97D67C33FC933CC0C4422253 /* Frameworks */,
 				6BF7A103C2D76131A49BD181 /* Pods */,
@@ -147,16 +144,6 @@
 				960C9BBC1E03BFAB00DB9484 /* MOBCore_WatchOS.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1EAFA0DB1B6039D5001F3D84 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1E689A7C1C86AAF20027BEA1 /* Info.plist */,
-				96C2853C1E076C2C00481834 /* Info-watch.plist */,
-			);
-			name = "Supporting Files";
-			path = Kanna;
 			sourceTree = "<group>";
 		};
 		6BF7A103C2D76131A49BD181 /* Pods */ = {
