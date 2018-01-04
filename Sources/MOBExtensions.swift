@@ -151,7 +151,6 @@
         public var textField: UITextField? {
             get {
                 let svs = subviews.flatMap { $0.subviews }
-                print(svs.filter { $0 is UITextField }.count)
                 guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return nil }
                 return tf
             }
