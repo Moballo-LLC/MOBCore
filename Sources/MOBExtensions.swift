@@ -984,18 +984,25 @@ extension String {
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     public func withNoTrailingWhitespace() -> String {
-        if let trailingWs = self.range(of: "\\s+$", options: .regularExpression) {
-            return self.replacingCharacters(in: trailingWs, with: "")
-        } else {
-            return self
-        }
+        return self.trailingTrim(.whitespaces)
     }
     public func withNoLeadingWhitespace() -> String {
-        if let leadingWs = self.range(of: "$+\\s", options: .regularExpression) {
-            return self.replacingCharacters(in: leadingWs, with: "")
-        } else {
-            return self
+        return self.leadingTrim(.whitespaces)
+    }
+    public func withNoEdgeWhitespace() -> String {
+        return self.withNoLeadingWhitespace().withNoTrailingWhitespace()
+    }
+    public func trailingTrim(_ characterSet : CharacterSet) -> String {
+        if let range = rangeOfCharacter(from: characterSet, options: [.anchored, .backwards]) {
+            return self.substring(to: range.lowerBound).trailingTrim(characterSet)
         }
+        return self
+    }
+    public func leadingTrim(_ characterSet : CharacterSet) -> String {
+        if let range = rangeOfCharacter(from: characterSet, options: [.anchored]) {
+            return self.substring(from: range.upperBound).leadingTrim(characterSet)
+        }
+        return self
     }
     public var length: Int {
         return self.count
