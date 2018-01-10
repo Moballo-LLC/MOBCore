@@ -12,6 +12,7 @@
 		960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BE41E03C67600DB9484 /* UIKit.framework */; };
 		960C9BEB1E03C69900DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BEA1E03C69900DB9484 /* UIKit.framework */; };
 		969F0F6B1E73E862007EAE39 /* MOBAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */; };
+		96A22F1220067A3D00EF8A1D /* MOBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A22F1120067A3D00EF8A1D /* MOBConstants.swift */; };
 		96C2855E1E076EFF00481834 /* Info-watch.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C285521E076EFF00481834 /* Info-watch.plist */; };
 		96C285611E076EFF00481834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C285531E076EFF00481834 /* Info.plist */; };
 		96C285641E076EFF00481834 /* MOBCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 96C285551E076EFF00481834 /* MOBCore.h */; };
@@ -70,6 +71,7 @@
 		960C9BEA1E03C69900DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		965AA2C11FC08F0700199E7C /* MOBCore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MOBCore.podspec; sourceTree = "<group>"; };
 		969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOBAlerts.swift; sourceTree = "<group>"; };
+		96A22F1120067A3D00EF8A1D /* MOBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBConstants.swift; sourceTree = "<group>"; };
 		96C285521E076EFF00481834 /* Info-watch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-watch.plist"; sourceTree = "<group>"; };
 		96C285531E076EFF00481834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96C285551E076EFF00481834 /* MOBCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBCore.h; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				96C2855A1E076EFF00481834 /* MOBExtensions.swift */,
 				96D37D521F815407009FC1DE /* MOBDefaults.swift */,
 				96D37D511F815407009FC1DE /* MOBDefaultsCloud.swift */,
+				96A22F1120067A3D00EF8A1D /* MOBConstants.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96A22F1220067A3D00EF8A1D /* MOBConstants.swift in Sources */,
 				96D37D561F815546009FC1DE /* MOBDefaultsCloud.swift in Sources */,
 				96D37D551F815543009FC1DE /* MOBDefaults.swift in Sources */,
 				96C2856C1E076EFF00481834 /* MOBDefaultsUser.swift in Sources */,
