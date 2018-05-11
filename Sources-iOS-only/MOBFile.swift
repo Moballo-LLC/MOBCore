@@ -117,8 +117,8 @@ import Foundation
             if let dataFromURL = try? Data(contentsOf: location) {
                 var dataToWrite = dataFromURL
                 do {
-                    if let strungResponse = NSString(data: dataFromURL, encoding: String.Encoding.utf8.rawValue) as String! {
-                        if (strungResponse as NSString).contains("404 - File or directory not found.") {
+                    if let strungResponse = String(data: dataFromURL, encoding: String.Encoding.utf8) {
+                        if strungResponse.contains("404 - File or directory not found.") {
                             print("MOBFile - INVALID DOWNLOAD - 404 Error - "+self.nameOnLocal())
                             downloadTask.cancel()
                             return

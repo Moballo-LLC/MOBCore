@@ -40,7 +40,7 @@ import Foundation
         if let data = keychainData {
             stringValue = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
             if let trimmedString = stringValue {
-                if trimmedString.removingCharacters(in: CharacterSet.whitespaces) as String! == "" {
+                if trimmedString.removingCharacters(in: CharacterSet.whitespaces) == "" {
                     return nil
                 }
             }
