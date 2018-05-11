@@ -913,10 +913,10 @@ extension String {
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     public func withNoTrailingWhitespace() -> String {
-        return self.trailingTrim(.whitespaces)
+        return self.trailingTrim(.whitespacesAndNewlines)
     }
     public func withNoLeadingWhitespace() -> String {
-        return self.leadingTrim(.whitespaces)
+        return self.leadingTrim(.whitespacesAndNewlines)
     }
     public func withNoEdgeWhitespace() -> String {
         return self.withNoLeadingWhitespace().withNoTrailingWhitespace()
