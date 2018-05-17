@@ -158,7 +158,7 @@ extension Date {
         
         if year { comps += long ? "yyyy" : "yy" }
         if month { comps += long ? "MMMM" : (short ? "MM" : "MMM") }
-        if day { comps += long ? "dd" : "d" }
+        if day { comps += long ? "dd" : "dd" }
         
         if hour { comps += long ? "HH" : "H" }
         if minute { comps += long ? "mm" : "m" }
