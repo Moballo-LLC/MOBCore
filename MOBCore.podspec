@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MOBCore'
-  s.version          = '2.4.7'
+  s.version          = '2.4.8'
   s.summary          = 'A core set of functions and extensions to power a slew of applications'
   s.homepage         = 'https://github.com/Moballo-LLC/MOBCore'
   s.license          = 'MIT'
@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
   s.watchos.deployment_target = '2.0'
+  s.swift_version = '4.0'
 
   s.framework = 'UIKit'
   s.framework = 'CoreLocation'
