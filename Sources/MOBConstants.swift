@@ -11,6 +11,6 @@ import Foundation
 //SET MOBALLO VARIABLES HERE
 public class MOBInternalConstants {
     static public let copyrightEntity = "Moballo, LLC"
-    static public let supportWebsite = "http://moballo.com"
+    static public let supportWebsite = "https://moballo.com"
     static public let supportEmail = "support@moballo.com"
 }
