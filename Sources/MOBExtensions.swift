@@ -883,14 +883,16 @@ extension String {
         return String(self[i] as Character)
     }
     
-    public func removingCharacters(in characterSet: CharacterSet) -> String {
-        return self.components(separatedBy: characterSet).joined()
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(count, r.lowerBound)),
+                                            upper: min(count, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
     }
     
-    subscript (r: Range<Int>) -> String {
-        let start = index(startIndex, offsetBy: r.lowerBound)
-        let end = index(startIndex, offsetBy: r.upperBound - r.lowerBound)
-        return String(self[Range(start ..< end)])
+    public func removingCharacters(in characterSet: CharacterSet) -> String {
+        return self.components(separatedBy: characterSet).joined()
     }
     public func strippedWebsiteForURL() -> String {
         ///converts "http://www.google.com/search/page/saiojdfghadlsifuhlaisdf" to "google.com"
