@@ -414,10 +414,10 @@ extension UIApplication {
     }
     @objc public func getScreenshotImageData() -> Data {
         let image = getScreenshot()
-        if let toReturn = UIImagePNGRepresentation(image) {
+        if let toReturn = image.pngData() {
             return toReturn
         }
-        else if let toReturn = UIImageJPEGRepresentation(image, 1.0) {
+        else if let toReturn = image.jpegData(compressionQuality: 1.0) {
             return toReturn
         }
         return Data()
@@ -456,8 +456,8 @@ extension UIApplication {
         } else {
             infoText = UIApplication.appInfo()
         }
-        let alertController = UIAlertController(title: appName, message: infoText, preferredStyle: UIAlertControllerStyle.alert)
-        let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel) {
+        let alertController = UIAlertController(title: appName, message: infoText, preferredStyle: UIAlertController.Style.alert)
+        let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.cancel) {
             UIAlertAction in
         }
         alertController.addAction(Dismiss)
@@ -690,8 +690,8 @@ extension Data {
 }
 extension UIAlertController {
     //does not support text fields
-    public func duplicate(preferredStyle: UIAlertControllerStyle? = nil) ->UIAlertController {
-        let newStyle:UIAlertControllerStyle
+    public func duplicate(preferredStyle: UIAlertController.Style? = nil) ->UIAlertController {
+        let newStyle:UIAlertController.Style
         if let overrideStyle = preferredStyle {
             newStyle = overrideStyle
         } else {
