@@ -52,8 +52,8 @@ import MessageUI
         return "\n\n\n\n\n\n\n\n\n\n\nPLEASE DO NOT DELETE THE FOLLOWING FROM EMAIL!!!\(appNamePortion)\nVersion: \(actualAppVersion)\nBuild: \(actualAppBuild)\nOperating System: \(actualOperatingSystem)\nDevice Name: \(actualDeviceName)"
     }
     open func showSendMailErrorAlert() {
-        let alertController = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail. Please check e-mail configuration and try again.", preferredStyle: UIAlertControllerStyle.alert)
-        let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel) {
+        let alertController = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail. Please check e-mail configuration and try again.", preferredStyle: UIAlertController.Style.alert)
+        let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.cancel) {
             UIAlertAction in
         }
         alertController.addAction(Dismiss)
