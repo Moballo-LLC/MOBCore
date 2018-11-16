@@ -439,23 +439,16 @@ extension UIApplication {
         return "© "+String(year)+" "+copyrightEntity
         
     }
-    public static func appInfo(customCopyright: String? = nil) -> String {
-        let copyright: String
-        if let overwriteEntityCopyright = customCopyright {
-            copyright = UIApplication.appCopyright(customCopyright: overwriteEntityCopyright)
-        } else {
-            copyright = UIApplication.appCopyright()
+    public static func appInfo(customCopyright: String? = nil, disclosure: String? = nil) -> String {
+        let copyright = UIApplication.appCopyright(customCopyright: customCopyright)
+        var infoText = "Version: "+UIApplication.appVersion()+"\nBuild: "+UIApplication.appBuild()+"\n \nContact Us: "+MOBInternalConstants.supportEmail+"\nWebsite: "+MOBInternalConstants.supportWebsite+"\n\n"+copyright
+        if let realDisclosure = disclosure {
+            infoText += "\n\n" + realDisclosure
         }
-        let infoText = "Version: \(UIApplication.appVersion())\nBuild: \(UIApplication.appBuild())\n \nContact Us: \(MOBInternalConstants.supportEmail)\nWebsite: \(MOBInternalConstants.supportWebsite)\n\n\(copyright)"
         return infoText
     }
-    public static func appAboutController(appName: String, customCopyright: String? = nil) ->UIAlertController {
-        let infoText:String
-        if let overwriteEntityCopyright = customCopyright {
-            infoText = UIApplication.appInfo(customCopyright: overwriteEntityCopyright)
-        } else {
-            infoText = UIApplication.appInfo()
-        }
+    public static func appAboutController(appName: String, customCopyright: String? = nil, disclosure: String? = nil) ->UIAlertController {
+        let infoText = UIApplication.appInfo(customCopyright: customCopyright, disclosure: disclosure)
         let alertController = UIAlertController(title: appName, message: infoText, preferredStyle: UIAlertController.Style.alert)
         let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.cancel) {
             UIAlertAction in

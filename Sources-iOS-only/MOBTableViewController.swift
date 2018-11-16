@@ -11,6 +11,7 @@ import UIKit
 @objc open class MOBTableViewController: UITableViewController {
     fileprivate var statusLabelView: UILabel?
     override open func viewDidLoad() {
+        super.viewDidLoad()
         self.extendedLayoutIncludesOpaqueBars = false;
         self.tableView.keyboardDismissMode = .interactive
         statusLabelView = UILabel()
@@ -37,7 +38,6 @@ import UIKit
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|->=padding-[statusLabel(<=maxWidth)]->=padding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["padding" : 15, "maxWidth" : 290], views: ["statusLabel" : searchLabel]))
             self.view.addConstraints(constraints)
         }
-        super.viewDidLoad()
     }
     public func setStatusLabelColor(_ color: UIColor) {
         if let searchLabel = statusLabelView {
@@ -70,29 +70,38 @@ import UIKit
 open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
     public var searchController = UISearchController(searchResultsController: nil)
     fileprivate var privateSearchEnabled = false;
+    fileprivate var hideSearchBarWhileScrolling = true;
     public var searchEnabled: Bool {
-        return privateSearchEnabled;
+        return self.privateSearchEnabled;
     }
     public var searchBar: UISearchBar {
-        return searchController.searchBar;
+        return self.searchController.searchBar;
     }
     open func filterSearchResults(searchTerm: String?) {
         //OVERRIDE IN SUBCLASS
     }
     override open func viewDidLoad() {
-        setupSearchController()
         super.viewDidLoad()
+        self.setupSearchController()
+    }
+    @available(iOS 11.0, *)
+    public func hideSearchBarWhileScrolling(_ hideWhileScroll: Bool) {
+        self.hideSearchBarWhileScrolling = hideWhileScroll
+        self.navigationItem.hidesSearchBarWhenScrolling = self.hideSearchBarWhileScrolling
     }
     
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
     public func enableSearch() {
         if #available(iOS 11.0, *) {
-            self.navigationItem.searchController = searchController
-            self.navigationItem.hidesSearchBarWhenScrolling = true
+            self.navigationItem.searchController = self.searchController
+            self.navigationItem.hidesSearchBarWhenScrolling = self.hideSearchBarWhileScrolling
         } else {
-            self.tableView.tableHeaderView = searchBar
+            self.tableView.tableHeaderView = self.searchBar
             //self.navigationItem.titleView = searchController.searchBar
         }
-        privateSearchEnabled = true;
+        self.privateSearchEnabled = true;
     }
     public func disableSearch() {
         if #available(iOS 11.0, *) {
@@ -101,36 +110,27 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
             self.tableView.tableHeaderView = nil
             //self.navigationItem.titleView = nil
         }
-        privateSearchEnabled = false;
+        self.privateSearchEnabled = false;
     }
     fileprivate func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = true
+        self.searchController.searchResultsUpdater = self
+        self.searchController.delegate = self
+        self.searchController.dimsBackgroundDuringPresentation = false
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.definesPresentationContext = true
+        self.extendedLayoutIncludesOpaqueBars = false
     }
     public func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
-        return searchBar.isEmpty
+        return self.searchBar.isEmpty
     }
     
     public var isSearching: Bool {
-        return searchEnabled && searchController.isActive
+        return self.searchEnabled && self.searchController.isActive
     }
-
+    
     public func updateSearchResults(for searchController: UISearchController) {
         filterSearchResults(searchTerm: searchController.searchBar.text)
-    }
-    public func didPresentSearchController(_ searchController: UISearchController) {
-        if #available(iOS 11.0, *) {
-            self.navigationItem.hidesSearchBarWhenScrolling = false
-        }
-    }
-    public func didDismissSearchController(_ searchController: UISearchController) {
-        if #available(iOS 11.0, *) {
-            self.navigationItem.hidesSearchBarWhenScrolling = true
-        }
     }
 }
 
