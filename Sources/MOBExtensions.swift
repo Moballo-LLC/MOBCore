@@ -939,30 +939,55 @@ extension String {
         return false
     }
     
+    public enum RegularExpressions: String {
+        case phone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$"
+    }
+    
+    public func isValid(regex: RegularExpressions) -> Bool {
+        return isValid(regex: regex.rawValue)
+    }
+    
+    public func isValid(regex: String) -> Bool {
+        let matches = range(of: regex, options: .regularExpression)
+        return matches != nil
+    }
+    
+    public func onlyDigits() -> String {
+        let filtredUnicodeScalars = unicodeScalars.filter{CharacterSet.decimalDigits.contains($0)}
+        return String(String.UnicodeScalarView(filtredUnicodeScalars))
+    }
+    
+    public func generatePhoneUrl() -> URL? {
+        return URL(string: "tel://"+self.onlyDigits());
+    }
+    
+    public func isValidPhone() -> Bool {
+        return self.isValid(regex: .phone)
+    }
+    
     public func formattedAsPhone() -> String {
-        if self.length == 10 {
-            let s = self
+        let s = self.onlyDigits()
+        if s.length == 10 {
             let s2 = String(format: "(%@) %@-%@",
                             s.substring(to: s.index(s.startIndex, offsetBy: 3)),
                             s.substring(from: s.index(s.startIndex, offsetBy: 3), to: s.index(s.startIndex, offsetBy: 6)),
                             s.substring(from: s.index(s.startIndex, offsetBy: 6))
             )
             return s2
-        } else if self.length == 11 {
-            let s = self
-            let s2 = String(format: "+%@ (%@) %@-%@",
-                            s.substring(to: s.index(s.startIndex, offsetBy: 1)),
-                            s.substring(from: s.index(s.startIndex, offsetBy: 1), to: s.index(s.startIndex, offsetBy: 4)),
-                            s.substring(from: s.index(s.startIndex, offsetBy: 4), to: s.index(s.startIndex, offsetBy: 7)),
-                            s.substring(from: s.index(s.startIndex, offsetBy: 7))
-                
-            )
-            return s2
-        } else if self.length == 7 {
-            let s = self
+        } else if s.length == 7 {
             let s2 = String(format: "%@-%@",
                             s.substring(to: s.index(s.startIndex, offsetBy: 3)),
                             s.substring(from: s.index(s.startIndex, offsetBy: 3))
+            )
+            return s2
+        } else if s.length > 10 {
+            let countryCodeLength = s.length - 10;
+            let s2 = String(format: "+%@ (%@) %@-%@",
+                            s.substring(to: s.index(s.startIndex, offsetBy: countryCodeLength)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: countryCodeLength), to: s.index(s.startIndex, offsetBy: 3+countryCodeLength)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 3+countryCodeLength), to: s.index(s.startIndex, offsetBy: 6+countryCodeLength)),
+                            s.substring(from: s.index(s.startIndex, offsetBy: 6+countryCodeLength))
+                
             )
             return s2
         }
