@@ -122,6 +122,10 @@ import Foundation
                             print("MOBFile - INVALID DOWNLOAD - 404 Error - "+self.nameOnLocal())
                             downloadTask.cancel()
                             return
+                        } else if strungResponse.contains("This page contains the following errors:") {
+                            print("MOBFile - INVALID DOWNLOAD - Page contains errors - "+self.nameOnLocal())
+                            downloadTask.cancel()
+                            return
                         } else if strungResponse.removingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
                             print("MOBFile - INVALID DOWNLOAD - empty response - "+self.nameOnLocal())
                             downloadTask.cancel()
