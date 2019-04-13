@@ -14,6 +14,11 @@ import UIKit
         super.viewDidLoad()
         self.extendedLayoutIncludesOpaqueBars = false;
         self.tableView.keyboardDismissMode = .interactive
+        self.edgesForExtendedLayout = UIRectEdge()
+        self.definesPresentationContext = true
+        self.extendedLayoutIncludesOpaqueBars = false
+        self.automaticallyAdjustsScrollViewInsets = true
+        
         statusLabelView = UILabel()
         if let searchLabel = statusLabelView {
             searchLabel.text = ""
@@ -116,13 +121,18 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.dimsBackgroundDuringPresentation = false
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.definesPresentationContext = true
-        self.extendedLayoutIncludesOpaqueBars = false
+        self.searchController.hidesNavigationBarDuringPresentation = true
+        if #available(iOSApplicationExtension 9.1, *) {
+            self.searchController.obscuresBackgroundDuringPresentation = false
+        }
     }
     public func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         return self.searchBar.isEmpty
+    }
+    
+    public func willDismissSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.showsCancelButton = false
     }
     
     public var isSearching: Bool {
