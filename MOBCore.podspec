@@ -9,7 +9,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
   s.watchos.deployment_target = '3.0'
-  s.swift_version = '5.0'
 
   s.framework = 'UIKit'
   s.framework = 'CoreLocation'
