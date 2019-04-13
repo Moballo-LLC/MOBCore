@@ -122,7 +122,7 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         self.searchController.delegate = self
         self.searchController.dimsBackgroundDuringPresentation = false
         self.searchController.hidesNavigationBarDuringPresentation = true
-        if #available(iOSApplicationExtension 9.1, *) {
+        if #available(iOS 9.1, *) {
             self.searchController.obscuresBackgroundDuringPresentation = false
         }
     }
@@ -143,4 +143,3 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         filterSearchResults(searchTerm: searchController.searchBar.text)
     }
 }
-
