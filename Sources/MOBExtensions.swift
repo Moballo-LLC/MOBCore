@@ -366,7 +366,7 @@ extension NSString {
     }
 }
 public extension NSNumber {
-    @objc public func degreesToCardinalDirection()->String {
+    @objc func degreesToCardinalDirection()->String {
         let headingDeg:Double = Double((self.doubleValue + 720.0)).truncatingRemainder(dividingBy: 360)
         if(headingDeg > 348.15) {
             return "N"

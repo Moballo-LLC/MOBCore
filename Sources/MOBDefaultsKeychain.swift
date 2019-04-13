@@ -157,10 +157,10 @@ import Foundation
         var result: AnyObject?
         
         // Limit search results to one
-        keychainQueryDictionary[MOBDefaultsKeychain.SecMatchLimit] = kSecMatchLimitOne
+        keychainQueryDictionary[MOBDefaultsKeychain.SecMatchLimit as Any] = kSecMatchLimitOne
         
         // Specify we want NSData/CFData returned
-        keychainQueryDictionary[MOBDefaultsKeychain.SecReturnData] = kCFBooleanTrue
+        keychainQueryDictionary[MOBDefaultsKeychain.SecReturnData as Any] = kCFBooleanTrue
         
         // Search
         let status = withUnsafeMutablePointer(to: &result) {
@@ -223,10 +223,10 @@ import Foundation
     fileprivate func setData(value: Data, forKey keyName: String) -> Bool {
         let keychainQueryDictionary: NSMutableDictionary = self.setupKeychainQueryDictionary(forKey: keyName)
         
-        keychainQueryDictionary[MOBDefaultsKeychain.SecValueData] = value
-        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccessGroup] = self.accessGroup
+        keychainQueryDictionary[MOBDefaultsKeychain.SecValueData as Any] = value
+        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccessGroup as Any] = self.accessGroup
         // Protect the keychain entry so it's only valid when the device is unlocked
-        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccessible] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccessible as Any] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
         let status: OSStatus = SecItemAdd(keychainQueryDictionary, nil)
         
         if status == errSecSuccess {
@@ -297,16 +297,16 @@ import Foundation
     
     internal func setupKeychainQueryDictionary(forKey keyName: String) -> NSMutableDictionary {
         // Setup dictionary to access keychain and specify we are using a generic password (rather than a certificate, internet password, etc)
-        let keychainQueryDictionary: NSMutableDictionary = [MOBDefaultsKeychain.SecClass:kSecClassGenericPassword]
+        let keychainQueryDictionary: NSMutableDictionary = [(MOBDefaultsKeychain.SecClass as Any):kSecClassGenericPassword]
         
         // Uniquely identify this keychain accessor
-        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrService] = MOBDefaultsKeychain.serviceName
+        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrService as Any] = MOBDefaultsKeychain.serviceName
         // Uniquely identify the account who will be accessing the keychain
         let encodedIdentifier: Data? = keyName.data(using: String.Encoding.utf8)
         //     keychainQueryDictionary.setObject(accessGroup!, forKey: kSecAttrAccessGroup as String)
-        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccessGroup] = accessGroup
-        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrGeneric] = encodedIdentifier
-        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccount] = encodedIdentifier
+        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccessGroup as Any] = accessGroup
+        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrGeneric as Any] = encodedIdentifier
+        keychainQueryDictionary[MOBDefaultsKeychain.SecAttrAccount as Any] = encodedIdentifier
         return keychainQueryDictionary
     }
     
