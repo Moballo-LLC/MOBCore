@@ -12,12 +12,14 @@ import UIKit
     fileprivate var statusLabelView: UILabel?
     override open func viewDidLoad() {
         super.viewDidLoad()
-        self.extendedLayoutIncludesOpaqueBars = false;
         self.tableView.keyboardDismissMode = .interactive
-        self.edgesForExtendedLayout = UIRectEdge()
+//        self.edgesForExtendedLayout = UIRectEdge()
         self.definesPresentationContext = true
         self.extendedLayoutIncludesOpaqueBars = false
-        self.automaticallyAdjustsScrollViewInsets = true
+        self.automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            self.navigationItem.hidesSearchBarWhenScrolling = true
+        }
         
         statusLabelView = UILabel()
         if let searchLabel = statusLabelView {
@@ -63,11 +65,9 @@ import UIKit
             searchLabel.isHidden = true
         }
     }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         tableView.deselectAllCells()
     }
 }
@@ -89,24 +89,25 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         super.viewDidLoad()
         self.setupSearchController()
     }
-    @available(iOS 11.0, *)
-    public func hideSearchBarWhileScrolling(_ hideWhileScroll: Bool) {
-        self.hideSearchBarWhileScrolling = hideWhileScroll
-        self.navigationItem.hidesSearchBarWhenScrolling = self.hideSearchBarWhileScrolling
+    
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if #available(iOS 11.0, *), searchController.searchBar.frame.height == 0 {
+            navigationItem.searchController?.isActive = false
+        }
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
     }
     
-    override open func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
     public func enableSearch() {
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = self.searchController
-            self.navigationItem.hidesSearchBarWhenScrolling = self.hideSearchBarWhileScrolling
         } else {
             self.tableView.tableHeaderView = self.searchBar
             //self.navigationItem.titleView = searchController.searchBar
         }
-        self.privateSearchEnabled = true;
+        self.privateSearchEnabled = true
     }
     public func disableSearch() {
         if #available(iOS 11.0, *) {
@@ -125,6 +126,12 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         if #available(iOS 9.1, *) {
             self.searchController.obscuresBackgroundDuringPresentation = false
         }
+        self.searchController.definesPresentationContext = false
+        if #available(iOS 13.0, *) {
+            self.searchController.automaticallyShowsCancelButton = true
+        } else {
+            // Fallback on earlier versions
+        }
     }
     public func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
@@ -132,7 +139,10 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
     }
     
     public func willDismissSearchController(_ searchController: UISearchController) {
-        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.showsCancelButton = searchController.isActive;
+    }
+    public func willPresentSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.showsCancelButton = searchController.isActive;
     }
     
     public var isSearching: Bool {
@@ -141,5 +151,6 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
     
     public func updateSearchResults(for searchController: UISearchController) {
         filterSearchResults(searchTerm: searchController.searchBar.text)
+        searchController.searchBar.showsCancelButton = searchController.isActive;
     }
 }
