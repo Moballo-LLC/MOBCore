@@ -13,9 +13,9 @@ import UIKit
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.keyboardDismissMode = .interactive
-//        self.edgesForExtendedLayout = UIRectEdge()
-        self.definesPresentationContext = true
+        self.edgesForExtendedLayout = UIRectEdge()
         self.extendedLayoutIncludesOpaqueBars = false
+        self.definesPresentationContext = true
         self.automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             self.navigationItem.hidesSearchBarWhenScrolling = true
@@ -105,7 +105,6 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
             self.navigationItem.searchController = self.searchController
         } else {
             self.tableView.tableHeaderView = self.searchBar
-            //self.navigationItem.titleView = searchController.searchBar
         }
         self.privateSearchEnabled = true
     }
@@ -122,15 +121,17 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.dimsBackgroundDuringPresentation = false
-        self.searchController.hidesNavigationBarDuringPresentation = true
+        if #available(iOS 11.0, *) {
+            self.searchController.hidesNavigationBarDuringPresentation = true
+        } else {
+            self.searchController.hidesNavigationBarDuringPresentation = false
+        }
         if #available(iOS 9.1, *) {
             self.searchController.obscuresBackgroundDuringPresentation = false
         }
         self.searchController.definesPresentationContext = false
         if #available(iOS 13.0, *) {
             self.searchController.automaticallyShowsCancelButton = true
-        } else {
-            // Fallback on earlier versions
         }
     }
     public func searchBarIsEmpty() -> Bool {
