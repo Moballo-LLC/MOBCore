@@ -10,15 +10,18 @@ import UIKit
 
 @objc open class MOBTableViewController: UITableViewController {
     fileprivate var statusLabelView: UILabel?
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.keyboardDismissMode = .interactive
-        self.edgesForExtendedLayout = UIRectEdge()
+        self.edgesForExtendedLayout = .all
+        self.edgesForExtendedLayout = []
         self.extendedLayoutIncludesOpaqueBars = false
         self.definesPresentationContext = true
-        self.automaticallyAdjustsScrollViewInsets = false
+        self.automaticallyAdjustsScrollViewInsets = true
         if #available(iOS 11.0, *) {
             self.navigationItem.hidesSearchBarWhenScrolling = true
+            self.tableView.contentInsetAdjustmentBehavior = .automatic
         }
         
         statusLabelView = UILabel()
@@ -69,8 +72,35 @@ import UIKit
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.deselectAllCells()
+        self.offsetTableToBottomNavbar()
+    }
+    
+    private func offsetTableToBottomNavbar() {
+        if let table = self.tableView, let navbar = self.navigationController?.navigationBar {
+            let tableMaxY = table.frame.maxY
+            
+            table.frame.origin = CGPoint(x: 0, y: navbar.frame.maxY)
+            table.frame.size = CGSize(width: table.frame.width, height: table.frame.height - (table.frame.maxY - tableMaxY))
+            
+            
+            if let toolbar = navigationController?.toolbar, !(navigationController?.isToolbarHidden ?? true) {
+                table.frame.size = CGSize(width: table.frame.width, height: table.frame.height - (table.frame.maxY - toolbar.frame.minY))
+            } else if let tabbar = self.tabBarController?.tabBar {
+                table.frame.size = CGSize(width: table.frame.width, height: table.frame.height - (table.frame.maxY - tabbar.frame.minY))
+            }
+            
+            self.edgesForExtendedLayout = .all
+            self.edgesForExtendedLayout = []
+            table.superview?.invalidateIntrinsicContentSize()
+            table.invalidateIntrinsicContentSize()
+            table.superview?.setNeedsLayout()
+            table.superview?.layoutIfNeeded()
+            table.setNeedsLayout()
+            table.layoutIfNeeded()
+        }
     }
 }
+
 
 open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
     public var searchController = UISearchController(searchResultsController: nil)
@@ -90,16 +120,6 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         self.setupSearchController()
     }
     
-    override open func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if #available(iOS 11.0, *), searchController.searchBar.frame.height == 0 {
-            navigationItem.searchController?.isActive = false
-        }
-        self.tableView.setNeedsLayout()
-        self.tableView.layoutIfNeeded()
-    }
-    
     public func enableSearch() {
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = self.searchController
@@ -113,10 +133,10 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
             self.navigationItem.searchController = nil
         } else {
             self.tableView.tableHeaderView = nil
-            //self.navigationItem.titleView = nil
         }
         self.privateSearchEnabled = false;
     }
+    
     fileprivate func setupSearchController() {
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
@@ -129,9 +149,9 @@ open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchCon
         if #available(iOS 9.1, *) {
             self.searchController.obscuresBackgroundDuringPresentation = false
         }
-        self.searchController.definesPresentationContext = false
         if #available(iOS 13.0, *) {
             self.searchController.automaticallyShowsCancelButton = true
+            self.searchController.showsSearchResultsController = false
         }
     }
     public func searchBarIsEmpty() -> Bool {
