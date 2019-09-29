@@ -33,6 +33,55 @@ extension UITableView {
         }
     }
 }
+extension UINavigationController {
+    fileprivate func doAfterAnimatingTransition(animated: Bool, completion: @escaping (() -> Void)) {
+        if let coordinator = transitionCoordinator, animated {
+            coordinator.animate(alongsideTransition: nil, completion: { _ in
+                completion()
+            })
+        } else {
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    @objc public func pushToViewController(_ viewController: UIViewController, animated:Bool = true, completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.doAfterAnimatingTransition(animated: animated, completion: completion);
+        }
+        self.pushViewController(viewController, animated: animated)
+        CATransaction.commit()
+    }
+
+    @objc public func popViewController(animated:Bool = true, completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.doAfterAnimatingTransition(animated: animated, completion: completion);
+        }
+        self.popViewController(animated: true)
+        CATransaction.commit()
+    }
+
+    @objc public func popToViewController(_ viewController: UIViewController, animated:Bool = true, completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.doAfterAnimatingTransition(animated: animated, completion: completion);
+        }
+        self.popToViewController(viewController, animated: animated)
+        CATransaction.commit()
+    }
+
+    @objc public func popToRootViewController(animated:Bool = true, completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.doAfterAnimatingTransition(animated: animated, completion: completion);
+        }
+        self.popToRootViewController(animated: animated)
+        CATransaction.commit()
+    }
+}
 extension UISearchBar {
     public var isEmpty: Bool {
         // Returns true if the text is empty or nil
