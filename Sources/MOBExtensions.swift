@@ -532,7 +532,7 @@ extension UIView {
     public static func animateWithDuration(_ duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping damping: CGFloat, animations: @escaping () -> ()) {
         UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: [], animations: animations, completion: nil)
     }
-    var rootSuperview: UIView {
+    public var rootSuperview: UIView {
        var view = self
         while view.superview != nil {
            view = view.superview!
@@ -540,9 +540,9 @@ extension UIView {
        return view
     }
 
-    var isOnWindow: Bool {
-       return self.window != nil
-      }
+    public var isOnWindow: Bool {
+        return self.window != nil
+    }
 }
 
 extension UIColor {
