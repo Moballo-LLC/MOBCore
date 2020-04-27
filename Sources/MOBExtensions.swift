@@ -455,7 +455,7 @@ public extension NSNumber {
 }
 extension UIApplication {
     @objc public func getScreenshot() -> UIImage {
-        let layer = self.keyWindow?.layer
+        let layer = self.getCurrentWindow()?.layer
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(layer!.frame.size, false, scale)
         layer?.render(in: UIGraphicsGetCurrentContext()!)
@@ -517,6 +517,33 @@ extension UIApplication {
             }
             return false
         }
+    }
+    @objc public func getCurrentWindow() -> UIWindow? {
+        var presentationWindow: UIWindow? = self.delegate?.window ?? nil
+        
+        if(presentationWindow != nil) {
+            return presentationWindow
+        }
+
+        
+        if #available(iOS 13.0, *) {
+            for scene in self.connectedScenes {
+                if let windowScene = scene as? UIWindowScene {
+                    for window in windowScene.windows {
+                        presentationWindow = window
+                        if windowScene.activationState == .foregroundActive && presentationWindow?.isKeyWindow == true {
+                            return presentationWindow
+                        }
+                    }
+                }
+            }
+        }
+        
+        if(presentationWindow == nil) {
+            presentationWindow = self.keyWindow
+        }
+        
+        return presentationWindow
     }
 }
 extension UIView {
