@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 960C9BE41E03C67600DB9484 /* UIKit.framework */; };
+		961E8EDF2456670F0085E39B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E8EDE2456670F0085E39B /* CoreServices.framework */; };
 		96894CB82198A8FA0072C89F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96894CB72198A8FA0072C89F /* CoreLocation.framework */; };
 		96894CBA2198A8FE0072C89F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96894CB92198A8FE0072C89F /* UIKit.framework */; };
 		969F0F6B1E73E862007EAE39 /* MOBAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969F0F6A1E73E862007EAE39 /* MOBAlerts.swift */; };
@@ -27,7 +28,6 @@
 		96C2857F1E07719F00481834 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C2857E1E07719F00481834 /* MessageUI.framework */; };
 		96C285811E0771A700481834 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285801E0771A700481834 /* StoreKit.framework */; };
 		96C285831E0771AC00481834 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285821E0771AC00481834 /* CoreSpotlight.framework */; };
-		96C285851E0771B100481834 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C285841E0771B100481834 /* MobileCoreServices.framework */; };
 		96D37D531F815537009FC1DE /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D37D521F815407009FC1DE /* MOBDefaults.swift */; };
 		96D37D541F81553E009FC1DE /* MOBDefaultsCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D37D511F815407009FC1DE /* MOBDefaultsCloud.swift */; };
 		96D37D551F815543009FC1DE /* MOBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D37D521F815407009FC1DE /* MOBDefaults.swift */; };
@@ -39,6 +39,7 @@
 		1EAFA0D81B6039D5001F3D84 /* MOBCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MOBCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960C9BBC1E03BFAB00DB9484 /* MOBCore_WatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MOBCore_WatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960C9BE41E03C67600DB9484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		961E8EDE2456670F0085E39B /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		965AA2C11FC08F0700199E7C /* MOBCore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MOBCore.podspec; sourceTree = "<group>"; };
 		96894CB72198A8FA0072C89F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		96894CB92198A8FE0072C89F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -68,12 +69,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96C285851E0771B100481834 /* MobileCoreServices.framework in Frameworks */,
 				96C285831E0771AC00481834 /* CoreSpotlight.framework in Frameworks */,
 				96C285811E0771A700481834 /* StoreKit.framework in Frameworks */,
 				96C2857F1E07719F00481834 /* MessageUI.framework in Frameworks */,
 				96C2857D1E07718F00481834 /* MapKit.framework in Frameworks */,
 				96C2857B1E07718600481834 /* CoreLocation.framework in Frameworks */,
+				961E8EDF2456670F0085E39B /* CoreServices.framework in Frameworks */,
 				960C9BE51E03C67600DB9484 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +141,7 @@
 		97D67C33FC933CC0C4422253 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				961E8EDE2456670F0085E39B /* CoreServices.framework */,
 				96894CB92198A8FE0072C89F /* UIKit.framework */,
 				96894CB72198A8FA0072C89F /* CoreLocation.framework */,
 				96C285841E0771B100481834 /* MobileCoreServices.framework */,
@@ -442,7 +444,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3410;
+				CURRENT_PROJECT_VERSION = 3500;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -461,7 +463,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 3.4.1;
+				MARKETING_VERSION = 3.5.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-iquote",
@@ -505,7 +507,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3410;
+				CURRENT_PROJECT_VERSION = 3500;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -525,7 +527,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 3.4.1;
+				MARKETING_VERSION = 3.5.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-iquote",
@@ -569,7 +571,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3410;
+				CURRENT_PROJECT_VERSION = 3500;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -580,7 +582,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 3.4.1;
+				MARKETING_VERSION = 3.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.moballo.MOBCore-watchOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -603,7 +605,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3410;
+				CURRENT_PROJECT_VERSION = 3500;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -613,7 +615,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 3.4.1;
+				MARKETING_VERSION = 3.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.moballo.MOBCore-watchOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

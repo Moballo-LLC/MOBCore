@@ -20,7 +20,7 @@ public class MOBAlertHandler: NSObject {
         super.init()
     }
     @objc public func dismissAlert(completion: (() -> Void)? = nil) {
-        if let keyWindow = internalApplication.keyWindow {
+        if let keyWindow = internalApplication.getCurrentWindow() {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
                 
@@ -42,7 +42,7 @@ public class MOBAlertHandler: NSObject {
             theTimer.invalidate()
             MOBAlertTimer = nil
         }
-        if let keyWindow = internalApplication.keyWindow {
+        if let keyWindow = internalApplication.getCurrentWindow() {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
                 if let currentAlert = topVC.presentedViewController as? MOBAlertController {
@@ -61,7 +61,7 @@ public class MOBAlertHandler: NSObject {
     }
     
     fileprivate func presentAlertController(_ inputAlert: MOBAlertController? = nil, placeOnTopOfQueue:Bool = false, completion: (() -> Void)? = nil) {
-        if let keyWindow = internalApplication.keyWindow {
+        if let keyWindow = internalApplication.getCurrentWindow() {
             if let rootVC = keyWindow.rootViewController {
                 let topVC = getTopmostNavController(relativeTo: rootVC)
                 
