@@ -36,7 +36,7 @@ import UIKit
             searchLabel.isHidden = true
             searchLabel.translatesAutoresizingMaskIntoConstraints = false;
             let topPadding:CGFloat
-            if UIApplication.isExtension {
+            if Bundle.main.isExtension {
                 topPadding = max(5, (self.tableView.rowHeight-searchLabel.frame.height)/2)
             } else {
                 topPadding = 55.0
@@ -109,77 +109,78 @@ import UIKit
     }
 }
 
-
-open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
-    public var searchController = UISearchController(searchResultsController: nil)
-    fileprivate var privateSearchEnabled = false;
-    fileprivate var hideSearchBarWhileScrolling = true;
-    public var searchEnabled: Bool {
-        return self.privateSearchEnabled;
-    }
-    public var searchBar: UISearchBar {
-        return self.searchController.searchBar;
-    }
-    open func filterSearchResults(searchTerm: String?) {
-        //OVERRIDE IN SUBCLASS
-    }
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        self.setupSearchController()
-    }
-    
-    public func enableSearch() {
-        if #available(iOS 11.0, *) {
-            self.navigationItem.searchController = self.searchController
-        } else {
-            self.tableView.tableHeaderView = self.searchBar
+#if os(iOS)
+    open class MOBTableViewControllerWithSearch: MOBTableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
+        public var searchController = UISearchController(searchResultsController: nil)
+        fileprivate var privateSearchEnabled = false;
+        fileprivate var hideSearchBarWhileScrolling = true;
+        public var searchEnabled: Bool {
+            return self.privateSearchEnabled;
         }
-        self.privateSearchEnabled = true
-    }
-    public func disableSearch() {
-        if #available(iOS 11.0, *) {
-            self.navigationItem.searchController = nil
-        } else {
-            self.tableView.tableHeaderView = nil
+        public var searchBar: UISearchBar {
+            return self.searchController.searchBar;
         }
-        self.privateSearchEnabled = false;
-    }
-    
-    fileprivate func setupSearchController() {
-        self.searchController.searchResultsUpdater = self
-        self.searchController.delegate = self
-        self.searchController.dimsBackgroundDuringPresentation = false
-        if #available(iOS 11.0, *) {
-            self.searchController.hidesNavigationBarDuringPresentation = true
-        } else {
-            self.searchController.hidesNavigationBarDuringPresentation = false
+        open func filterSearchResults(searchTerm: String?) {
+            //OVERRIDE IN SUBCLASS
         }
-        if #available(iOS 9.1, *) {
-            self.searchController.obscuresBackgroundDuringPresentation = false
+        override open func viewDidLoad() {
+            super.viewDidLoad()
+            self.setupSearchController()
         }
-        if #available(iOS 13.0, *) {
-            self.searchController.automaticallyShowsCancelButton = true
-            self.searchController.showsSearchResultsController = false
+        
+        public func enableSearch() {
+            if #available(iOS 11.0, *) {
+                self.navigationItem.searchController = self.searchController
+            } else {
+                self.tableView.tableHeaderView = self.searchBar
+            }
+            self.privateSearchEnabled = true
+        }
+        public func disableSearch() {
+            if #available(iOS 11.0, *) {
+                self.navigationItem.searchController = nil
+            } else {
+                self.tableView.tableHeaderView = nil
+            }
+            self.privateSearchEnabled = false;
+        }
+        
+        fileprivate func setupSearchController() {
+            self.searchController.searchResultsUpdater = self
+            self.searchController.delegate = self
+            self.searchController.dimsBackgroundDuringPresentation = false
+            if #available(iOS 11.0, *) {
+                self.searchController.hidesNavigationBarDuringPresentation = true
+            } else {
+                self.searchController.hidesNavigationBarDuringPresentation = false
+            }
+            if #available(iOS 9.1, *) {
+                self.searchController.obscuresBackgroundDuringPresentation = false
+            }
+            if #available(iOS 13.0, *) {
+                self.searchController.automaticallyShowsCancelButton = true
+                self.searchController.showsSearchResultsController = false
+            }
+        }
+        public func searchBarIsEmpty() -> Bool {
+            // Returns true if the text is empty or nil
+            return self.searchBar.isEmpty
+        }
+        
+        public func willDismissSearchController(_ searchController: UISearchController) {
+            searchController.searchBar.showsCancelButton = searchController.isActive;
+        }
+        public func willPresentSearchController(_ searchController: UISearchController) {
+            searchController.searchBar.showsCancelButton = searchController.isActive;
+        }
+        
+        public var isSearching: Bool {
+            return self.searchEnabled && self.searchController.isActive
+        }
+        
+        public func updateSearchResults(for searchController: UISearchController) {
+            filterSearchResults(searchTerm: searchController.searchBar.text)
+            searchController.searchBar.showsCancelButton = searchController.isActive;
         }
     }
-    public func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
-        return self.searchBar.isEmpty
-    }
-    
-    public func willDismissSearchController(_ searchController: UISearchController) {
-        searchController.searchBar.showsCancelButton = searchController.isActive;
-    }
-    public func willPresentSearchController(_ searchController: UISearchController) {
-        searchController.searchBar.showsCancelButton = searchController.isActive;
-    }
-    
-    public var isSearching: Bool {
-        return self.searchEnabled && self.searchController.isActive
-    }
-    
-    public func updateSearchResults(for searchController: UISearchController) {
-        filterSearchResults(searchTerm: searchController.searchBar.text)
-        searchController.searchBar.showsCancelButton = searchController.isActive;
-    }
-}
+#endif
