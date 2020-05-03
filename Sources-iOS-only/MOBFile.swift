@@ -126,7 +126,7 @@ import Foundation
                             print("MOBFile - INVALID DOWNLOAD - Page contains errors - "+self.nameOnLocal())
                             downloadTask.cancel()
                             return
-                        } else if strungResponse.removingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                        } else if strungResponse.components(separatedBy: CharacterSet.whitespacesAndNewlines).joined() == "" {
                             print("MOBFile - INVALID DOWNLOAD - empty response - "+self.nameOnLocal())
                             downloadTask.cancel()
                             return

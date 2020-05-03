@@ -40,7 +40,7 @@ import Foundation
         if let data = keychainData {
             stringValue = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
             if let trimmedString = stringValue {
-                if trimmedString.removingCharacters(in: CharacterSet.whitespaces) == "" {
+                if trimmedString.components(separatedBy: CharacterSet.whitespaces).joined() == "" {
                     return nil
                 }
             }
@@ -58,7 +58,11 @@ import Foundation
         let keychainData: Data? = self.getData(forKey: keyName)
         var boolValue: Bool?
         if let data = keychainData {
-            boolValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Bool?
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try boolValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Bool } catch { boolValue = nil }
+            } else {
+                boolValue = NSKeyedUnarchiver.unarchiveObject(with: data) as? Bool
+            }
         }
         else {
             return nil
@@ -70,7 +74,11 @@ import Foundation
         let keychainData: Data? = self.getData(forKey: keyName)
         var intValue: Int?
         if let data = keychainData {
-            intValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Int?
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try intValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Int } catch { intValue = nil }
+            } else {
+                intValue = NSKeyedUnarchiver.unarchiveObject(with: data) as? Int
+            }
         }
         else {
             return nil
@@ -82,7 +90,11 @@ import Foundation
         let keychainData: Data? = self.getData(forKey: keyName)
         var doubleValue: Double?
         if let data = keychainData {
-            doubleValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Double?
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try doubleValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Double } catch { doubleValue = nil }
+            } else {
+                doubleValue = NSKeyedUnarchiver.unarchiveObject(with: data) as? Double
+            }
         }
         else {
             return nil
@@ -94,7 +106,11 @@ import Foundation
         let keychainData: Data? = self.getData(forKey: keyName)
         var floatValue: Float?
         if let data = keychainData {
-            floatValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Float?
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try floatValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Float } catch { floatValue = nil }
+            } else {
+                floatValue = NSKeyedUnarchiver.unarchiveObject(with: data) as? Float
+            }
         }
         else {
             return nil
@@ -106,7 +122,11 @@ import Foundation
         let keychainData: Data? = self.getData(forKey: keyName)
         var urlValue: URL?
         if let data = keychainData {
-            urlValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! URL?
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try urlValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? URL } catch { urlValue = nil }
+            } else {
+                urlValue = NSKeyedUnarchiver.unarchiveObject(with: data) as? URL
+            }
         }
         else {
             return nil
@@ -118,7 +138,11 @@ import Foundation
         let keychainData: Data? = self.getData(forKey: keyName)
         var dictValue: [String : Any]?
         if let data = keychainData {
-            dictValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! [String : Any]?
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try dictValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String : Any] } catch { dictValue = nil }
+            } else {
+                dictValue = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String : Any]
+            }
         }
         else {
             return nil
@@ -130,7 +154,11 @@ import Foundation
         let keychainData: Data? = self.getData(forKey: keyName)
         var arrayValue: Array<Any>?
         if let data = keychainData {
-            arrayValue = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<Any>?
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try arrayValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Array<Any> } catch { arrayValue = nil }
+            } else {
+                arrayValue = NSKeyedUnarchiver.unarchiveObject(with: data) as? Array<Any>
+            }
         }
         else {
             return nil
@@ -144,7 +172,11 @@ import Foundation
         var objectValue: Any?
         
         if let data = dataValue {
-            objectValue = NSKeyedUnarchiver.unarchiveObject(with: data)
+            if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+                do { try objectValue = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) } catch { objectValue = nil }
+            } else {
+                objectValue = NSKeyedUnarchiver.unarchiveObject(with: data)
+            }
         } else {
             return nil
         }
@@ -181,42 +213,82 @@ import Foundation
     }
     @discardableResult
     public func set(bool: Bool, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: bool)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: bool, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: bool)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
     public func set(integer: Int, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: integer)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: integer, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: integer)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
     public func set(float: Float, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: float)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: float, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: float)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
     public func set(double: Double, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: double)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: double, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: double)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
     public func set(url: URL, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: url)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: url, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: url)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
     public func set(dictionary: [String : Any], forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: dictionary, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
     public func set(array: Array<Any>, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: array)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: array, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: array)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
     public func set(object: Any, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: object)
+        let data: Data
+        if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: true) } catch { return false }
+        } else {
+            data = NSKeyedArchiver.archivedData(withRootObject: object)
+        }
         return self.setData(value: data, forKey: keyName)
     }
     @discardableResult
