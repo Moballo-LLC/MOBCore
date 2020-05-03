@@ -215,7 +215,7 @@ import Foundation
     public func set(bool: Bool, forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: bool, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: bool, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: bool)
         }
@@ -225,7 +225,7 @@ import Foundation
     public func set(integer: Int, forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: integer, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: integer, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: integer)
         }
@@ -235,7 +235,7 @@ import Foundation
     public func set(float: Float, forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: float, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: float, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: float)
         }
@@ -245,7 +245,7 @@ import Foundation
     public func set(double: Double, forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: double, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: double, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: double)
         }
@@ -255,7 +255,7 @@ import Foundation
     public func set(url: URL, forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: url, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: url, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: url)
         }
@@ -265,7 +265,7 @@ import Foundation
     public func set(dictionary: [String : Any], forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: dictionary, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: dictionary, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
         }
@@ -275,7 +275,7 @@ import Foundation
     public func set(array: Array<Any>, forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: array, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: array, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: array)
         }
@@ -285,7 +285,7 @@ import Foundation
     public func set(object: Any, forKey keyName: String) -> Bool {
         let data: Data
         if #available(iOS 11.0, watchOS 4.0, iOSApplicationExtension 11.0, *) {
-            do { try data = NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: true) } catch { return false }
+            do { try data = NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: false) } catch { return false }
         } else {
             data = NSKeyedArchiver.archivedData(withRootObject: object)
         }
