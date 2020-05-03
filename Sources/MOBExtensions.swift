@@ -135,62 +135,6 @@ public extension NSNumber {
     }
 }
     
-    
-extension UIApplication {
-    @objc public func getScreenshot() -> UIImage {
-        let layer = self.getCurrentWindow()?.layer
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(layer!.frame.size, false, scale)
-        layer?.render(in: UIGraphicsGetCurrentContext()!)
-        return UIGraphicsGetImageFromCurrentImageContext()!
-    }
-    @objc public func getScreenshotImageData() -> Data {
-        let image = getScreenshot()
-        if let toReturn = image.pngData() {
-            return toReturn
-        }
-        else if let toReturn = image.jpegData(compressionQuality: 1.0) {
-            return toReturn
-        }
-        return Data()
-    }
-    public static func appAboutController(appName: String, customCopyright: String? = nil, disclosure: String? = nil) ->UIAlertController {
-        let infoText = UIApplication.appInfo(customCopyright: customCopyright, disclosure: disclosure)
-        let alertController = UIAlertController(title: appName, message: infoText, preferredStyle: UIAlertController.Style.alert)
-        let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.cancel) {
-            UIAlertAction in
-        }
-        alertController.addAction(Dismiss)
-        return alertController;
-    }
-    @objc public func getCurrentWindow() -> UIWindow? {
-        var presentationWindow: UIWindow? = self.delegate?.window ?? nil
-        
-        if(presentationWindow != nil) {
-            return presentationWindow
-        }
-
-        
-        if #available(iOS 13.0, *) {
-            for scene in self.connectedScenes {
-                if let windowScene = scene as? UIWindowScene {
-                    for window in windowScene.windows {
-                        presentationWindow = window
-                        if windowScene.activationState == .foregroundActive && presentationWindow?.isKeyWindow == true {
-                            return presentationWindow
-                        }
-                    }
-                }
-            }
-        }
-        
-        if(presentationWindow == nil) {
-            presentationWindow = self.keyWindow
-        }
-        
-        return presentationWindow
-    }
-}
 extension UIView {
     @objc public func getViewScreenshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
@@ -456,6 +400,125 @@ extension UILabel {
         return text.minHeight(width: self.frame.width, font: self.font, numberOfLines: self.numberOfLines, lineBreakMode: self.lineBreakMode)
     }
 }
+
+extension UISearchBar {
+    public var isEmpty: Bool {
+        // Returns true if the text is empty or nil
+        return self.text?.isEmpty ?? true
+    }
+    public var magnifyingGlassTextColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                if let glassIconView = textField.leftView as? UIImageView {
+                    return glassIconView.tintColor
+                }
+            }
+            return nil
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                if let glassIconView = textField.leftView as? UIImageView {
+                    glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
+                    glassIconView.tintColor = newValue
+                }
+            }
+        }
+    }
+    
+    public var clearButtonTextColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
+                    return crossIconView.tintColor
+                }
+            }
+            return nil
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
+                    crossIconView.setImage(crossIconView.currentImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+                    crossIconView.tintColor = newValue
+                }
+            }
+        }
+    }
+    
+    public var placeholderTextColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
+                    return textFieldInsideSearchBarLabel.textColor
+                }
+            }
+            return nil
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
+                    textFieldInsideSearchBarLabel.textColor = newValue
+                }
+            }
+        }
+    }
+    
+    public var font:UIFont? {
+        get {
+            if let textField = self.textField  {
+                return textField.font
+            } else {
+                return nil
+            }
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                textField.font = newValue
+            }
+        }
+    }
+    public var textColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                return textField.textColor
+            } else {
+                return nil
+            }
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                textField.textColor = newValue
+            }
+        }
+    }
+    public var cursorColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                return textField.tintColor
+            } else {
+                return nil
+            }
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                textField.tintColor = newValue
+            }
+        }
+    }
+    public var textField: UITextField? {
+        get {
+            let svs = subviews.flatMap { $0.subviews }
+            guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return nil }
+            return tf
+        }
+    }
+}
+
 extension UIDevice {
     public static var isIpad: Bool {
         get {
@@ -510,6 +573,96 @@ extension UIDevice {
     }
     
 }
+extension UIApplication {
+    public static func appVersion() -> String {
+        return Bundle.main.applicationVersionNumber
+    }
+    public static func appBuild() -> String {
+        return Bundle.main.applicationBuildNumber
+    }
+    public static func appCopyright(customCopyright: String? = nil) -> String {
+        let copyrightEntity: String
+        if let overwriteEntityCopyright = customCopyright {
+            copyrightEntity = overwriteEntityCopyright
+        } else {
+            copyrightEntity = MOBInternalConstants.copyrightEntity
+        }
+        let year = Calendar.current.component(.year, from: Date())
+        return "© "+String(year)+" "+copyrightEntity
+        
+    }
+    public static func appInfo(customCopyright: String? = nil, disclosure: String? = nil) -> String {
+        let copyright = UIApplication.appCopyright(customCopyright: customCopyright)
+        var infoText = "Version: "+UIApplication.appVersion()+"\nBuild: "+UIApplication.appBuild()+"\n \nContact Us: "+MOBInternalConstants.supportEmail+"\nWebsite: "+MOBInternalConstants.supportWebsite+"\n\n"+copyright
+        if let realDisclosure = disclosure {
+            infoText += "\n\n" + realDisclosure
+        }
+        return infoText
+    }
+    public static var isExtension: Bool {
+        get {
+            return Bundle.main.isExtension
+        }
+    }
+    public static var isTestFlight: Bool {
+        get {
+            Bundle.main.isTestFlight
+        }
+    }
+    @objc public func getScreenshot() -> UIImage {
+        let layer = self.getCurrentWindow()?.layer
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(layer!.frame.size, false, scale)
+        layer?.render(in: UIGraphicsGetCurrentContext()!)
+        return UIGraphicsGetImageFromCurrentImageContext()!
+    }
+    @objc public func getScreenshotImageData() -> Data {
+        let image = getScreenshot()
+        if let toReturn = image.pngData() {
+            return toReturn
+        }
+        else if let toReturn = image.jpegData(compressionQuality: 1.0) {
+            return toReturn
+        }
+        return Data()
+    }
+    public static func appAboutController(appName: String, customCopyright: String? = nil, disclosure: String? = nil) ->UIAlertController {
+        let infoText = UIApplication.appInfo(customCopyright: customCopyright, disclosure: disclosure)
+        let alertController = UIAlertController(title: appName, message: infoText, preferredStyle: UIAlertController.Style.alert)
+        let Dismiss = UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+        }
+        alertController.addAction(Dismiss)
+        return alertController;
+    }
+    @objc public func getCurrentWindow() -> UIWindow? {
+        var presentationWindow: UIWindow? = self.delegate?.window ?? nil
+        
+        if(presentationWindow != nil) {
+            return presentationWindow
+        }
+
+        
+        if #available(iOS 13.0, *) {
+            for scene in self.connectedScenes {
+                if let windowScene = scene as? UIWindowScene {
+                    for window in windowScene.windows {
+                        presentationWindow = window
+                        if windowScene.activationState == .foregroundActive && presentationWindow?.isKeyWindow == true {
+                            return presentationWindow
+                        }
+                    }
+                }
+            }
+        }
+        
+        if(presentationWindow == nil) {
+            presentationWindow = self.keyWindow
+        }
+        
+        return presentationWindow
+    }
+}
 ///Fuzzy comparison funcs
 public func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
@@ -545,46 +698,6 @@ import UIKit
 
 
 //Shared Extensions
-extension UIApplication {
-    public static func appVersion() -> String {
-        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-    }
-    public static func appBuild() -> String {
-        return Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-    }
-    public static func appCopyright(customCopyright: String? = nil) -> String {
-        let copyrightEntity: String
-        if let overwriteEntityCopyright = customCopyright {
-            copyrightEntity = overwriteEntityCopyright
-        } else {
-            copyrightEntity = MOBInternalConstants.copyrightEntity
-        }
-        let year = Calendar.current.component(.year, from: Date())
-        return "© "+String(year)+" "+copyrightEntity
-        
-    }
-    public static func appInfo(customCopyright: String? = nil, disclosure: String? = nil) -> String {
-        let copyright = UIApplication.appCopyright(customCopyright: customCopyright)
-        var infoText = "Version: "+UIApplication.appVersion()+"\nBuild: "+UIApplication.appBuild()+"\n \nContact Us: "+MOBInternalConstants.supportEmail+"\nWebsite: "+MOBInternalConstants.supportWebsite+"\n\n"+copyright
-        if let realDisclosure = disclosure {
-            infoText += "\n\n" + realDisclosure
-        }
-        return infoText
-    }
-    public static var isExtension: Bool {
-        get {
-            return Bundle.main.bundlePath.hasSuffix(".appex")
-        }
-    }
-    public static var isTestFlight: Bool {
-        get {
-            if let url = Bundle.main.appStoreReceiptURL {
-                return (url.lastPathComponent == "sandboxReceipt")
-            }
-            return false
-        }
-    }
-}
 
 extension String {
     public func removingCharacters(in characterSet: CharacterSet) -> String {
@@ -787,123 +900,6 @@ extension String {
     }
 }
 
-extension UISearchBar {
-    public var isEmpty: Bool {
-        // Returns true if the text is empty or nil
-        return self.text?.isEmpty ?? true
-    }
-    public var magnifyingGlassTextColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                if let glassIconView = textField.leftView as? UIImageView {
-                    return glassIconView.tintColor
-                }
-            }
-            return nil
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                if let glassIconView = textField.leftView as? UIImageView {
-                    glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
-                    glassIconView.tintColor = newValue
-                }
-            }
-        }
-    }
-    
-    public var clearButtonTextColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
-                    return crossIconView.tintColor
-                }
-            }
-            return nil
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
-                    crossIconView.setImage(crossIconView.currentImage?.withRenderingMode(.alwaysTemplate), for: .normal)
-                    crossIconView.tintColor = newValue
-                }
-            }
-        }
-    }
-    
-    public var placeholderTextColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
-                    return textFieldInsideSearchBarLabel.textColor
-                }
-            }
-            return nil
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
-                    textFieldInsideSearchBarLabel.textColor = newValue
-                }
-            }
-        }
-    }
-    
-    public var font:UIFont? {
-        get {
-            if let textField = self.textField  {
-                return textField.font
-            } else {
-                return nil
-            }
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                textField.font = newValue
-            }
-        }
-    }
-    public var textColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                return textField.textColor
-            } else {
-                return nil
-            }
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                textField.textColor = newValue
-            }
-        }
-    }
-    public var cursorColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                return textField.tintColor
-            } else {
-                return nil
-            }
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                textField.tintColor = newValue
-            }
-        }
-    }
-    public var textField: UITextField? {
-        get {
-            let svs = subviews.flatMap { $0.subviews }
-            guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return nil }
-            return tf
-        }
-    }
-}
 extension Date {
     public func formattedFromCompenents(styleAttitude: DateFormatter.Style, year: Bool = false, month: Bool = false, day: Bool = false, hour: Bool = false, minute: Bool = false, second: Bool = false, locale: Locale = Locale.current) -> String {
         let long = styleAttitude == .long || styleAttitude == .full
@@ -1091,18 +1087,32 @@ extension Int {
 }
 
 extension Bundle {
-    public static var applicationVersionNumber: String {
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+    public var applicationVersionNumber: String {
+        if let version = self.infoDictionary?["CFBundleShortVersionString"] as? String {
             return version
         }
         return "Version Number Not Available"
     }
     
-    public static var applicationBuildNumber: String {
-        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+    public var applicationBuildNumber: String {
+        if let build = self.infoDictionary?["CFBundleVersion"] as? String {
             return build
         }
         return "Build Number Not Available"
+    }
+    
+    public var isExtension: Bool {
+        get {
+            return self.bundlePath.hasSuffix(".appex")
+        }
+    }
+    public var isTestFlight: Bool {
+        get {
+            if let url = self.appStoreReceiptURL {
+                return (url.lastPathComponent == "sandboxReceipt")
+            }
+            return false
+        }
     }
     
 }
