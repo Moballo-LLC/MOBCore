@@ -71,7 +71,15 @@ import UIKit
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.deselectAllCells()
+        //deselect all cells
+        if self.tableView.indexPathsForSelectedRows != nil {
+            if self.tableView.indexPathsForSelectedRows! != [] {
+                for cell in self.tableView.indexPathsForSelectedRows! {
+                    self.tableView.deselectRow(at: cell, animated: false)
+                }
+            }
+        }
+        
         self.offsetTableToBottomNavbar()
     }
     

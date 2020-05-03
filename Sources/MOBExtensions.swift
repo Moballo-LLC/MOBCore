@@ -82,331 +82,12 @@ extension UINavigationController {
         CATransaction.commit()
     }
 }
-extension UISearchBar {
-    public var isEmpty: Bool {
-        // Returns true if the text is empty or nil
-        return self.text?.isEmpty ?? true
-    }
-    public var magnifyingGlassTextColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                if let glassIconView = textField.leftView as? UIImageView {
-                    return glassIconView.tintColor
-                }
-            }
-            return nil
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                if let glassIconView = textField.leftView as? UIImageView {
-                    glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
-                    glassIconView.tintColor = newValue
-                }
-            }
-        }
-    }
-    
-    public var clearButtonTextColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
-                    return crossIconView.tintColor
-                }
-            }
-            return nil
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
-                    crossIconView.setImage(crossIconView.currentImage?.withRenderingMode(.alwaysTemplate), for: .normal)
-                    crossIconView.tintColor = newValue
-                }
-            }
-        }
-    }
-    
-    public var placeholderTextColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
-                    return textFieldInsideSearchBarLabel.textColor
-                }
-            }
-            return nil
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
-                    textFieldInsideSearchBarLabel.textColor = newValue
-                }
-            }
-        }
-    }
-    
-    public var font:UIFont? {
-        get {
-            if let textField = self.textField  {
-                return textField.font
-            } else {
-                return nil
-            }
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                textField.font = newValue
-            }
-        }
-    }
-    public var textColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                return textField.textColor
-            } else {
-                return nil
-            }
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                textField.textColor = newValue
-            }
-        }
-    }
-    public var cursorColor:UIColor? {
-        get {
-            if let textField = self.textField  {
-                return textField.tintColor
-            } else {
-                return nil
-            }
-        }
-        
-        set (newValue) {
-            if let textField = self.textField  {
-                textField.tintColor = newValue
-            }
-        }
-    }
-    public var textField: UITextField? {
-        get {
-            let svs = subviews.flatMap { $0.subviews }
-            guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return nil }
-            return tf
-        }
-    }
-}
-extension Date {
-    public func formattedFromCompenents(styleAttitude: DateFormatter.Style, year: Bool = false, month: Bool = false, day: Bool = false, hour: Bool = false, minute: Bool = false, second: Bool = false, locale: Locale = Locale.current) -> String {
-        let long = styleAttitude == .long || styleAttitude == .full
-        let short = styleAttitude == .short
-        var comps = ""
-        
-        if year { comps += long ? "yyyy" : "yy" }
-        if month { comps += long ? "MMMM" : (short ? "MM" : "MMM") }
-        if day { comps += long ? "dd" : "dd" }
-        
-        if hour { comps += long ? "HH" : "H" }
-        if minute { comps += long ? "mm" : "m" }
-        if second { comps += long ? "ss" : "s" }
-        let format = DateFormatter.dateFormat(fromTemplate: comps, options: 00, locale: locale)
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        return formatter.string(from: self)
-    }
-    public func shortString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter.string(from: self) as String
-    }
-    public func shortDateString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        return formatter.string(from: self) as String
-    }
-    public func mediumDateString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter.string(from: self) as String
-    }
-    public func shortTimeString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
-        return formatter.string(from: self) as String
-    }
-    public func mediumTimeString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .medium
-        return formatter.string(from: self) as String
-    }
-    public func shortDateNoYearString() -> String {
-        return self.formattedFromCompenents(styleAttitude: .short, year: false, month: true, day: true)
-    }
-    public func mediumDateNoYearString() -> String {
-        return self.formattedFromCompenents(styleAttitude: .medium, year: false, month: true, day: true)
-    }
-    public func longDateNoYearString() -> String {
-        return self.formattedFromCompenents(styleAttitude: .long, year: false, month: true, day: true)
-    }
-    ///converts to a "10 seconds ago" / "1 day ago" syntax
-    public func agoString() -> String {
-        let deltaTime = -self.timeIntervalSinceNow
-        
-        //in the past
-        if deltaTime > 0 {
-            if deltaTime < 60 {
-                return "just now"
-            }
-            if deltaTime < 3600 { //less than an hour
-                let amount = Int(deltaTime/60.0)
-                let plural = amount == 1 ? "" : "s"
-                return "\(amount) Minute\(plural) Ago"
-            }
-            else if deltaTime < 86400 { //less than a day
-                let amount = Int(deltaTime/3600.0)
-                let plural = amount == 1 ? "" : "s"
-                return "\(amount) Hour\(plural) Ago"
-            }
-            else if deltaTime < 432000 { //less than five days
-                let amount = Int(deltaTime/86400.0)
-                let plural = amount == 1 ? "" : "s"
-                if amount == 1 {
-                    return "Yesterday"
-                }
-                return "\(amount) Day\(plural) Ago"
-            }
-        }
-        
-        //in the future
-        if deltaTime < 0 {
-            if deltaTime > -60 {
-                return "Just Now"
-            }
-            if deltaTime > -3600 { //in less than an hour
-                let amount = -Int(deltaTime/60.0)
-                let plural = amount == 1 ? "" : "s"
-                return "In \(amount) Minute\(plural)"
-            }
-            else if deltaTime > -86400 { //in less than a day
-                let amount = -Int(deltaTime/3600.0)
-                let plural = amount == 1 ? "" : "s"
-                return "In \(amount) Hour\(plural)"
-            }
-            else if deltaTime > -432000 { //in less than five days
-                let amount = -Int(deltaTime/86400.0)
-                let plural = amount == 1 ? "" : "s"
-                if amount == 1 {
-                    return "Tomorrow"
-                }
-                return "In \(amount) Day\(plural)"
-            }
-        }
-        
-        let dateString = DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
-        return "\(dateString)"
-        
-    }
-    public var isToday: Bool {
-        return Calendar.current.isDateInToday(self)
-    }
-    public var isYesterday: Bool {
-        return Calendar.current.isDateInYesterday(self)
-    }
-    public var isTomorrow: Bool {
-        return Calendar.current.isDateInTomorrow(self)
-    }
-    public func withoutTime() -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.date(from: dateFormatter.string(from: self))
-    }
-    public func withoutTimeAndYear() -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd"
-        return dateFormatter.date(from: dateFormatter.string(from: self))
-    }
-    public func stringLiteralOfDate() -> String {
-        let dateFormatter = DateFormatter()
-        let theDateFormat = DateFormatter.Style.short
-        let theTimeFormat = DateFormatter.Style.long
-        
-        dateFormatter.dateStyle = theDateFormat
-        dateFormatter.timeStyle = theTimeFormat
-        
-        return dateFormatter.string(from: self)
-    }
-    public func daysUntil(_ otherDate: Date) -> Int
-    {
-        let calendar = Calendar.current
-        let difference = calendar.dateComponents([.day], from: self, to: otherDate)
-        return difference.day!
-    }
-    public func isSameDay(as otherDate: Date) -> Bool {
-        let order = Calendar.current.compare(self, to: otherDate, toGranularity: .day)
-        switch order {
-        case .orderedSame:
-            return true
-        default:
-            return false
-        }
-    }
-}
-
-extension Array {
-    ///Shuffles the contents of this collection
-    mutating func shuffle() {
-        let c = count
-        guard c > 1 else { return }
-        
-        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
-            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
-            let i = index(firstUnshuffled, offsetBy: d)
-            swapAt(firstUnshuffled, i)
-        }
-    }
-}
-
-extension Int {
-    ///Converts an integer to a standardized three-character string. 1 -> 001. 99 -> 099. 123 -> 123.
-    public func threeCharacterString() -> String {
-        let start = "\(self)"
-        let length = start.length
-        if length == 1 { return "00\(start)" }
-        else if length == 2 { return "0\(start)" }
-        else { return start }
-    }
-}
 
 extension NSObject {
     ///Short-hand function to register a notification observer
     public func observeNotification(_ name: String, selector: Selector) {
         NotificationCenter.default.addObserver(self, selector: selector, name: NSNotification.Name(rawValue: name), object: nil)
     }
-}
-
-extension Bundle {
-    public static var applicationVersionNumber: String {
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            return version
-        }
-        return "Version Number Not Available"
-    }
-    
-    public static var applicationBuildNumber: String {
-        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-            return build
-        }
-        return "Build Number Not Available"
-    }
-    
 }
 extension NSString {
     @objc public func stringAtIndex(_ index: Int) -> String {
@@ -453,6 +134,8 @@ public extension NSNumber {
         return "N"
     }
 }
+    
+    
 extension UIApplication {
     @objc public func getScreenshot() -> UIImage {
         let layer = self.getCurrentWindow()?.layer
@@ -471,31 +154,6 @@ extension UIApplication {
         }
         return Data()
     }
-    public static func appVersion() -> String {
-        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-    }
-    public static func appBuild() -> String {
-        return Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-    }
-    public static func appCopyright(customCopyright: String? = nil) -> String {
-        let copyrightEntity: String
-        if let overwriteEntityCopyright = customCopyright {
-            copyrightEntity = overwriteEntityCopyright
-        } else {
-            copyrightEntity = MOBInternalConstants.copyrightEntity
-        }
-        let year = Calendar.current.component(.year, from: Date())
-        return "© "+String(year)+" "+copyrightEntity
-        
-    }
-    public static func appInfo(customCopyright: String? = nil, disclosure: String? = nil) -> String {
-        let copyright = UIApplication.appCopyright(customCopyright: customCopyright)
-        var infoText = "Version: "+UIApplication.appVersion()+"\nBuild: "+UIApplication.appBuild()+"\n \nContact Us: "+MOBInternalConstants.supportEmail+"\nWebsite: "+MOBInternalConstants.supportWebsite+"\n\n"+copyright
-        if let realDisclosure = disclosure {
-            infoText += "\n\n" + realDisclosure
-        }
-        return infoText
-    }
     public static func appAboutController(appName: String, customCopyright: String? = nil, disclosure: String? = nil) ->UIAlertController {
         let infoText = UIApplication.appInfo(customCopyright: customCopyright, disclosure: disclosure)
         let alertController = UIAlertController(title: appName, message: infoText, preferredStyle: UIAlertController.Style.alert)
@@ -504,19 +162,6 @@ extension UIApplication {
         }
         alertController.addAction(Dismiss)
         return alertController;
-    }
-    public static var isExtension: Bool {
-        get {
-            return Bundle.main.bundlePath.hasSuffix(".appex")
-        }
-    }
-    public static var isTestFlight: Bool {
-        get {
-            if let url = Bundle.main.appStoreReceiptURL {
-                return (url.lastPathComponent == "sandboxReceipt")
-            }
-            return false
-        }
     }
     @objc public func getCurrentWindow() -> UIWindow? {
         var presentationWindow: UIWindow? = self.delegate?.window ?? nil
@@ -900,7 +545,52 @@ import UIKit
 
 
 //Shared Extensions
+extension UIApplication {
+    public static func appVersion() -> String {
+        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+    }
+    public static func appBuild() -> String {
+        return Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+    }
+    public static func appCopyright(customCopyright: String? = nil) -> String {
+        let copyrightEntity: String
+        if let overwriteEntityCopyright = customCopyright {
+            copyrightEntity = overwriteEntityCopyright
+        } else {
+            copyrightEntity = MOBInternalConstants.copyrightEntity
+        }
+        let year = Calendar.current.component(.year, from: Date())
+        return "© "+String(year)+" "+copyrightEntity
+        
+    }
+    public static func appInfo(customCopyright: String? = nil, disclosure: String? = nil) -> String {
+        let copyright = UIApplication.appCopyright(customCopyright: customCopyright)
+        var infoText = "Version: "+UIApplication.appVersion()+"\nBuild: "+UIApplication.appBuild()+"\n \nContact Us: "+MOBInternalConstants.supportEmail+"\nWebsite: "+MOBInternalConstants.supportWebsite+"\n\n"+copyright
+        if let realDisclosure = disclosure {
+            infoText += "\n\n" + realDisclosure
+        }
+        return infoText
+    }
+    public static var isExtension: Bool {
+        get {
+            return Bundle.main.bundlePath.hasSuffix(".appex")
+        }
+    }
+    public static var isTestFlight: Bool {
+        get {
+            if let url = Bundle.main.appStoreReceiptURL {
+                return (url.lastPathComponent == "sandboxReceipt")
+            }
+            return false
+        }
+    }
+}
+
 extension String {
+    public func removingCharacters(in characterSet: CharacterSet) -> String {
+        return self.components(separatedBy: characterSet).joined()
+    }
+    
     public func countOccurances(ofSubstring string: String) -> Int {
         let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
         return strCount / string.length
@@ -971,9 +661,6 @@ extension String {
         return String(self[start ..< end])
     }
     
-    public func removingCharacters(in characterSet: CharacterSet) -> String {
-        return self.components(separatedBy: characterSet).joined()
-    }
     public func strippedWebsiteForURL() -> String {
         ///converts "http://www.google.com/search/page/saiojdfghadlsifuhlaisdf" to "google.com"
         var stripped = self.replacingOccurrences(of: "http://", with: "")
@@ -1098,4 +785,324 @@ extension String {
         }
         return false
     }
+}
+
+extension UISearchBar {
+    public var isEmpty: Bool {
+        // Returns true if the text is empty or nil
+        return self.text?.isEmpty ?? true
+    }
+    public var magnifyingGlassTextColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                if let glassIconView = textField.leftView as? UIImageView {
+                    return glassIconView.tintColor
+                }
+            }
+            return nil
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                if let glassIconView = textField.leftView as? UIImageView {
+                    glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
+                    glassIconView.tintColor = newValue
+                }
+            }
+        }
+    }
+    
+    public var clearButtonTextColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
+                    return crossIconView.tintColor
+                }
+            }
+            return nil
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
+                    crossIconView.setImage(crossIconView.currentImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+                    crossIconView.tintColor = newValue
+                }
+            }
+        }
+    }
+    
+    public var placeholderTextColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
+                    return textFieldInsideSearchBarLabel.textColor
+                }
+            }
+            return nil
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
+                    textFieldInsideSearchBarLabel.textColor = newValue
+                }
+            }
+        }
+    }
+    
+    public var font:UIFont? {
+        get {
+            if let textField = self.textField  {
+                return textField.font
+            } else {
+                return nil
+            }
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                textField.font = newValue
+            }
+        }
+    }
+    public var textColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                return textField.textColor
+            } else {
+                return nil
+            }
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                textField.textColor = newValue
+            }
+        }
+    }
+    public var cursorColor:UIColor? {
+        get {
+            if let textField = self.textField  {
+                return textField.tintColor
+            } else {
+                return nil
+            }
+        }
+        
+        set (newValue) {
+            if let textField = self.textField  {
+                textField.tintColor = newValue
+            }
+        }
+    }
+    public var textField: UITextField? {
+        get {
+            let svs = subviews.flatMap { $0.subviews }
+            guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return nil }
+            return tf
+        }
+    }
+}
+extension Date {
+    public func formattedFromCompenents(styleAttitude: DateFormatter.Style, year: Bool = false, month: Bool = false, day: Bool = false, hour: Bool = false, minute: Bool = false, second: Bool = false, locale: Locale = Locale.current) -> String {
+        let long = styleAttitude == .long || styleAttitude == .full
+        let short = styleAttitude == .short
+        var comps = ""
+        
+        if year { comps += long ? "yyyy" : "yy" }
+        if month { comps += long ? "MMMM" : (short ? "MM" : "MMM") }
+        if day { comps += long ? "dd" : "dd" }
+        
+        if hour { comps += long ? "HH" : "H" }
+        if minute { comps += long ? "mm" : "m" }
+        if second { comps += long ? "ss" : "s" }
+        let format = DateFormatter.dateFormat(fromTemplate: comps, options: 00, locale: locale)
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    public func shortString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: self) as String
+    }
+    public func shortDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter.string(from: self) as String
+    }
+    public func mediumDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: self) as String
+    }
+    public func shortTimeString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter.string(from: self) as String
+    }
+    public func mediumTimeString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        return formatter.string(from: self) as String
+    }
+    public func shortDateNoYearString() -> String {
+        return self.formattedFromCompenents(styleAttitude: .short, year: false, month: true, day: true)
+    }
+    public func mediumDateNoYearString() -> String {
+        return self.formattedFromCompenents(styleAttitude: .medium, year: false, month: true, day: true)
+    }
+    public func longDateNoYearString() -> String {
+        return self.formattedFromCompenents(styleAttitude: .long, year: false, month: true, day: true)
+    }
+    ///converts to a "10 seconds ago" / "1 day ago" syntax
+    public func agoString() -> String {
+        let deltaTime = -self.timeIntervalSinceNow
+        
+        //in the past
+        if deltaTime > 0 {
+            if deltaTime < 60 {
+                return "just now"
+            }
+            if deltaTime < 3600 { //less than an hour
+                let amount = Int(deltaTime/60.0)
+                let plural = amount == 1 ? "" : "s"
+                return "\(amount) Minute\(plural) Ago"
+            }
+            else if deltaTime < 86400 { //less than a day
+                let amount = Int(deltaTime/3600.0)
+                let plural = amount == 1 ? "" : "s"
+                return "\(amount) Hour\(plural) Ago"
+            }
+            else if deltaTime < 432000 { //less than five days
+                let amount = Int(deltaTime/86400.0)
+                let plural = amount == 1 ? "" : "s"
+                if amount == 1 {
+                    return "Yesterday"
+                }
+                return "\(amount) Day\(plural) Ago"
+            }
+        }
+        
+        //in the future
+        if deltaTime < 0 {
+            if deltaTime > -60 {
+                return "Just Now"
+            }
+            if deltaTime > -3600 { //in less than an hour
+                let amount = -Int(deltaTime/60.0)
+                let plural = amount == 1 ? "" : "s"
+                return "In \(amount) Minute\(plural)"
+            }
+            else if deltaTime > -86400 { //in less than a day
+                let amount = -Int(deltaTime/3600.0)
+                let plural = amount == 1 ? "" : "s"
+                return "In \(amount) Hour\(plural)"
+            }
+            else if deltaTime > -432000 { //in less than five days
+                let amount = -Int(deltaTime/86400.0)
+                let plural = amount == 1 ? "" : "s"
+                if amount == 1 {
+                    return "Tomorrow"
+                }
+                return "In \(amount) Day\(plural)"
+            }
+        }
+        
+        let dateString = DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
+        return "\(dateString)"
+        
+    }
+    public var isToday: Bool {
+        return Calendar.current.isDateInToday(self)
+    }
+    public var isYesterday: Bool {
+        return Calendar.current.isDateInYesterday(self)
+    }
+    public var isTomorrow: Bool {
+        return Calendar.current.isDateInTomorrow(self)
+    }
+    public func withoutTime() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: dateFormatter.string(from: self))
+    }
+    public func withoutTimeAndYear() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd"
+        return dateFormatter.date(from: dateFormatter.string(from: self))
+    }
+    public func stringLiteralOfDate() -> String {
+        let dateFormatter = DateFormatter()
+        let theDateFormat = DateFormatter.Style.short
+        let theTimeFormat = DateFormatter.Style.long
+        
+        dateFormatter.dateStyle = theDateFormat
+        dateFormatter.timeStyle = theTimeFormat
+        
+        return dateFormatter.string(from: self)
+    }
+    public func daysUntil(_ otherDate: Date) -> Int
+    {
+        let calendar = Calendar.current
+        let difference = calendar.dateComponents([.day], from: self, to: otherDate)
+        return difference.day!
+    }
+    public func isSameDay(as otherDate: Date) -> Bool {
+        let order = Calendar.current.compare(self, to: otherDate, toGranularity: .day)
+        switch order {
+        case .orderedSame:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
+extension Array {
+    ///Shuffles the contents of this collection
+    mutating func shuffle() {
+        let c = count
+        guard c > 1 else { return }
+        
+        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
+            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
+            let i = index(firstUnshuffled, offsetBy: d)
+            swapAt(firstUnshuffled, i)
+        }
+    }
+}
+
+extension Int {
+    ///Converts an integer to a standardized three-character string. 1 -> 001. 99 -> 099. 123 -> 123.
+    public func threeCharacterString() -> String {
+        let start = "\(self)"
+        let length = start.length
+        if length == 1 { return "00\(start)" }
+        else if length == 2 { return "0\(start)" }
+        else { return start }
+    }
+}
+
+extension Bundle {
+    public static var applicationVersionNumber: String {
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            return version
+        }
+        return "Version Number Not Available"
+    }
+    
+    public static var applicationBuildNumber: String {
+        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            return build
+        }
+        return "Build Number Not Available"
+    }
+    
 }
