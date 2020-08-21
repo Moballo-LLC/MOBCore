@@ -538,9 +538,22 @@ extension UIDevice {
             return self.userInterfaceIdiom == UIUserInterfaceIdiom.tv
         }
     }
-    public static var isSimulator: Bool {
+    public var isSimulator: Bool {
         get {
-            return TARGET_OS_SIMULATOR != 0
+            #if targetEnvironment(simulator)
+                return true
+            #else
+                return false
+            #endif
+        }
+    }
+    public var buildIsSimulator: Bool {
+        get {
+            #if targetEnvironment(simulator)
+                return true
+            #else
+                return false
+            #endif
         }
     }
     public static var modelCode: String {
