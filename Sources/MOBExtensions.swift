@@ -370,9 +370,7 @@ extension UIAlertController {
         let newTitle = self.title
         let newMessage = self.message
         let newController = UIAlertController(title: newTitle, message: newMessage, preferredStyle: newStyle)
-        if #available(iOS 9.0, *) {
-            newController.preferredAction = self.preferredAction
-        }
+        newController.preferredAction = self.preferredAction
         for anAction in newActions {
             newController.addAction(anAction)
         }
@@ -520,40 +518,24 @@ extension UISearchBar {
 }
 
 extension UIDevice {
-    public static var isIpad: Bool {
+    public var isIpad: Bool {
         get {
-            if #available(iOS 9.0, *) {
-                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
-            } else {
-                return false
-            }
+            return self.userInterfaceIdiom == UIUserInterfaceIdiom.pad
         }
     }
-    public static var isIphone: Bool {
+    public var isIphone: Bool {
         get {
-            if #available(iOS 9.0, *) {
-                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
-            } else {
-                return false
-            }
+            return self.userInterfaceIdiom == UIUserInterfaceIdiom.phone
         }
     }
-    public static var isCarplay: Bool {
+    public var isCarplay: Bool {
         get {
-            if #available(iOS 9.0, *) {
-                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.carPlay
-            } else {
-                return false
-            }
+            return self.userInterfaceIdiom == UIUserInterfaceIdiom.carPlay
         }
     }
-    public static var isTV: Bool {
+    public var isTV: Bool {
         get {
-            if #available(iOS 9.0, *) {
-                return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.tv
-            } else {
-                return false
-            }
+            return self.userInterfaceIdiom == UIUserInterfaceIdiom.tv
         }
     }
     public static var isSimulator: Bool {
