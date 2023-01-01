@@ -1,14 +1,14 @@
 Pod::Spec.new do |s|
   s.name             = 'MOBCore'
-  s.version          = '3.7.2'
+  s.version          = '4.0.0'
   s.summary          = 'A core set of functions and extensions to power a slew of applications'
   s.homepage         = 'https://github.com/Moballo-LLC/MOBCore'
   s.license          = 'MIT'
   s.author           = { 'Jason Morcos - Moballo, LLC' => 'jason.morcos@moballo.com' }
   s.source           = { :git => 'https://github.com/Moballo-LLC/MOBCore.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '9.0'
-  s.watchos.deployment_target = '3.0'
+  s.ios.deployment_target = '11.0'
+  s.watchos.deployment_target = '6.0'
   s.swift_version = '5.0'
 
   s.framework = 'UIKit'
