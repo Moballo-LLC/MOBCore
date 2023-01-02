@@ -144,6 +144,39 @@ import UIKit
             }
             self.privateSearchEnabled = false;
         }
+
+        open override var keyCommands: [UIKeyCommand]? {
+            var keyCommandsAvailable = [UIKeyCommand]();
+            if self.privateSearchEnabled {
+                if #available(iOS 13.0, *) {
+                    keyCommandsAvailable.append(
+                        UIKeyCommand(
+                            title: "Find",
+                            action: #selector(startSearching),
+                            input: "f",
+                            modifierFlags: .command,
+                            state: self.searchController.isActive ? .on : .off
+                        )
+                    )
+                }
+            }
+            return keyCommandsAvailable
+        }
+
+        @objc public func startSearching() {
+            if !self.privateSearchEnabled {
+                return;
+            }
+            DispatchQueue.main.async {
+                self.searchController.isActive = true
+                self.searchController.searchBar.becomeFirstResponder()
+                //Call a second time to ensure that the search bar doesn't immediately dismiss
+                DispatchQueue.main.async {
+                    self.searchController.isActive = true
+                    self.searchController.searchBar.becomeFirstResponder()
+                }
+            }
+        }
         
         fileprivate func setupSearchController() {
             self.searchController.searchResultsUpdater = self
