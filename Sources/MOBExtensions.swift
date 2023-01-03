@@ -573,7 +573,7 @@ extension UIDevice {
 }
 
 #if canImport(AppTrackingTransparency)
-@available(iOSApplicationExtension 14, *)
+@available(iOS 14, *)
 extension ATTrackingManager {
     public static func getDescriptionForStatus(_ status: ATTrackingManager.AuthorizationStatus) -> String {
         switch(status) {
