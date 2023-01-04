@@ -572,11 +572,30 @@ extension UIDevice {
     
 }
 
+extension UIApplication {
+    public static func requestAppTrackingAuthorizationIfNecessary() -> Void {
+        if #available(iOS 14, *) {
+            #if canImport(AppTrackingTransparency)
+                if(ATTrackingManager.trackingAuthorizationStatus == .notDetermined) {
+                    NSLog("MOBCore.requestAppTrackingAuthorization: Requesting Authorization. Current Tracking Status: " + UIApplication.trackingAuthorizationStatusString)
+                    ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                        NSLog("MOBCore.requestAppTrackingAuthorization: Completed Request. Tracking Status: " + UIApplication.getDescriptionForATTTrackingStatus(status))
+                    })
+                    return;
+                }
+                NSLog("MOBCore.requestAppTrackingAuthorization: Skipping requesting tracking permission. Tracking Status: " + UIApplication.trackingAuthorizationStatusString)
+
+                return
+            #endif
+        }
+
+        NSLog("MOBCore.requestAppTrackingAuthorization: Skipping Entirely - Cannot import AppTrackingTransparency (iOS < 14?)")
+
+    }
+
 #if canImport(AppTrackingTransparency)
-@available(iOS 14, *)
-extension ATTrackingManager {
     @available(iOS 14, *)
-    public static func getDescriptionForStatus(_ status: ATTrackingManager.AuthorizationStatus) -> String {
+    private static func getDescriptionForATTTrackingStatus(_ status: ATTrackingManager.AuthorizationStatus) -> String {
         switch(status) {
             case ATTrackingManager.AuthorizationStatus.authorized:
                 return "authorized"
@@ -590,34 +609,13 @@ extension ATTrackingManager {
                 return "UNKNOWN"
         }
     }
-    
+
     @available(iOS 14, *)
     public static var trackingAuthorizationStatusString: String {
-        return ATTrackingManager.getDescriptionForStatus(ATTrackingManager.trackingAuthorizationStatus)
+        return UIApplication.getDescriptionForATTTrackingStatus(ATTrackingManager.trackingAuthorizationStatus)
     }
-}
 #endif
 
-extension UIApplication {
-    public static func requestAppTrackingAuthorizationIfNecessary() -> Void {
-        if #available(iOS 14, *) {
-            #if canImport(AppTrackingTransparency)
-                if(ATTrackingManager.trackingAuthorizationStatus == .notDetermined) {
-                    NSLog("MOBCore.requestAppTrackingAuthorization: Requesting Authorization. Current Tracking Status: " + ATTrackingManager.trackingAuthorizationStatusString)
-                    ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
-                        NSLog("MOBCore.requestAppTrackingAuthorization: Completed Request. Tracking Status: " + ATTrackingManager.getDescriptionForStatus(status))
-                    })
-                    return;
-                }
-                NSLog("MOBCore.requestAppTrackingAuthorization: Skipping requesting tracking permission. Tracking Status: " + ATTrackingManager.trackingAuthorizationStatusString)
-
-                return
-            #endif
-        }
-
-        NSLog("MOBCore.requestAppTrackingAuthorization: Skipping Entirely - Cannot import AppTrackingTransparency (iOS < 14?)")
-
-    }
     public static func appVersion() -> String {
         return Bundle.main.applicationVersionNumber
     }
