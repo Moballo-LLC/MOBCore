@@ -19,7 +19,6 @@ Pod::Spec.new do |s|
   s.framework = 'CoreSpotlight'
   s.framework = 'CoreServices'
   s.framework = 'Foundation'
-  s.weak_framework = 'AppTrackingTransparency'
 
 
   s.ios.source_files = ['Sources/**/*.swift','Sources-iOS-only/**/*.swift']
