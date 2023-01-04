@@ -48,7 +48,7 @@ extension UINavigationController {
             }
         }
     }
-    
+
     @objc public func pushToViewController(_ viewController: UIViewController, animated:Bool = true, completion: @escaping ()->()) {
         CATransaction.begin()
         CATransaction.setCompletionBlock {
@@ -137,13 +137,13 @@ public extension NSNumber {
         return "N"
     }
 }
-    
+
 extension UIView {
     @objc public func getViewScreenshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
-        
+
         drawHierarchy(in: self.bounds, afterScreenUpdates: true)
-        
+
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
@@ -167,34 +167,34 @@ extension UIView {
 extension UIColor {
     public convenience init?(hexString: String) {
         let r, g, b, a: CGFloat
-        
+
         if hexString.hasPrefix("#") {
             let start = hexString.index(hexString.startIndex, offsetBy: 1)
             let hexColor = String(hexString[start...])
-            
+
             if hexColor.count == 8 {
                 let scanner = Scanner(string: hexColor)
                 var hexNumber: UInt64 = 0
-                
+
                 if scanner.scanHexInt64(&hexNumber) {
                     r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
                     g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
                     b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
                     a = CGFloat(hexNumber & 0x000000ff) / 255
-                    
+
                     self.init(red: r, green: g, blue: b, alpha: a)
                     return
                 }
             }
         }
-        
+
         return nil
     }
     public convenience init(redInt: Int, greenInt: Int, blueInt: Int, alpha: CGFloat) {
         let r = CGFloat(redInt) / 255
         let g = CGFloat(greenInt) / 255
         let b = CGFloat(blueInt) / 255
-        
+
         self.init(red: r, green: g, blue: b, alpha: alpha)
         return
     }
@@ -244,7 +244,7 @@ extension UIColor {
             let iGreen = Int(fGreen * 255.0)
             let iBlue = Int(fBlue * 255.0)
             let iAlpha = Int(fAlpha * 255.0)
-            
+
             return (red:iRed, green:iGreen, blue:iBlue, alpha:iAlpha)
         } else {
             // Could not extract RGBA components:
@@ -289,20 +289,20 @@ extension UIImage {
     }
     @objc public func colorize(_ tintColor: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        
+
         let context = UIGraphicsGetCurrentContext()// as CGContextRef
         context?.translateBy(x: 0, y: self.size.height)
         context?.scaleBy(x: 1.0, y: -1.0);
         context?.setBlendMode(CGBlendMode.normal)
-        
+
         let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height) as CGRect
         context?.clip(to: rect, mask: self.cgImage!)
         tintColor.setFill()
         context?.fill(rect)
-        
+
         let newImage = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
         UIGraphicsEndImageContext()
-        
+
         return newImage
     }
 }
@@ -311,16 +311,16 @@ extension CLLocationCoordinate2D {
         let center   = region.center
         var northWestCorner = center
         var southEastCorner = center
-        
+
         northWestCorner.latitude  = center.latitude  - (region.span.latitudeDelta  / 2.0);
         northWestCorner.longitude = center.longitude - (region.span.longitudeDelta / 2.0);
         southEastCorner.latitude  = center.latitude  + (region.span.latitudeDelta  / 2.0);
         southEastCorner.longitude = center.longitude + (region.span.longitudeDelta / 2.0);
-        
+
         if (
             self.latitude  >= northWestCorner.latitude &&
                 self.latitude  <= southEastCorner.latitude &&
-                
+
                 self.longitude >= northWestCorner.longitude &&
                 self.longitude <= southEastCorner.longitude
             )
@@ -329,7 +329,7 @@ extension CLLocationCoordinate2D {
         }
         return false
     }
-    
+
 }
 extension MKCoordinateRegion {
     public func contains(coordinate: CLLocationCoordinate2D) -> Bool {
@@ -387,7 +387,7 @@ extension String {
         label.lineBreakMode = lineBreakMode
         label.font = font
         label.text = self
-        
+
         label.sizeToFit()
         return label.frame.height
     }
@@ -416,7 +416,7 @@ extension UISearchBar {
             }
             return nil
         }
-        
+
         set (newValue) {
             if let textField = self.textField  {
                 if let glassIconView = textField.leftView as? UIImageView {
@@ -426,7 +426,7 @@ extension UISearchBar {
             }
         }
     }
-    
+
     public var clearButtonTextColor:UIColor? {
         get {
             if let textField = self.textField  {
@@ -436,7 +436,7 @@ extension UISearchBar {
             }
             return nil
         }
-        
+
         set (newValue) {
             if let textField = self.textField  {
                 if let crossIconView = textField.value(forKey: "clearButton") as? UIButton {
@@ -446,7 +446,7 @@ extension UISearchBar {
             }
         }
     }
-    
+
     public var placeholderTextColor:UIColor? {
         get {
             if let textField = self.textField  {
@@ -456,7 +456,7 @@ extension UISearchBar {
             }
             return nil
         }
-        
+
         set (newValue) {
             if let textField = self.textField  {
                 if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
@@ -465,7 +465,7 @@ extension UISearchBar {
             }
         }
     }
-    
+
     public var font:UIFont? {
         get {
             if let textField = self.textField  {
@@ -474,7 +474,7 @@ extension UISearchBar {
                 return nil
             }
         }
-        
+
         set (newValue) {
             if let textField = self.textField  {
                 textField.font = newValue
@@ -489,7 +489,7 @@ extension UISearchBar {
                 return nil
             }
         }
-        
+
         set (newValue) {
             if let textField = self.textField  {
                 textField.textColor = newValue
@@ -504,7 +504,7 @@ extension UISearchBar {
                 return nil
             }
         }
-        
+
         set (newValue) {
             if let textField = self.textField  {
                 textField.tintColor = newValue
@@ -569,33 +569,14 @@ extension UIDevice {
         }
         return identifier
     }
-    
+
 }
 
-extension UIApplication {
-    public static func requestAppTrackingAuthorizationIfNecessary() -> Void {
-        if #available(iOS 14, *) {
-            #if canImport(AppTrackingTransparency)
-                if(ATTrackingManager.trackingAuthorizationStatus == .notDetermined) {
-                    NSLog("MOBCore.requestAppTrackingAuthorization: Requesting Authorization. Current Tracking Status: " + UIApplication.trackingAuthorizationStatusString)
-                    ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
-                        NSLog("MOBCore.requestAppTrackingAuthorization: Completed Request. Tracking Status: " + UIApplication.getDescriptionForATTTrackingStatus(status))
-                    })
-                    return;
-                }
-                NSLog("MOBCore.requestAppTrackingAuthorization: Skipping requesting tracking permission. Tracking Status: " + UIApplication.trackingAuthorizationStatusString)
-
-                return
-            #endif
-        }
-
-        NSLog("MOBCore.requestAppTrackingAuthorization: Skipping Entirely - Cannot import AppTrackingTransparency (iOS < 14?)")
-
-    }
-
 #if canImport(AppTrackingTransparency)
+@available(iOS 14, *)
+extension ATTrackingManager {
     @available(iOS 14, *)
-    private static func getDescriptionForATTTrackingStatus(_ status: ATTrackingManager.AuthorizationStatus) -> String {
+    public static func getDescriptionForStatus(_ status: ATTrackingManager.AuthorizationStatus) -> String {
         switch(status) {
             case ATTrackingManager.AuthorizationStatus.authorized:
                 return "authorized"
@@ -612,10 +593,31 @@ extension UIApplication {
 
     @available(iOS 14, *)
     public static var trackingAuthorizationStatusString: String {
-        return UIApplication.getDescriptionForATTTrackingStatus(ATTrackingManager.trackingAuthorizationStatus)
+        return ATTrackingManager.getDescriptionForStatus(ATTrackingManager.trackingAuthorizationStatus)
     }
+}
 #endif
 
+extension UIApplication {
+    public static func requestAppTrackingAuthorizationIfNecessary() -> Void {
+        if #available(iOS 14, *) {
+            #if canImport(AppTrackingTransparency)
+                if(ATTrackingManager.trackingAuthorizationStatus == .notDetermined) {
+                    NSLog("MOBCore.requestAppTrackingAuthorization: Requesting Authorization. Current Tracking Status: " + ATTrackingManager.trackingAuthorizationStatusString)
+                    ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                        NSLog("MOBCore.requestAppTrackingAuthorization: Completed Request. Tracking Status: " + ATTrackingManager.getDescriptionForStatus(status))
+                    })
+                    return;
+                }
+                NSLog("MOBCore.requestAppTrackingAuthorization: Skipping requesting tracking permission. Tracking Status: " + ATTrackingManager.trackingAuthorizationStatusString)
+
+                return
+            #endif
+        }
+
+        NSLog("MOBCore.requestAppTrackingAuthorization: Skipping Entirely - Cannot import AppTrackingTransparency (iOS < 14?)")
+
+    }
     public static func appVersion() -> String {
         return Bundle.main.applicationVersionNumber
     }
@@ -631,7 +633,7 @@ extension UIApplication {
         }
         let year = Calendar.current.component(.year, from: Date())
         return "© "+String(year)+" "+copyrightEntity
-        
+
     }
     public static func appInfo(customCopyright: String? = nil, disclosure: String? = nil) -> String {
         let copyright = UIApplication.appCopyright(customCopyright: customCopyright)
@@ -679,12 +681,12 @@ extension UIApplication {
     }
     @objc public func getCurrentWindow() -> UIWindow? {
         var presentationWindow: UIWindow? = self.delegate?.window ?? nil
-        
+
         if(presentationWindow != nil) {
             return presentationWindow
         }
 
-        
+
         if #available(iOS 13.0, *) {
             for scene in self.connectedScenes {
                 if let windowScene = scene as? UIWindowScene {
@@ -697,11 +699,11 @@ extension UIApplication {
                 }
             }
         }
-        
+
         if(presentationWindow == nil) {
             presentationWindow = self.keyWindow
         }
-        
+
         return presentationWindow
     }
 }
@@ -745,12 +747,12 @@ extension String {
     public func removingCharacters(in characterSet: CharacterSet) -> String {
         return self.components(separatedBy: characterSet).joined()
     }
-    
+
     public func countOccurances(ofSubstring string: String) -> Int {
         let strCount = self.length - self.replacingOccurrences(of: string, with: "").length
         return strCount / string.length
     }
-    
+
     public func onlyAlphanumerics(keepSpaces: Bool = false)->String {
         var filteringSet = CharacterSet.alphanumerics.inverted
         if keepSpaces {
@@ -758,23 +760,23 @@ extension String {
         }
         return self.removingCharacters(in: filteringSet)
     }
-    
+
     public func substring(from index1: String.Index, to index2: String.Index) -> String {
         return String(self[index1..<index2])
     }
-    
+
     public func substring(to index: String.Index) -> String {
         return String(self[..<index])
     }
-    
+
     public func substring(from index: String.Index) -> String {
         return String(self[index...])
     }
-    
+
     public func asDouble() -> Double? {
         return NumberFormatter().number(from: self)?.doubleValue
     }
-    
+
     public func dateWithTSquareFormat() -> Date? {
         //convert date string to NSDate
         let formatter = DateFormatter()
@@ -785,13 +787,13 @@ extension String {
         //(Aug 27, 2015 11:27 am) -> (Aug 27, 2015, 11:27 AM)
         var dateString = self.replacingOccurrences(of: "pm", with: "PM")
         dateString = dateString.replacingOccurrences(of: "am", with: "AM")
-        
+
         for year in 1990...2040 { //add comma after years
             dateString = dateString.replacingOccurrences(of: "\(year) ", with: "\(year), ")
         }
         return formatter.date(from: dateString)
     }
-    
+
     public func percentStringAsDouble() -> Double? {
         if self.length > 0 {
             if let displayedNumber = self.substring(to: self.index(self.endIndex, offsetBy: -1)).asDouble() {
@@ -803,11 +805,11 @@ extension String {
     subscript (i: Int) -> Character {
         return self[index(startIndex, offsetBy: i)]
     }
-    
+
     subscript (i: Int) -> String {
         return String(self[i] as Character)
     }
-    
+
     subscript (r: Range<Int>) -> String {
         let range = Range(uncheckedBounds: (lower: max(0, min(count, r.lowerBound)),
                                             upper: min(count, max(0, r.upperBound))))
@@ -815,7 +817,7 @@ extension String {
         let end = index(start, offsetBy: range.upperBound - range.lowerBound)
         return String(self[start ..< end])
     }
-    
+
     public func strippedWebsiteForURL() -> String {
         ///converts "http://www.google.com/search/page/saiojdfghadlsifuhlaisdf" to "google.com"
         var stripped = self.replacingOccurrences(of: "http://", with: "")
@@ -860,40 +862,40 @@ extension String {
     public var length: Int {
         return self.count
     }
-    
+
     public var hasWhitespace: Bool {
         if self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil {
             return true
         }
         return false
     }
-    
+
     public enum RegularExpressions: String {
         case phone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$"
     }
-    
+
     public func isValid(regex: RegularExpressions) -> Bool {
         return isValid(regex: regex.rawValue)
     }
-    
+
     public func isValid(regex: String) -> Bool {
         let matches = range(of: regex, options: .regularExpression)
         return matches != nil
     }
-    
+
     public func onlyDigits() -> String {
         let filtredUnicodeScalars = unicodeScalars.filter{CharacterSet.decimalDigits.contains($0)}
         return String(String.UnicodeScalarView(filtredUnicodeScalars))
     }
-    
+
     public func generatePhoneUrl() -> URL? {
         return URL(string: "tel://"+self.onlyDigits());
     }
-    
+
     public func isValidPhone() -> Bool {
         return self.isValid(regex: .phone)
     }
-    
+
     public func formattedAsPhone() -> String {
         let s = self.onlyDigits()
         if s.length == 10 {
@@ -916,13 +918,13 @@ extension String {
                             s.substring(from: s.index(s.startIndex, offsetBy: countryCodeLength), to: s.index(s.startIndex, offsetBy: 3+countryCodeLength)),
                             s.substring(from: s.index(s.startIndex, offsetBy: 3+countryCodeLength), to: s.index(s.startIndex, offsetBy: 6+countryCodeLength)),
                             s.substring(from: s.index(s.startIndex, offsetBy: 6+countryCodeLength))
-                
+
             )
             return s2
         }
         return self
     }
-    
+
     public func contains(all array: [String]) -> Bool {
         for aString in array {
             if !self.contains(aString) {
@@ -931,7 +933,7 @@ extension String {
         }
         return true
     }
-    
+
     public func contains(any array: [String]) -> Bool {
         for aString in array {
             if self.contains(aString) {
@@ -947,11 +949,11 @@ extension Date {
         let long = styleAttitude == .long || styleAttitude == .full
         let short = styleAttitude == .short
         var comps = ""
-        
+
         if year { comps += long ? "yyyy" : "yy" }
         if month { comps += long ? "MMMM" : (short ? "MM" : "MMM") }
         if day { comps += long ? "dd" : "dd" }
-        
+
         if hour { comps += long ? "HH" : "H" }
         if minute { comps += long ? "mm" : "m" }
         if second { comps += long ? "ss" : "s" }
@@ -1002,7 +1004,7 @@ extension Date {
     ///converts to a "10 seconds ago" / "1 day ago" syntax
     public func agoString() -> String {
         let deltaTime = -self.timeIntervalSinceNow
-        
+
         //in the past
         if deltaTime > 0 {
             if deltaTime < 60 {
@@ -1027,7 +1029,7 @@ extension Date {
                 return "\(amount) Day\(plural) Ago"
             }
         }
-        
+
         //in the future
         if deltaTime < 0 {
             if deltaTime > -60 {
@@ -1052,10 +1054,10 @@ extension Date {
                 return "In \(amount) Day\(plural)"
             }
         }
-        
+
         let dateString = DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
         return "\(dateString)"
-        
+
     }
     public var isToday: Bool {
         return Calendar.current.isDateInToday(self)
@@ -1080,10 +1082,10 @@ extension Date {
         let dateFormatter = DateFormatter()
         let theDateFormat = DateFormatter.Style.short
         let theTimeFormat = DateFormatter.Style.long
-        
+
         dateFormatter.dateStyle = theDateFormat
         dateFormatter.timeStyle = theTimeFormat
-        
+
         return dateFormatter.string(from: self)
     }
     public func daysUntil(_ otherDate: Date) -> Int
@@ -1108,7 +1110,7 @@ extension Array {
     mutating func shuffle() {
         let c = count
         guard c > 1 else { return }
-        
+
         for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
             let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
             let i = index(firstUnshuffled, offsetBy: d)
@@ -1135,14 +1137,14 @@ extension Bundle {
         }
         return "Version Number Not Available"
     }
-    
+
     public var applicationBuildNumber: String {
         if let build = self.infoDictionary?["CFBundleVersion"] as? String {
             return build
         }
         return "Build Number Not Available"
     }
-    
+
     public var isExtension: Bool {
         get {
             return self.bundlePath.hasSuffix(".appex")
@@ -1156,5 +1158,5 @@ extension Bundle {
             return false
         }
     }
-    
+
 }
