@@ -599,12 +599,30 @@ extension ATTrackingManager {
 #endif
 
 extension UIApplication {
-    public static func requestAppTrackingAuthorizationIfNecessary() -> Void {
+    public func requestAppTrackingAuthorizationIfNecessary() -> Void {
         if #available(iOS 14, *) {
             #if canImport(AppTrackingTransparency)
+                //Guard for application not yet being active
+                if(self.applicationState != .active) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        self.requestAppTrackingAuthorizationIfNecessary()
+                    })
+                    return;
+                }
+
+                //Request authorization
                 if(ATTrackingManager.trackingAuthorizationStatus == .notDetermined) {
                     NSLog("MOBCore.requestAppTrackingAuthorization: Requesting Authorization. Current Tracking Status: " + ATTrackingManager.trackingAuthorizationStatusString)
                     ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+
+                        //Check for failed check for tracking advertising
+                        if(status == .notDetermined) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                self.requestAppTrackingAuthorizationIfNecessary()
+                            })
+                            return;
+                        }
+
                         NSLog("MOBCore.requestAppTrackingAuthorization: Completed Request. Tracking Status: " + ATTrackingManager.getDescriptionForStatus(status))
                     })
                     return;
