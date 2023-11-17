@@ -599,13 +599,17 @@ extension ATTrackingManager {
 #endif
 
 extension UIApplication {
-    public func requestAppTrackingAuthorizationIfNecessary() -> Void {
+    public func requestAppTrackingAuthorizationIfNecessary(retries: Int = 10) -> Void {
         if #available(iOS 14, *) {
             #if canImport(AppTrackingTransparency)
+                if(retries < 0) {
+                    return;
+                }
+
                 //Guard for application not yet being active
                 if(self.applicationState != .active) {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                        self.requestAppTrackingAuthorizationIfNecessary()
+                        self.requestAppTrackingAuthorizationIfNecessary(retries: retries - 1)
                     })
                     return;
                 }
@@ -618,7 +622,7 @@ extension UIApplication {
                         //Check for failed check for tracking advertising
                         if(status == .notDetermined) {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                                self.requestAppTrackingAuthorizationIfNecessary()
+                                self.requestAppTrackingAuthorizationIfNecessary(retries: retries - 1)
                             })
                             return;
                         }
